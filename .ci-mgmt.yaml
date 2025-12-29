@@ -36,8 +36,3 @@ publish:
   sdk: "all,!java"
   cdn: false
 publishRegistry: false
-
-# Enables ESC for CI secrets. Optional.
-esc:
-  enabled: true
-  environment: imports/github-secrets
