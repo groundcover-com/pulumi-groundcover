@@ -36,3 +36,6 @@ publish:
   sdk: "all,!java"
   cdn: false
 publishRegistry: false
+
+github-app:
+  enabled: false
