@@ -10,7 +10,7 @@ PROVIDER := pulumi-resource-$(PACK)
 TESTPARALLELISM := 10
 GOTESTARGS := ""
 WORKING_DIR := $(shell pwd)
-PULUMI_PROVIDER_BUILD_PARALLELISM ?=
+PULUMI_PROVIDER_BUILD_PARALLELISM ?= -p 2
 PULUMI_CONVERT := 0
 PULUMI_MISSING_DOCS_ERROR := false
 
@@ -40,7 +40,7 @@ LDFLAGS=$(LDFLAGS_PROJ_VERSION) $(LDFLAGS_UPSTREAM_VERSION) $(LDFLAGS_EXTRAS) $(
 _ := $(shell mkdir -p .make bin .pulumi/bin)
 
 # Build the provider and all SDKs and install ready for testing
-build: .make/mise_install provider build_sdks install_sdks
+build: .make/mise_install provider build_sdks install_sdks build_registry_docs
 build: | mise_env
 
 # Keep aliases for old targets to ensure backwards compatibility
@@ -51,9 +51,9 @@ only_build: build
 prepare_local_workspace: .make/mise_install upstream
 prepare_local_workspace: | mise_env
 # Creates all generated files which need to be committed
-generate: generate_sdks schema
-generate_sdks: generate_dotnet generate_go generate_nodejs generate_python
-build_sdks: build_dotnet build_go build_nodejs build_python
+generate: generate_sdks schema build_registry_docs
+generate_sdks: generate_dotnet generate_go generate_nodejs generate_python build_registry_docs
+build_sdks: build_dotnet build_go build_nodejs build_python build_registry_docs
 install_sdks: install_dotnet_sdk install_go_sdk install_nodejs_sdk install_python_sdk
 .PHONY: development only_build build generate generate_sdks build_sdks install_sdks mise_install mise_env
 
@@ -186,6 +186,13 @@ build_python: .make/build_python
 		../venv/bin/python -m build .
 	@touch $@
 .PHONY: generate_python build_python
+# Run the bridge's registry-docs command to generated the content of the installation docs/ folder at provider repo root
+build_registry_docs: .make/build_registry_docs
+.make/build_registry_docs: .make/mise_install bin/$(CODEGEN)
+.make/build_registry_docs: | mise_env
+	bin/$(CODEGEN) registry-docs --out $(WORKING_DIR)/docs
+	@touch $@
+.PHONY: build_registry_docs
 
 clean:
 	rm -rf sdk/{dotnet,nodejs,go,python}
