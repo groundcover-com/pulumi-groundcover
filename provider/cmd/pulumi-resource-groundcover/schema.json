@@ -1,0 +1,1466 @@
+{
+    "name": "groundcover",
+    "displayName": "Groundcover",
+    "description": "A Pulumi package for creating and managing groundcover resources.",
+    "keywords": [
+        "groundcover",
+        "observability",
+        "monitoring",
+        "category/monitoring"
+    ],
+    "homepage": "https://groundcover.com",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`groundcover` Terraform Provider](https://github.com/groundcover-com/terraform-provider-groundcover).",
+    "repository": "https://github.com/pulumiverse/pulumi-groundcover",
+    "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-groundcover/main/docs/groundcover.png",
+    "pluginDownloadURL": "github://api.github.com/pulumiverse/pulumi-groundcover",
+    "publisher": "Pulumiverse",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20",
+            "rootNamespace": "Pulumiverse",
+            "respectSchemaVersion": true
+        },
+        "go": {
+            "importBasePath": "github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true,
+            "respectSchemaVersion": true
+        },
+        "nodejs": {
+            "packageName": "@pulumiverse/groundcover",
+            "packageDescription": "A Pulumi package for creating and managing groundcover resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/groundcover-com/terraform-provider-groundcover)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-groundcover` repo](https://github.com/pulumiverse/pulumi-groundcover/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-groundcover` repo](https://github.com/groundcover-com/terraform-provider-groundcover/issues).",
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true,
+            "respectSchemaVersion": true
+        },
+        "python": {
+            "packageName": "pulumiverse_groundcover",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/groundcover-com/terraform-provider-groundcover)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-groundcover` repo](https://github.com/pulumiverse/pulumi-groundcover/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-groundcover` repo](https://github.com/groundcover-com/terraform-provider-groundcover/issues).",
+            "compatibility": "tfbridge20",
+            "respectSchemaVersion": true,
+            "pyproject": {
+                "enabled": true
+            }
+        }
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string",
+                "description": "groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable."
+            },
+            "backendId": {
+                "type": "string",
+                "description": "groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable."
+            },
+            "orgName": {
+                "type": "string",
+                "description": "groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use\u003cspan pulumi-lang-nodejs=\" backendId \" pulumi-lang-dotnet=\" BackendId \" pulumi-lang-go=\" backendId \" pulumi-lang-python=\" backend_id \" pulumi-lang-yaml=\" backendId \" pulumi-lang-java=\" backendId \"\u003e backend_id \u003c/span\u003einstead."
+            }
+        }
+    },
+    "types": {
+        "groundcover:index/ApikeyPolicy:ApikeyPolicy": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Policy name.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Policy UUID.\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "uuid"
+                    ]
+                }
+            }
+        },
+        "groundcover:index/PolicyDataScope:PolicyDataScope": {
+            "properties": {
+                "advanced": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvanced:PolicyDataScopeAdvanced",
+                    "description": "Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.\n"
+                },
+                "simple": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeSimple:PolicyDataScopeSimple",
+                    "description": "Simple data scope configuration. Applies a single set of filtering rules to all data types.\n"
+                }
+            },
+            "type": "object"
+        },
+        "groundcover:index/PolicyDataScopeAdvanced:PolicyDataScopeAdvanced": {
+            "properties": {
+                "events": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedEvents:PolicyDataScopeAdvancedEvents",
+                    "description": "Data scope rules for events.\n"
+                },
+                "logs": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedLogs:PolicyDataScopeAdvancedLogs",
+                    "description": "Data scope rules for logs.\n"
+                },
+                "metrics": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedMetrics:PolicyDataScopeAdvancedMetrics",
+                    "description": "Data scope rules for metrics.\n"
+                },
+                "traces": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedTraces:PolicyDataScopeAdvancedTraces",
+                    "description": "Data scope rules for traces.\n"
+                },
+                "workloads": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedWorkloads:PolicyDataScopeAdvancedWorkloads",
+                    "description": "Data scope rules for workloads.\n"
+                }
+            },
+            "type": "object"
+        },
+        "groundcover:index/PolicyDataScopeAdvancedEvents:PolicyDataScopeAdvancedEvents": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedEventsCondition:PolicyDataScopeAdvancedEventsCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedEventsCondition:PolicyDataScopeAdvancedEventsCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedEventsConditionFilter:PolicyDataScopeAdvancedEventsConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedEventsConditionFilter:PolicyDataScopeAdvancedEventsConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedLogs:PolicyDataScopeAdvancedLogs": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedLogsCondition:PolicyDataScopeAdvancedLogsCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedLogsCondition:PolicyDataScopeAdvancedLogsCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedLogsConditionFilter:PolicyDataScopeAdvancedLogsConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedLogsConditionFilter:PolicyDataScopeAdvancedLogsConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedMetrics:PolicyDataScopeAdvancedMetrics": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedMetricsCondition:PolicyDataScopeAdvancedMetricsCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedMetricsCondition:PolicyDataScopeAdvancedMetricsCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedMetricsConditionFilter:PolicyDataScopeAdvancedMetricsConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedMetricsConditionFilter:PolicyDataScopeAdvancedMetricsConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedTraces:PolicyDataScopeAdvancedTraces": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedTracesCondition:PolicyDataScopeAdvancedTracesCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedTracesCondition:PolicyDataScopeAdvancedTracesCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedTracesConditionFilter:PolicyDataScopeAdvancedTracesConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedTracesConditionFilter:PolicyDataScopeAdvancedTracesConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedWorkloads:PolicyDataScopeAdvancedWorkloads": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedWorkloadsCondition:PolicyDataScopeAdvancedWorkloadsCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedWorkloadsCondition:PolicyDataScopeAdvancedWorkloadsCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeAdvancedWorkloadsConditionFilter:PolicyDataScopeAdvancedWorkloadsConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeAdvancedWorkloadsConditionFilter:PolicyDataScopeAdvancedWorkloadsConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeSimple:PolicyDataScopeSimple": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeSimpleCondition:PolicyDataScopeSimpleCondition"
+                    },
+                    "description": "List of conditions for the data scope.\n"
+                },
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Whether this data type is disabled (no data access). When true, users have no access to this data type.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "Logical operator (e.g., 'and', 'or').\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "conditions",
+                "operator"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeSimpleCondition:PolicyDataScopeSimpleCondition": {
+            "properties": {
+                "filters": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScopeSimpleConditionFilter:PolicyDataScopeSimpleConditionFilter"
+                    },
+                    "description": "List of filter criteria for the condition.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The key for the condition (e.g., 'environment').\n"
+                },
+                "origin": {
+                    "type": "string",
+                    "description": "The origin of the key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the key.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "filters",
+                "key",
+                "origin",
+                "type"
+            ]
+        },
+        "groundcover:index/PolicyDataScopeSimpleConditionFilter:PolicyDataScopeSimpleConditionFilter": {
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "description": "The filter operation (e.g., 'match').\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The value to filter on.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "op",
+                "value"
+            ]
+        }
+    },
+    "provider": {
+        "description": "The provider type for the groundcover package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string",
+                "description": "groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable."
+            },
+            "backendId": {
+                "type": "string",
+                "description": "groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable."
+            },
+            "orgName": {
+                "type": "string",
+                "description": "groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use\u003cspan pulumi-lang-nodejs=\" backendId \" pulumi-lang-dotnet=\" BackendId \" pulumi-lang-go=\" backendId \" pulumi-lang-python=\" backend_id \" pulumi-lang-yaml=\" backendId \" pulumi-lang-java=\" backendId \"\u003e backend_id \u003c/span\u003einstead."
+            }
+        },
+        "inputProperties": {
+            "apiKey": {
+                "type": "string",
+                "description": "groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.",
+                "secret": true
+            },
+            "apiUrl": {
+                "type": "string",
+                "description": "groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable."
+            },
+            "backendId": {
+                "type": "string",
+                "description": "groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable."
+            },
+            "orgName": {
+                "type": "string",
+                "description": "groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use\u003cspan pulumi-lang-nodejs=\" backendId \" pulumi-lang-dotnet=\" BackendId \" pulumi-lang-go=\" backendId \" pulumi-lang-python=\" backend_id \" pulumi-lang-yaml=\" backendId \" pulumi-lang-java=\" backendId \"\u003e backend_id \u003c/span\u003einstead."
+            }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:groundcover/terraformConfig"
+        }
+    },
+    "resources": {
+        "groundcover:index/apikey:Apikey": {
+            "description": "API Key resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Policy (required for Service Account)\nconst examplePolicy = new groundcover.Policy(\"examplePolicy\", {\n    role: {\n        read: \"read\",\n    },\n    description: \"Example policy for api key resource example.\",\n});\n// Example Service Account (required for API Key)\nconst exampleServiceaccount = new groundcover.Serviceaccount(\"exampleServiceaccount\", {policyUuids: [examplePolicy.uuid]});\n// Example API Key\nconst exampleApikey = new groundcover.Apikey(\"exampleApikey\", {\n    description: \"API Key generated via Terraform example.\",\n    serviceAccountId: exampleServiceaccount.id,\n});\n// Optional: Set an expiration date (RFC3339 format)\n// expiration_date  = \"2025-01-01T00:00:00Z\"\nexport const apikeyExampleId = exampleApikey.id;\nexport const apikeyExampleValue = exampleApikey.apiKey;\nexport const apikeyExampleCreationDate = exampleApikey.creationDate;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Policy (required for Service Account)\nexample_policy = groundcover.Policy(\"examplePolicy\",\n    role={\n        \"read\": \"read\",\n    },\n    description=\"Example policy for api key resource example.\")\n# Example Service Account (required for API Key)\nexample_serviceaccount = groundcover.Serviceaccount(\"exampleServiceaccount\", policy_uuids=[example_policy.uuid])\n# Example API Key\nexample_apikey = groundcover.Apikey(\"exampleApikey\",\n    description=\"API Key generated via Terraform example.\",\n    service_account_id=example_serviceaccount.id)\n# Optional: Set an expiration date (RFC3339 format)\n# expiration_date  = \"2025-01-01T00:00:00Z\"\npulumi.export(\"apikeyExampleId\", example_apikey.id)\npulumi.export(\"apikeyExampleValue\", example_apikey.api_key)\npulumi.export(\"apikeyExampleCreationDate\", example_apikey.creation_date)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Policy (required for Service Account)\n    var examplePolicy = new Groundcover.Policy(\"examplePolicy\", new()\n    {\n        Role = \n        {\n            { \"read\", \"read\" },\n        },\n        Description = \"Example policy for api key resource example.\",\n    });\n\n    // Example Service Account (required for API Key)\n    var exampleServiceaccount = new Groundcover.Serviceaccount(\"exampleServiceaccount\", new()\n    {\n        PolicyUuids = new[]\n        {\n            examplePolicy.Uuid,\n        },\n    });\n\n    // Example API Key\n    var exampleApikey = new Groundcover.Apikey(\"exampleApikey\", new()\n    {\n        Description = \"API Key generated via Terraform example.\",\n        ServiceAccountId = exampleServiceaccount.Id,\n    });\n\n    // Optional: Set an expiration date (RFC3339 format)\n    // expiration_date  = \"2025-01-01T00:00:00Z\"\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apikeyExampleId\"] = exampleApikey.Id,\n        [\"apikeyExampleValue\"] = exampleApikey.ApiKey,\n        [\"apikeyExampleCreationDate\"] = exampleApikey.CreationDate,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Policy (required for Service Account)\n\t\texamplePolicy, err := groundcover.NewPolicy(ctx, \"examplePolicy\", \u0026groundcover.PolicyArgs{\n\t\t\tRole: pulumi.StringMap{\n\t\t\t\t\"read\": pulumi.String(\"read\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"Example policy for api key resource example.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example Service Account (required for API Key)\n\t\texampleServiceaccount, err := groundcover.NewServiceaccount(ctx, \"exampleServiceaccount\", \u0026groundcover.ServiceaccountArgs{\n\t\t\tPolicyUuids: pulumi.StringArray{\n\t\t\t\texamplePolicy.Uuid,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example API Key\n\t\texampleApikey, err := groundcover.NewApikey(ctx, \"exampleApikey\", \u0026groundcover.ApikeyArgs{\n\t\t\tDescription:      pulumi.String(\"API Key generated via Terraform example.\"),\n\t\t\tServiceAccountId: exampleServiceaccount.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"apikeyExampleId\", exampleApikey.ID())\n\t\tctx.Export(\"apikeyExampleValue\", exampleApikey.ApiKey)\n\t\tctx.Export(\"apikeyExampleCreationDate\", exampleApikey.CreationDate)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Policy;\nimport com.pulumi.groundcover.PolicyArgs;\nimport com.pulumi.groundcover.Serviceaccount;\nimport com.pulumi.groundcover.ServiceaccountArgs;\nimport com.pulumi.groundcover.Apikey;\nimport com.pulumi.groundcover.ApikeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Policy (required for Service Account)\n        var examplePolicy = new Policy(\"examplePolicy\", PolicyArgs.builder()\n            .role(Map.of(\"read\", \"read\"))\n            .description(\"Example policy for api key resource example.\")\n            .build());\n\n        // Example Service Account (required for API Key)\n        var exampleServiceaccount = new Serviceaccount(\"exampleServiceaccount\", ServiceaccountArgs.builder()\n            .policyUuids(examplePolicy.uuid())\n            .build());\n\n        // Example API Key\n        var exampleApikey = new Apikey(\"exampleApikey\", ApikeyArgs.builder()\n            .description(\"API Key generated via Terraform example.\")\n            .serviceAccountId(exampleServiceaccount.id())\n            .build());\n\n        // Optional: Set an expiration date (RFC3339 format)\n        // expiration_date  = \"2025-01-01T00:00:00Z\"\n        ctx.export(\"apikeyExampleId\", exampleApikey.id());\n        ctx.export(\"apikeyExampleValue\", exampleApikey.apiKey());\n        ctx.export(\"apikeyExampleCreationDate\", exampleApikey.creationDate());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Policy (required for Service Account)\n  examplePolicy:\n    type: groundcover:Policy\n    properties:\n      role:\n        read: read\n      description: Example policy for api key resource example.\n  # Example Service Account (required for API Key)\n  exampleServiceaccount:\n    type: groundcover:Serviceaccount\n    properties:\n      policyUuids:\n        - ${examplePolicy.uuid}\n  # Example API Key\n  exampleApikey:\n    type: groundcover:Apikey\n    properties:\n      description: API Key generated via Terraform example.\n      serviceAccountId: ${exampleServiceaccount.id}\noutputs:\n  apikeyExampleId: ${exampleApikey.id}\n  apikeyExampleValue: ${exampleApikey.apiKey}\n  apikeyExampleCreationDate: ${exampleApikey.creationDate}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "apiKey": {
+                    "type": "string",
+                    "description": "The generated API key. This value is only available upon creation.\n",
+                    "secret": true
+                },
+                "createdBy": {
+                    "type": "string",
+                    "description": "The user who created the API key.\n"
+                },
+                "creationDate": {
+                    "type": "string",
+                    "description": "The date the API key was created (RFC3339 format).\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for the API key.\n"
+                },
+                "expirationDate": {
+                    "type": "string",
+                    "description": "The expiration date for the API key (RFC3339 format). If not set, the key never expires.\n"
+                },
+                "expiredAt": {
+                    "type": "string",
+                    "description": "The date the API key expired (RFC3339 format), based on the 'expiration_date' set.\n"
+                },
+                "lastActive": {
+                    "type": "string",
+                    "description": "The last time the API key was active (RFC3339 format).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the API key.\n"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/groundcover:index/ApikeyPolicy:ApikeyPolicy"
+                    },
+                    "description": "Policies associated with the service account linked to this API key.\n"
+                },
+                "revokedAt": {
+                    "type": "string",
+                    "description": "The date the API key was revoked (RFC3339 format), if applicable.\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account associated with the API key.\n"
+                }
+            },
+            "required": [
+                "apiKey",
+                "createdBy",
+                "creationDate",
+                "expiredAt",
+                "lastActive",
+                "name",
+                "policies",
+                "revokedAt",
+                "serviceAccountId"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "A description for the API key.\n"
+                },
+                "expirationDate": {
+                    "type": "string",
+                    "description": "The expiration date for the API key (RFC3339 format). If not set, the key never expires.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the API key.\n"
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "description": "The ID of the service account associated with the API key.\n"
+                }
+            },
+            "requiredInputs": [
+                "serviceAccountId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Apikey resources.\n",
+                "properties": {
+                    "apiKey": {
+                        "type": "string",
+                        "description": "The generated API key. This value is only available upon creation.\n",
+                        "secret": true
+                    },
+                    "createdBy": {
+                        "type": "string",
+                        "description": "The user who created the API key.\n"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "description": "The date the API key was created (RFC3339 format).\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description for the API key.\n"
+                    },
+                    "expirationDate": {
+                        "type": "string",
+                        "description": "The expiration date for the API key (RFC3339 format). If not set, the key never expires.\n"
+                    },
+                    "expiredAt": {
+                        "type": "string",
+                        "description": "The date the API key expired (RFC3339 format), based on the 'expiration_date' set.\n"
+                    },
+                    "lastActive": {
+                        "type": "string",
+                        "description": "The last time the API key was active (RFC3339 format).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the API key.\n"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/groundcover:index/ApikeyPolicy:ApikeyPolicy"
+                        },
+                        "description": "Policies associated with the service account linked to this API key.\n"
+                    },
+                    "revokedAt": {
+                        "type": "string",
+                        "description": "The date the API key was revoked (RFC3339 format), if applicable.\n"
+                    },
+                    "serviceAccountId": {
+                        "type": "string",
+                        "description": "The ID of the service account associated with the API key.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/dashboard:Dashboard": {
+            "description": "Dashboard resource for managing groundcover dashboards.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Dashboard: Basic metrics dashboard\nconst metricsDashboard = new groundcover.Dashboard(\"metricsDashboard\", {\n    description: \"Example dashboard showing system metrics\",\n    team: \"platform\",\n    preset: JSON.stringify({\n        duration: \"Last 1 hour\",\n        layout: [\n            {\n                id: \"A\",\n                x: 0,\n                y: 0,\n                w: 12,\n                h: 4,\n                minH: 2,\n            },\n            {\n                id: \"B\",\n                x: 0,\n                y: 4,\n                w: 6,\n                h: 4,\n                minH: 2,\n            },\n            {\n                id: \"C\",\n                x: 6,\n                y: 4,\n                w: 6,\n                h: 4,\n                minH: 2,\n            },\n        ],\n        widgets: [\n            {\n                id: \"A\",\n                type: \"widget\",\n                name: \"CPU Usage\",\n                queries: [{\n                    id: \"A\",\n                    expr: \"avg(rate(container_cpu_usage_seconds_total[5m])) * 100\",\n                    dataType: \"metrics\",\n                    step: null,\n                    editorMode: \"builder\",\n                }],\n                visualizationConfig: {\n                    type: \"time-series\",\n                },\n            },\n            {\n                id: \"B\",\n                type: \"widget\",\n                name: \"Memory Usage\",\n                queries: [{\n                    id: \"B\",\n                    expr: \"avg(container_memory_usage_bytes)\",\n                    dataType: \"metrics\",\n                    step: null,\n                    editorMode: \"builder\",\n                }],\n                visualizationConfig: {\n                    type: \"gauge\",\n                },\n            },\n            {\n                id: \"C\",\n                type: \"text\",\n                html: \"\u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\",\n            },\n        ],\n        variables: {},\n        schemaVersion: 3,\n    }),\n});\n// Example Dashboard: Simple monitoring dashboard\nconst simpleDashboard = new groundcover.Dashboard(\"simpleDashboard\", {preset: JSON.stringify({\n    duration: \"Last 30 minutes\",\n    layout: [{\n        id: \"widget1\",\n        x: 0,\n        y: 0,\n        w: 12,\n        h: 6,\n        minH: 3,\n    }],\n    widgets: [{\n        id: \"widget1\",\n        type: \"widget\",\n        name: \"Request Rate\",\n        queries: [{\n            id: \"query1\",\n            expr: \"sum(rate(http_requests_total[5m]))\",\n            dataType: \"metrics\",\n            step: null,\n            editorMode: \"code\",\n        }],\n        visualizationConfig: {\n            type: \"time-series\",\n            config: {\n                showLegend: true,\n                unit: \"ops\",\n            },\n        },\n    }],\n    variables: {},\n    schemaVersion: 3,\n})});\nexport const metricsDashboardId = metricsDashboard.id;\nexport const metricsDashboardOwner = metricsDashboard.owner;\nexport const simpleDashboardId = simpleDashboard.id;\nexport const simpleDashboardOwner = simpleDashboard.owner;\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Dashboard: Basic metrics dashboard\nmetrics_dashboard = groundcover.Dashboard(\"metricsDashboard\",\n    description=\"Example dashboard showing system metrics\",\n    team=\"platform\",\n    preset=json.dumps({\n        \"duration\": \"Last 1 hour\",\n        \"layout\": [\n            {\n                \"id\": \"A\",\n                \"x\": 0,\n                \"y\": 0,\n                \"w\": 12,\n                \"h\": 4,\n                \"minH\": 2,\n            },\n            {\n                \"id\": \"B\",\n                \"x\": 0,\n                \"y\": 4,\n                \"w\": 6,\n                \"h\": 4,\n                \"minH\": 2,\n            },\n            {\n                \"id\": \"C\",\n                \"x\": 6,\n                \"y\": 4,\n                \"w\": 6,\n                \"h\": 4,\n                \"minH\": 2,\n            },\n        ],\n        \"widgets\": [\n            {\n                \"id\": \"A\",\n                \"type\": \"widget\",\n                \"name\": \"CPU Usage\",\n                \"queries\": [{\n                    \"id\": \"A\",\n                    \"expr\": \"avg(rate(container_cpu_usage_seconds_total[5m])) * 100\",\n                    \"dataType\": \"metrics\",\n                    \"step\": None,\n                    \"editorMode\": \"builder\",\n                }],\n                \"visualizationConfig\": {\n                    \"type\": \"time-series\",\n                },\n            },\n            {\n                \"id\": \"B\",\n                \"type\": \"widget\",\n                \"name\": \"Memory Usage\",\n                \"queries\": [{\n                    \"id\": \"B\",\n                    \"expr\": \"avg(container_memory_usage_bytes)\",\n                    \"dataType\": \"metrics\",\n                    \"step\": None,\n                    \"editorMode\": \"builder\",\n                }],\n                \"visualizationConfig\": {\n                    \"type\": \"gauge\",\n                },\n            },\n            {\n                \"id\": \"C\",\n                \"type\": \"text\",\n                \"html\": \"\u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\",\n            },\n        ],\n        \"variables\": {},\n        \"schemaVersion\": 3,\n    }))\n# Example Dashboard: Simple monitoring dashboard\nsimple_dashboard = groundcover.Dashboard(\"simpleDashboard\", preset=json.dumps({\n    \"duration\": \"Last 30 minutes\",\n    \"layout\": [{\n        \"id\": \"widget1\",\n        \"x\": 0,\n        \"y\": 0,\n        \"w\": 12,\n        \"h\": 6,\n        \"minH\": 3,\n    }],\n    \"widgets\": [{\n        \"id\": \"widget1\",\n        \"type\": \"widget\",\n        \"name\": \"Request Rate\",\n        \"queries\": [{\n            \"id\": \"query1\",\n            \"expr\": \"sum(rate(http_requests_total[5m]))\",\n            \"dataType\": \"metrics\",\n            \"step\": None,\n            \"editorMode\": \"code\",\n        }],\n        \"visualizationConfig\": {\n            \"type\": \"time-series\",\n            \"config\": {\n                \"showLegend\": True,\n                \"unit\": \"ops\",\n            },\n        },\n    }],\n    \"variables\": {},\n    \"schemaVersion\": 3,\n}))\npulumi.export(\"metricsDashboardId\", metrics_dashboard.id)\npulumi.export(\"metricsDashboardOwner\", metrics_dashboard.owner)\npulumi.export(\"simpleDashboardId\", simple_dashboard.id)\npulumi.export(\"simpleDashboardOwner\", simple_dashboard.owner)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Dashboard: Basic metrics dashboard\n    var metricsDashboard = new Groundcover.Dashboard(\"metricsDashboard\", new()\n    {\n        Description = \"Example dashboard showing system metrics\",\n        Team = \"platform\",\n        Preset = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"duration\"] = \"Last 1 hour\",\n            [\"layout\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"A\",\n                    [\"x\"] = 0,\n                    [\"y\"] = 0,\n                    [\"w\"] = 12,\n                    [\"h\"] = 4,\n                    [\"minH\"] = 2,\n                },\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"B\",\n                    [\"x\"] = 0,\n                    [\"y\"] = 4,\n                    [\"w\"] = 6,\n                    [\"h\"] = 4,\n                    [\"minH\"] = 2,\n                },\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"C\",\n                    [\"x\"] = 6,\n                    [\"y\"] = 4,\n                    [\"w\"] = 6,\n                    [\"h\"] = 4,\n                    [\"minH\"] = 2,\n                },\n            },\n            [\"widgets\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"A\",\n                    [\"type\"] = \"widget\",\n                    [\"name\"] = \"CPU Usage\",\n                    [\"queries\"] = new[]\n                    {\n                        new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"id\"] = \"A\",\n                            [\"expr\"] = \"avg(rate(container_cpu_usage_seconds_total[5m])) * 100\",\n                            [\"dataType\"] = \"metrics\",\n                            [\"step\"] = null,\n                            [\"editorMode\"] = \"builder\",\n                        },\n                    },\n                    [\"visualizationConfig\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"type\"] = \"time-series\",\n                    },\n                },\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"B\",\n                    [\"type\"] = \"widget\",\n                    [\"name\"] = \"Memory Usage\",\n                    [\"queries\"] = new[]\n                    {\n                        new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"id\"] = \"B\",\n                            [\"expr\"] = \"avg(container_memory_usage_bytes)\",\n                            [\"dataType\"] = \"metrics\",\n                            [\"step\"] = null,\n                            [\"editorMode\"] = \"builder\",\n                        },\n                    },\n                    [\"visualizationConfig\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"type\"] = \"gauge\",\n                    },\n                },\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"C\",\n                    [\"type\"] = \"text\",\n                    [\"html\"] = \"\u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\",\n                },\n            },\n            [\"variables\"] = new Dictionary\u003cstring, object?\u003e\n            {\n            },\n            [\"schemaVersion\"] = 3,\n        }),\n    });\n\n    // Example Dashboard: Simple monitoring dashboard\n    var simpleDashboard = new Groundcover.Dashboard(\"simpleDashboard\", new()\n    {\n        Preset = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"duration\"] = \"Last 30 minutes\",\n            [\"layout\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"widget1\",\n                    [\"x\"] = 0,\n                    [\"y\"] = 0,\n                    [\"w\"] = 12,\n                    [\"h\"] = 6,\n                    [\"minH\"] = 3,\n                },\n            },\n            [\"widgets\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"id\"] = \"widget1\",\n                    [\"type\"] = \"widget\",\n                    [\"name\"] = \"Request Rate\",\n                    [\"queries\"] = new[]\n                    {\n                        new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"id\"] = \"query1\",\n                            [\"expr\"] = \"sum(rate(http_requests_total[5m]))\",\n                            [\"dataType\"] = \"metrics\",\n                            [\"step\"] = null,\n                            [\"editorMode\"] = \"code\",\n                        },\n                    },\n                    [\"visualizationConfig\"] = new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"type\"] = \"time-series\",\n                        [\"config\"] = new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"showLegend\"] = true,\n                            [\"unit\"] = \"ops\",\n                        },\n                    },\n                },\n            },\n            [\"variables\"] = new Dictionary\u003cstring, object?\u003e\n            {\n            },\n            [\"schemaVersion\"] = 3,\n        }),\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"metricsDashboardId\"] = metricsDashboard.Id,\n        [\"metricsDashboardOwner\"] = metricsDashboard.Owner,\n        [\"simpleDashboardId\"] = simpleDashboard.Id,\n        [\"simpleDashboardOwner\"] = simpleDashboard.Owner,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"duration\": \"Last 1 hour\",\n\t\t\t\"layout\": []interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"A\",\n\t\t\t\t\t\"x\":    0,\n\t\t\t\t\t\"y\":    0,\n\t\t\t\t\t\"w\":    12,\n\t\t\t\t\t\"h\":    4,\n\t\t\t\t\t\"minH\": 2,\n\t\t\t\t},\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"B\",\n\t\t\t\t\t\"x\":    0,\n\t\t\t\t\t\"y\":    4,\n\t\t\t\t\t\"w\":    6,\n\t\t\t\t\t\"h\":    4,\n\t\t\t\t\t\"minH\": 2,\n\t\t\t\t},\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"C\",\n\t\t\t\t\t\"x\":    6,\n\t\t\t\t\t\"y\":    4,\n\t\t\t\t\t\"w\":    6,\n\t\t\t\t\t\"h\":    4,\n\t\t\t\t\t\"minH\": 2,\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"widgets\": []interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"A\",\n\t\t\t\t\t\"type\": \"widget\",\n\t\t\t\t\t\"name\": \"CPU Usage\",\n\t\t\t\t\t\"queries\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"id\":         \"A\",\n\t\t\t\t\t\t\t\"expr\":       \"avg(rate(container_cpu_usage_seconds_total[5m])) * 100\",\n\t\t\t\t\t\t\t\"dataType\":   \"metrics\",\n\t\t\t\t\t\t\t\"step\":       nil,\n\t\t\t\t\t\t\t\"editorMode\": \"builder\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"visualizationConfig\": map[string]interface{}{\n\t\t\t\t\t\t\"type\": \"time-series\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"B\",\n\t\t\t\t\t\"type\": \"widget\",\n\t\t\t\t\t\"name\": \"Memory Usage\",\n\t\t\t\t\t\"queries\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"id\":         \"B\",\n\t\t\t\t\t\t\t\"expr\":       \"avg(container_memory_usage_bytes)\",\n\t\t\t\t\t\t\t\"dataType\":   \"metrics\",\n\t\t\t\t\t\t\t\"step\":       nil,\n\t\t\t\t\t\t\t\"editorMode\": \"builder\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"visualizationConfig\": map[string]interface{}{\n\t\t\t\t\t\t\"type\": \"gauge\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"C\",\n\t\t\t\t\t\"type\": \"text\",\n\t\t\t\t\t\"html\": \"\u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\",\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"variables\":     map[string]interface{}{},\n\t\t\t\"schemaVersion\": 3,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t// Example Dashboard: Basic metrics dashboard\n\t\tmetricsDashboard, err := groundcover.NewDashboard(ctx, \"metricsDashboard\", \u0026groundcover.DashboardArgs{\n\t\t\tDescription: pulumi.String(\"Example dashboard showing system metrics\"),\n\t\t\tTeam:        pulumi.String(\"platform\"),\n\t\t\tPreset:      pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\"duration\": \"Last 30 minutes\",\n\t\t\t\"layout\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"widget1\",\n\t\t\t\t\t\"x\":    0,\n\t\t\t\t\t\"y\":    0,\n\t\t\t\t\t\"w\":    12,\n\t\t\t\t\t\"h\":    6,\n\t\t\t\t\t\"minH\": 3,\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"widgets\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"id\":   \"widget1\",\n\t\t\t\t\t\"type\": \"widget\",\n\t\t\t\t\t\"name\": \"Request Rate\",\n\t\t\t\t\t\"queries\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"id\":         \"query1\",\n\t\t\t\t\t\t\t\"expr\":       \"sum(rate(http_requests_total[5m]))\",\n\t\t\t\t\t\t\t\"dataType\":   \"metrics\",\n\t\t\t\t\t\t\t\"step\":       nil,\n\t\t\t\t\t\t\t\"editorMode\": \"code\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"visualizationConfig\": map[string]interface{}{\n\t\t\t\t\t\t\"type\": \"time-series\",\n\t\t\t\t\t\t\"config\": map[string]interface{}{\n\t\t\t\t\t\t\t\"showLegend\": true,\n\t\t\t\t\t\t\t\"unit\":       \"ops\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"variables\":     map[string]interface{}{},\n\t\t\t\"schemaVersion\": 3,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\t// Example Dashboard: Simple monitoring dashboard\n\t\tsimpleDashboard, err := groundcover.NewDashboard(ctx, \"simpleDashboard\", \u0026groundcover.DashboardArgs{\n\t\t\tPreset: pulumi.String(json1),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"metricsDashboardId\", metricsDashboard.ID())\n\t\tctx.Export(\"metricsDashboardOwner\", metricsDashboard.Owner)\n\t\tctx.Export(\"simpleDashboardId\", simpleDashboard.ID())\n\t\tctx.Export(\"simpleDashboardOwner\", simpleDashboard.Owner)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Dashboard;\nimport com.pulumi.groundcover.DashboardArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Dashboard: Basic metrics dashboard\n        var metricsDashboard = new Dashboard(\"metricsDashboard\", DashboardArgs.builder()\n            .description(\"Example dashboard showing system metrics\")\n            .team(\"platform\")\n            .preset(serializeJson(\n                jsonObject(\n                    jsonProperty(\"duration\", \"Last 1 hour\"),\n                    jsonProperty(\"layout\", jsonArray(\n                        jsonObject(\n                            jsonProperty(\"id\", \"A\"),\n                            jsonProperty(\"x\", 0),\n                            jsonProperty(\"y\", 0),\n                            jsonProperty(\"w\", 12),\n                            jsonProperty(\"h\", 4),\n                            jsonProperty(\"minH\", 2)\n                        ), \n                        jsonObject(\n                            jsonProperty(\"id\", \"B\"),\n                            jsonProperty(\"x\", 0),\n                            jsonProperty(\"y\", 4),\n                            jsonProperty(\"w\", 6),\n                            jsonProperty(\"h\", 4),\n                            jsonProperty(\"minH\", 2)\n                        ), \n                        jsonObject(\n                            jsonProperty(\"id\", \"C\"),\n                            jsonProperty(\"x\", 6),\n                            jsonProperty(\"y\", 4),\n                            jsonProperty(\"w\", 6),\n                            jsonProperty(\"h\", 4),\n                            jsonProperty(\"minH\", 2)\n                        )\n                    )),\n                    jsonProperty(\"widgets\", jsonArray(\n                        jsonObject(\n                            jsonProperty(\"id\", \"A\"),\n                            jsonProperty(\"type\", \"widget\"),\n                            jsonProperty(\"name\", \"CPU Usage\"),\n                            jsonProperty(\"queries\", jsonArray(jsonObject(\n                                jsonProperty(\"id\", \"A\"),\n                                jsonProperty(\"expr\", \"avg(rate(container_cpu_usage_seconds_total[5m])) * 100\"),\n                                jsonProperty(\"dataType\", \"metrics\"),\n                                jsonProperty(\"step\", null),\n                                jsonProperty(\"editorMode\", \"builder\")\n                            ))),\n                            jsonProperty(\"visualizationConfig\", jsonObject(\n                                jsonProperty(\"type\", \"time-series\")\n                            ))\n                        ), \n                        jsonObject(\n                            jsonProperty(\"id\", \"B\"),\n                            jsonProperty(\"type\", \"widget\"),\n                            jsonProperty(\"name\", \"Memory Usage\"),\n                            jsonProperty(\"queries\", jsonArray(jsonObject(\n                                jsonProperty(\"id\", \"B\"),\n                                jsonProperty(\"expr\", \"avg(container_memory_usage_bytes)\"),\n                                jsonProperty(\"dataType\", \"metrics\"),\n                                jsonProperty(\"step\", null),\n                                jsonProperty(\"editorMode\", \"builder\")\n                            ))),\n                            jsonProperty(\"visualizationConfig\", jsonObject(\n                                jsonProperty(\"type\", \"gauge\")\n                            ))\n                        ), \n                        jsonObject(\n                            jsonProperty(\"id\", \"C\"),\n                            jsonProperty(\"type\", \"text\"),\n                            jsonProperty(\"html\", \"\u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\")\n                        )\n                    )),\n                    jsonProperty(\"variables\", jsonObject(\n\n                    )),\n                    jsonProperty(\"schemaVersion\", 3)\n                )))\n            .build());\n\n        // Example Dashboard: Simple monitoring dashboard\n        var simpleDashboard = new Dashboard(\"simpleDashboard\", DashboardArgs.builder()\n            .preset(serializeJson(\n                jsonObject(\n                    jsonProperty(\"duration\", \"Last 30 minutes\"),\n                    jsonProperty(\"layout\", jsonArray(jsonObject(\n                        jsonProperty(\"id\", \"widget1\"),\n                        jsonProperty(\"x\", 0),\n                        jsonProperty(\"y\", 0),\n                        jsonProperty(\"w\", 12),\n                        jsonProperty(\"h\", 6),\n                        jsonProperty(\"minH\", 3)\n                    ))),\n                    jsonProperty(\"widgets\", jsonArray(jsonObject(\n                        jsonProperty(\"id\", \"widget1\"),\n                        jsonProperty(\"type\", \"widget\"),\n                        jsonProperty(\"name\", \"Request Rate\"),\n                        jsonProperty(\"queries\", jsonArray(jsonObject(\n                            jsonProperty(\"id\", \"query1\"),\n                            jsonProperty(\"expr\", \"sum(rate(http_requests_total[5m]))\"),\n                            jsonProperty(\"dataType\", \"metrics\"),\n                            jsonProperty(\"step\", null),\n                            jsonProperty(\"editorMode\", \"code\")\n                        ))),\n                        jsonProperty(\"visualizationConfig\", jsonObject(\n                            jsonProperty(\"type\", \"time-series\"),\n                            jsonProperty(\"config\", jsonObject(\n                                jsonProperty(\"showLegend\", true),\n                                jsonProperty(\"unit\", \"ops\")\n                            ))\n                        ))\n                    ))),\n                    jsonProperty(\"variables\", jsonObject(\n\n                    )),\n                    jsonProperty(\"schemaVersion\", 3)\n                )))\n            .build());\n\n        ctx.export(\"metricsDashboardId\", metricsDashboard.id());\n        ctx.export(\"metricsDashboardOwner\", metricsDashboard.owner());\n        ctx.export(\"simpleDashboardId\", simpleDashboard.id());\n        ctx.export(\"simpleDashboardOwner\", simpleDashboard.owner());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Dashboard: Basic metrics dashboard\n  metricsDashboard:\n    type: groundcover:Dashboard\n    properties:\n      description: Example dashboard showing system metrics\n      team: platform\n      # Dashboard preset contains the JSON configuration\n      preset:\n        fn::toJSON:\n          duration: Last 1 hour\n          layout:\n            - id: A\n              x: 0\n              y: 0\n              w: 12\n              h: 4\n              minH: 2\n            - id: B\n              x: 0\n              y: 4\n              w: 6\n              h: 4\n              minH: 2\n            - id: C\n              x: 6\n              y: 4\n              w: 6\n              h: 4\n              minH: 2\n          widgets:\n            - id: A\n              type: widget\n              name: CPU Usage\n              queries:\n                - id: A\n                  expr: avg(rate(container_cpu_usage_seconds_total[5m])) * 100\n                  dataType: metrics\n                  step: null\n                  editorMode: builder\n              visualizationConfig:\n                type: time-series\n            - id: B\n              type: widget\n              name: Memory Usage\n              queries:\n                - id: B\n                  expr: avg(container_memory_usage_bytes)\n                  dataType: metrics\n                  step: null\n                  editorMode: builder\n              visualizationConfig:\n                type: gauge\n            - id: C\n              type: text\n              html: \u003ch3\u003eSystem Metrics\u003c/h3\u003e\u003cp\u003eThis dashboard shows key system metrics including CPU and memory usage.\u003c/p\u003e\n          variables: {}\n          schemaVersion: 3\n  # Example Dashboard: Simple monitoring dashboard\n  simpleDashboard:\n    type: groundcover:Dashboard\n    properties:\n      preset:\n        fn::toJSON:\n          duration: Last 30 minutes\n          layout:\n            - id: widget1\n              x: 0\n              y: 0\n              w: 12\n              h: 6\n              minH: 3\n          widgets:\n            - id: widget1\n              type: widget\n              name: Request Rate\n              queries:\n                - id: query1\n                  expr: sum(rate(http_requests_total[5m]))\n                  dataType: metrics\n                  step: null\n                  editorMode: code\n              visualizationConfig:\n                type: time-series\n                config:\n                  showLegend: true\n                  unit: ops\n          variables: {}\n          schemaVersion: 3\noutputs:\n  metricsDashboardId: ${metricsDashboard.id}\n  metricsDashboardOwner: ${metricsDashboard.owner}\n  simpleDashboardId: ${simpleDashboard.id}\n  simpleDashboardOwner: ${simpleDashboard.owner}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the dashboard.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the dashboard.\n"
+                },
+                "override": {
+                    "type": "boolean",
+                    "description": "Whether to override the dashboard on update.\n"
+                },
+                "owner": {
+                    "type": "string",
+                    "description": "The owner of the dashboard.\n"
+                },
+                "preset": {
+                    "type": "string",
+                    "description": "The preset configuration for the dashboard.\n"
+                },
+                "revisionNumber": {
+                    "type": "integer",
+                    "description": "The revision number of the dashboard.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the dashboard.\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "The team that owns the dashboard.\n"
+                }
+            },
+            "required": [
+                "name",
+                "owner",
+                "preset",
+                "revisionNumber",
+                "status"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "The description of the dashboard.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the dashboard.\n"
+                },
+                "override": {
+                    "type": "boolean",
+                    "description": "Whether to override the dashboard on update.\n"
+                },
+                "preset": {
+                    "type": "string",
+                    "description": "The preset configuration for the dashboard.\n"
+                },
+                "team": {
+                    "type": "string",
+                    "description": "The team that owns the dashboard.\n"
+                }
+            },
+            "requiredInputs": [
+                "preset"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dashboard resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the dashboard.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the dashboard.\n"
+                    },
+                    "override": {
+                        "type": "boolean",
+                        "description": "Whether to override the dashboard on update.\n"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "description": "The owner of the dashboard.\n"
+                    },
+                    "preset": {
+                        "type": "string",
+                        "description": "The preset configuration for the dashboard.\n"
+                    },
+                    "revisionNumber": {
+                        "type": "integer",
+                        "description": "The revision number of the dashboard.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the dashboard.\n"
+                    },
+                    "team": {
+                        "type": "string",
+                        "description": "The team that owns the dashboard.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/dataintegration:Dataintegration": {
+            "description": "DataIntegration resource for managing groundcover's integrations with external services such as cloud providers, databases and more. This resource is composed of general metadata on the integration and a specific configuration per data source. Navigate to the relevant nested schema according to your specific needs.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\n// Example: CloudWatch DataIntegration\n// For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n// https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\nconst cloudwatchExample = new groundcover.Dataintegration(\"cloudwatchExample\", {\n    type: \"cloudwatch\",\n    config: JSON.stringify({\n        name: \"test-cloudwatch\",\n        version: 1,\n        stsRegion: \"us-east-1\",\n        regions: [\n            \"us-east-1\",\n            \"us-east-2\",\n        ],\n        roleArn: \"arn:aws:iam::123456789012:role/test-role\",\n        awsMetrics: [{\n            namespace: \"AWS/EC2\",\n            metrics: [{\n                name: \"CPUUtilization\",\n                statistics: [\"Average\"],\n            }],\n        }],\n        labelSettings: {\n            extraLabels: {\n                env: \"prod\",\n            },\n        },\n        scrapeInterval: 300000000000,\n        exporters: [\"prometheus\"],\n    }),\n    isPaused: false,\n});\n// Example: GCP Metrics DataIntegration\n// For a full list of supported GCP metrics, visit the official GCP documentation:\n// https://cloud.google.com/monitoring/api/metrics_gcp\nconst gcpExample = new groundcover.Dataintegration(\"gcpExample\", {\n    type: \"gcpmetrics\",\n    config: JSON.stringify({\n        name: \"test-gcp\",\n        version: 1,\n        enabled: true,\n        targetServiceAccount: \"demo@gcp-demo-project.iam.gserviceaccount.com\",\n        regions: [\"us-west1\"],\n        metricPrefixes: [\n            \"cloudsql.googleapis.com\",\n            \"compute.googleapis.com\",\n        ],\n        projectIDs: [\"gcp-demo-project\"],\n        scrapeInterval: 300000000000,\n        exporters: [\"prometheus\"],\n        labelSettings: {\n            extraLabels: {\n                env: \"prod\",\n            },\n        },\n    }),\n    isPaused: false,\n});\n// Example: Azure Metrics DataIntegration\n// For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n// https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\nconst azureExample = new groundcover.Dataintegration(\"azureExample\", {\n    type: \"azuremetrics\",\n    config: JSON.stringify({\n        name: \"Azure demo\",\n        version: 1,\n        subscriptions: [\"b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\"],\n        regions: [\"australiaeast\"],\n        azureMetrics: [{\n            resourceType: \"Microsoft.Compute/virtualMachines\",\n            metrics: [{\n                name: \"Available Memory Bytes\",\n            }],\n            aggregations: [\n                \"Average\",\n                \"Maximum\",\n                \"Minimum\",\n            ],\n        }],\n        azureCloudEnvironment: \"AzurePublicCloud\",\n        scrapeInterval: 300000000000,\n        labelSettings: {\n            extraLabels: {\n                env: \"prod\",\n            },\n        },\n        exporters: [\"prometheus\"],\n    }),\n    isPaused: false,\n});\nexport const cloudwatchDataintegrationId = cloudwatchExample.id;\nexport const gcpmetricsDataintegrationId = gcpExample.id;\nexport const azuremetricsDataintegrationId = azureExample.id;\n```\n```python\nimport pulumi\nimport json\nimport pulumiverse_groundcover as groundcover\n\n# Example: CloudWatch DataIntegration\n# For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n# https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\ncloudwatch_example = groundcover.Dataintegration(\"cloudwatchExample\",\n    type=\"cloudwatch\",\n    config=json.dumps({\n        \"name\": \"test-cloudwatch\",\n        \"version\": 1,\n        \"stsRegion\": \"us-east-1\",\n        \"regions\": [\n            \"us-east-1\",\n            \"us-east-2\",\n        ],\n        \"roleArn\": \"arn:aws:iam::123456789012:role/test-role\",\n        \"awsMetrics\": [{\n            \"namespace\": \"AWS/EC2\",\n            \"metrics\": [{\n                \"name\": \"CPUUtilization\",\n                \"statistics\": [\"Average\"],\n            }],\n        }],\n        \"labelSettings\": {\n            \"extraLabels\": {\n                \"env\": \"prod\",\n            },\n        },\n        \"scrapeInterval\": 300000000000,\n        \"exporters\": [\"prometheus\"],\n    }),\n    is_paused=False)\n# Example: GCP Metrics DataIntegration\n# For a full list of supported GCP metrics, visit the official GCP documentation:\n# https://cloud.google.com/monitoring/api/metrics_gcp\ngcp_example = groundcover.Dataintegration(\"gcpExample\",\n    type=\"gcpmetrics\",\n    config=json.dumps({\n        \"name\": \"test-gcp\",\n        \"version\": 1,\n        \"enabled\": True,\n        \"targetServiceAccount\": \"demo@gcp-demo-project.iam.gserviceaccount.com\",\n        \"regions\": [\"us-west1\"],\n        \"metricPrefixes\": [\n            \"cloudsql.googleapis.com\",\n            \"compute.googleapis.com\",\n        ],\n        \"projectIDs\": [\"gcp-demo-project\"],\n        \"scrapeInterval\": 300000000000,\n        \"exporters\": [\"prometheus\"],\n        \"labelSettings\": {\n            \"extraLabels\": {\n                \"env\": \"prod\",\n            },\n        },\n    }),\n    is_paused=False)\n# Example: Azure Metrics DataIntegration\n# For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n# https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\nazure_example = groundcover.Dataintegration(\"azureExample\",\n    type=\"azuremetrics\",\n    config=json.dumps({\n        \"name\": \"Azure demo\",\n        \"version\": 1,\n        \"subscriptions\": [\"b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\"],\n        \"regions\": [\"australiaeast\"],\n        \"azureMetrics\": [{\n            \"resourceType\": \"Microsoft.Compute/virtualMachines\",\n            \"metrics\": [{\n                \"name\": \"Available Memory Bytes\",\n            }],\n            \"aggregations\": [\n                \"Average\",\n                \"Maximum\",\n                \"Minimum\",\n            ],\n        }],\n        \"azureCloudEnvironment\": \"AzurePublicCloud\",\n        \"scrapeInterval\": 300000000000,\n        \"labelSettings\": {\n            \"extraLabels\": {\n                \"env\": \"prod\",\n            },\n        },\n        \"exporters\": [\"prometheus\"],\n    }),\n    is_paused=False)\npulumi.export(\"cloudwatchDataintegrationId\", cloudwatch_example.id)\npulumi.export(\"gcpmetricsDataintegrationId\", gcp_example.id)\npulumi.export(\"azuremetricsDataintegrationId\", azure_example.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example: CloudWatch DataIntegration\n    // For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n    // https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\n    var cloudwatchExample = new Groundcover.Dataintegration(\"cloudwatchExample\", new()\n    {\n        Type = \"cloudwatch\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"name\"] = \"test-cloudwatch\",\n            [\"version\"] = 1,\n            [\"stsRegion\"] = \"us-east-1\",\n            [\"regions\"] = new[]\n            {\n                \"us-east-1\",\n                \"us-east-2\",\n            },\n            [\"roleArn\"] = \"arn:aws:iam::123456789012:role/test-role\",\n            [\"awsMetrics\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"namespace\"] = \"AWS/EC2\",\n                    [\"metrics\"] = new[]\n                    {\n                        new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"name\"] = \"CPUUtilization\",\n                            [\"statistics\"] = new[]\n                            {\n                                \"Average\",\n                            },\n                        },\n                    },\n                },\n            },\n            [\"labelSettings\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"extraLabels\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"env\"] = \"prod\",\n                },\n            },\n            [\"scrapeInterval\"] = 300000000000,\n            [\"exporters\"] = new[]\n            {\n                \"prometheus\",\n            },\n        }),\n        IsPaused = false,\n    });\n\n    // Example: GCP Metrics DataIntegration\n    // For a full list of supported GCP metrics, visit the official GCP documentation:\n    // https://cloud.google.com/monitoring/api/metrics_gcp\n    var gcpExample = new Groundcover.Dataintegration(\"gcpExample\", new()\n    {\n        Type = \"gcpmetrics\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"name\"] = \"test-gcp\",\n            [\"version\"] = 1,\n            [\"enabled\"] = true,\n            [\"targetServiceAccount\"] = \"demo@gcp-demo-project.iam.gserviceaccount.com\",\n            [\"regions\"] = new[]\n            {\n                \"us-west1\",\n            },\n            [\"metricPrefixes\"] = new[]\n            {\n                \"cloudsql.googleapis.com\",\n                \"compute.googleapis.com\",\n            },\n            [\"projectIDs\"] = new[]\n            {\n                \"gcp-demo-project\",\n            },\n            [\"scrapeInterval\"] = 300000000000,\n            [\"exporters\"] = new[]\n            {\n                \"prometheus\",\n            },\n            [\"labelSettings\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"extraLabels\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"env\"] = \"prod\",\n                },\n            },\n        }),\n        IsPaused = false,\n    });\n\n    // Example: Azure Metrics DataIntegration\n    // For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n    // https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\n    var azureExample = new Groundcover.Dataintegration(\"azureExample\", new()\n    {\n        Type = \"azuremetrics\",\n        Config = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"name\"] = \"Azure demo\",\n            [\"version\"] = 1,\n            [\"subscriptions\"] = new[]\n            {\n                \"b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\",\n            },\n            [\"regions\"] = new[]\n            {\n                \"australiaeast\",\n            },\n            [\"azureMetrics\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"resourceType\"] = \"Microsoft.Compute/virtualMachines\",\n                    [\"metrics\"] = new[]\n                    {\n                        new Dictionary\u003cstring, object?\u003e\n                        {\n                            [\"name\"] = \"Available Memory Bytes\",\n                        },\n                    },\n                    [\"aggregations\"] = new[]\n                    {\n                        \"Average\",\n                        \"Maximum\",\n                        \"Minimum\",\n                    },\n                },\n            },\n            [\"azureCloudEnvironment\"] = \"AzurePublicCloud\",\n            [\"scrapeInterval\"] = 300000000000,\n            [\"labelSettings\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"extraLabels\"] = new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"env\"] = \"prod\",\n                },\n            },\n            [\"exporters\"] = new[]\n            {\n                \"prometheus\",\n            },\n        }),\n        IsPaused = false,\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"cloudwatchDataintegrationId\"] = cloudwatchExample.Id,\n        [\"gcpmetricsDataintegrationId\"] = gcpExample.Id,\n        [\"azuremetricsDataintegrationId\"] = azureExample.Id,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"name\":      \"test-cloudwatch\",\n\t\t\t\"version\":   1,\n\t\t\t\"stsRegion\": \"us-east-1\",\n\t\t\t\"regions\": []string{\n\t\t\t\t\"us-east-1\",\n\t\t\t\t\"us-east-2\",\n\t\t\t},\n\t\t\t\"roleArn\": \"arn:aws:iam::123456789012:role/test-role\",\n\t\t\t\"awsMetrics\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"namespace\": \"AWS/EC2\",\n\t\t\t\t\t\"metrics\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"name\": \"CPUUtilization\",\n\t\t\t\t\t\t\t\"statistics\": []string{\n\t\t\t\t\t\t\t\t\"Average\",\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"labelSettings\": map[string]interface{}{\n\t\t\t\t\"extraLabels\": map[string]interface{}{\n\t\t\t\t\t\"env\": \"prod\",\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"scrapeInterval\": 300000000000,\n\t\t\t\"exporters\": []string{\n\t\t\t\t\"prometheus\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t// Example: CloudWatch DataIntegration\n\t\t// For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n\t\t// https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\n\t\tcloudwatchExample, err := groundcover.NewDataintegration(ctx, \"cloudwatchExample\", \u0026groundcover.DataintegrationArgs{\n\t\t\tType:     pulumi.String(\"cloudwatch\"),\n\t\t\tConfig:   pulumi.String(json0),\n\t\t\tIsPaused: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\"name\":                 \"test-gcp\",\n\t\t\t\"version\":              1,\n\t\t\t\"enabled\":              true,\n\t\t\t\"targetServiceAccount\": \"demo@gcp-demo-project.iam.gserviceaccount.com\",\n\t\t\t\"regions\": []string{\n\t\t\t\t\"us-west1\",\n\t\t\t},\n\t\t\t\"metricPrefixes\": []string{\n\t\t\t\t\"cloudsql.googleapis.com\",\n\t\t\t\t\"compute.googleapis.com\",\n\t\t\t},\n\t\t\t\"projectIDs\": []string{\n\t\t\t\t\"gcp-demo-project\",\n\t\t\t},\n\t\t\t\"scrapeInterval\": 300000000000,\n\t\t\t\"exporters\": []string{\n\t\t\t\t\"prometheus\",\n\t\t\t},\n\t\t\t\"labelSettings\": map[string]interface{}{\n\t\t\t\t\"extraLabels\": map[string]interface{}{\n\t\t\t\t\t\"env\": \"prod\",\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\t// Example: GCP Metrics DataIntegration\n\t\t// For a full list of supported GCP metrics, visit the official GCP documentation:\n\t\t// https://cloud.google.com/monitoring/api/metrics_gcp\n\t\tgcpExample, err := groundcover.NewDataintegration(ctx, \"gcpExample\", \u0026groundcover.DataintegrationArgs{\n\t\t\tType:     pulumi.String(\"gcpmetrics\"),\n\t\t\tConfig:   pulumi.String(json1),\n\t\t\tIsPaused: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON2, err := json.Marshal(map[string]interface{}{\n\t\t\t\"name\":    \"Azure demo\",\n\t\t\t\"version\": 1,\n\t\t\t\"subscriptions\": []string{\n\t\t\t\t\"b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\",\n\t\t\t},\n\t\t\t\"regions\": []string{\n\t\t\t\t\"australiaeast\",\n\t\t\t},\n\t\t\t\"azureMetrics\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"resourceType\": \"Microsoft.Compute/virtualMachines\",\n\t\t\t\t\t\"metrics\": []map[string]interface{}{\n\t\t\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\t\t\"name\": \"Available Memory Bytes\",\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\t\"aggregations\": []string{\n\t\t\t\t\t\t\"Average\",\n\t\t\t\t\t\t\"Maximum\",\n\t\t\t\t\t\t\"Minimum\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"azureCloudEnvironment\": \"AzurePublicCloud\",\n\t\t\t\"scrapeInterval\":        300000000000,\n\t\t\t\"labelSettings\": map[string]interface{}{\n\t\t\t\t\"extraLabels\": map[string]interface{}{\n\t\t\t\t\t\"env\": \"prod\",\n\t\t\t\t},\n\t\t\t},\n\t\t\t\"exporters\": []string{\n\t\t\t\t\"prometheus\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson2 := string(tmpJSON2)\n\t\t// Example: Azure Metrics DataIntegration\n\t\t// For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n\t\t// https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\n\t\tazureExample, err := groundcover.NewDataintegration(ctx, \"azureExample\", \u0026groundcover.DataintegrationArgs{\n\t\t\tType:     pulumi.String(\"azuremetrics\"),\n\t\t\tConfig:   pulumi.String(json2),\n\t\t\tIsPaused: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"cloudwatchDataintegrationId\", cloudwatchExample.ID())\n\t\tctx.Export(\"gcpmetricsDataintegrationId\", gcpExample.ID())\n\t\tctx.Export(\"azuremetricsDataintegrationId\", azureExample.ID())\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Dataintegration;\nimport com.pulumi.groundcover.DataintegrationArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example: CloudWatch DataIntegration\n        // For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n        // https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\n        var cloudwatchExample = new Dataintegration(\"cloudwatchExample\", DataintegrationArgs.builder()\n            .type(\"cloudwatch\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"name\", \"test-cloudwatch\"),\n                    jsonProperty(\"version\", 1),\n                    jsonProperty(\"stsRegion\", \"us-east-1\"),\n                    jsonProperty(\"regions\", jsonArray(\n                        \"us-east-1\", \n                        \"us-east-2\"\n                    )),\n                    jsonProperty(\"roleArn\", \"arn:aws:iam::123456789012:role/test-role\"),\n                    jsonProperty(\"awsMetrics\", jsonArray(jsonObject(\n                        jsonProperty(\"namespace\", \"AWS/EC2\"),\n                        jsonProperty(\"metrics\", jsonArray(jsonObject(\n                            jsonProperty(\"name\", \"CPUUtilization\"),\n                            jsonProperty(\"statistics\", jsonArray(\"Average\"))\n                        )))\n                    ))),\n                    jsonProperty(\"labelSettings\", jsonObject(\n                        jsonProperty(\"extraLabels\", jsonObject(\n                            jsonProperty(\"env\", \"prod\")\n                        ))\n                    )),\n                    jsonProperty(\"scrapeInterval\", 300000000000),\n                    jsonProperty(\"exporters\", jsonArray(\"prometheus\"))\n                )))\n            .isPaused(false)\n            .build());\n\n        // Example: GCP Metrics DataIntegration\n        // For a full list of supported GCP metrics, visit the official GCP documentation:\n        // https://cloud.google.com/monitoring/api/metrics_gcp\n        var gcpExample = new Dataintegration(\"gcpExample\", DataintegrationArgs.builder()\n            .type(\"gcpmetrics\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"name\", \"test-gcp\"),\n                    jsonProperty(\"version\", 1),\n                    jsonProperty(\"enabled\", true),\n                    jsonProperty(\"targetServiceAccount\", \"demo@gcp-demo-project.iam.gserviceaccount.com\"),\n                    jsonProperty(\"regions\", jsonArray(\"us-west1\")),\n                    jsonProperty(\"metricPrefixes\", jsonArray(\n                        \"cloudsql.googleapis.com\", \n                        \"compute.googleapis.com\"\n                    )),\n                    jsonProperty(\"projectIDs\", jsonArray(\"gcp-demo-project\")),\n                    jsonProperty(\"scrapeInterval\", 300000000000),\n                    jsonProperty(\"exporters\", jsonArray(\"prometheus\")),\n                    jsonProperty(\"labelSettings\", jsonObject(\n                        jsonProperty(\"extraLabels\", jsonObject(\n                            jsonProperty(\"env\", \"prod\")\n                        ))\n                    ))\n                )))\n            .isPaused(false)\n            .build());\n\n        // Example: Azure Metrics DataIntegration\n        // For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n        // https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\n        var azureExample = new Dataintegration(\"azureExample\", DataintegrationArgs.builder()\n            .type(\"azuremetrics\")\n            .config(serializeJson(\n                jsonObject(\n                    jsonProperty(\"name\", \"Azure demo\"),\n                    jsonProperty(\"version\", 1),\n                    jsonProperty(\"subscriptions\", jsonArray(\"b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\")),\n                    jsonProperty(\"regions\", jsonArray(\"australiaeast\")),\n                    jsonProperty(\"azureMetrics\", jsonArray(jsonObject(\n                        jsonProperty(\"resourceType\", \"Microsoft.Compute/virtualMachines\"),\n                        jsonProperty(\"metrics\", jsonArray(jsonObject(\n                            jsonProperty(\"name\", \"Available Memory Bytes\")\n                        ))),\n                        jsonProperty(\"aggregations\", jsonArray(\n                            \"Average\", \n                            \"Maximum\", \n                            \"Minimum\"\n                        ))\n                    ))),\n                    jsonProperty(\"azureCloudEnvironment\", \"AzurePublicCloud\"),\n                    jsonProperty(\"scrapeInterval\", 300000000000),\n                    jsonProperty(\"labelSettings\", jsonObject(\n                        jsonProperty(\"extraLabels\", jsonObject(\n                            jsonProperty(\"env\", \"prod\")\n                        ))\n                    )),\n                    jsonProperty(\"exporters\", jsonArray(\"prometheus\"))\n                )))\n            .isPaused(false)\n            .build());\n\n        ctx.export(\"cloudwatchDataintegrationId\", cloudwatchExample.id());\n        ctx.export(\"gcpmetricsDataintegrationId\", gcpExample.id());\n        ctx.export(\"azuremetricsDataintegrationId\", azureExample.id());\n    }\n}\n```\n```yaml\nresources:\n  # Example: CloudWatch DataIntegration\n  # For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:\n  # https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html\n  cloudwatchExample:\n    type: groundcover:Dataintegration\n    properties:\n      type: cloudwatch\n      config:\n        fn::toJSON:\n          name: test-cloudwatch\n          version: 1\n          stsRegion: us-east-1\n          regions:\n            - us-east-1\n            - us-east-2\n          roleArn: arn:aws:iam::123456789012:role/test-role\n          awsMetrics:\n            - namespace: AWS/EC2\n              metrics:\n                - name: CPUUtilization\n                  statistics:\n                    - Average\n          labelSettings:\n            extraLabels:\n              env: prod\n          scrapeInterval: 3e+11\n          exporters:\n            - prometheus\n      isPaused: false\n  # Example: GCP Metrics DataIntegration\n  # For a full list of supported GCP metrics, visit the official GCP documentation:\n  # https://cloud.google.com/monitoring/api/metrics_gcp\n  gcpExample:\n    type: groundcover:Dataintegration\n    properties:\n      type: gcpmetrics\n      config:\n        fn::toJSON:\n          name: test-gcp\n          version: 1\n          enabled: true\n          targetServiceAccount: demo@gcp-demo-project.iam.gserviceaccount.com\n          regions:\n            - us-west1\n          metricPrefixes:\n            - cloudsql.googleapis.com\n            - compute.googleapis.com\n          projectIDs:\n            - gcp-demo-project\n          scrapeInterval: 3e+11\n          exporters:\n            - prometheus\n          labelSettings:\n            extraLabels:\n              env: prod\n      isPaused: false\n  # Example: Azure Metrics DataIntegration\n  # For a full list of supported Azure metrics, visit the official Azure Monitor documentation:\n  # https://learn.microsoft.com/en-us/azure/azure-monitor/reference/metrics-index\n  azureExample:\n    type: groundcover:Dataintegration\n    properties:\n      type: azuremetrics\n      config:\n        fn::toJSON:\n          name: Azure demo\n          version: 1\n          subscriptions:\n            - b3128f7e-54df-4d2e-9c3e-93a4f1f8c9a0\n          regions:\n            - australiaeast\n          azureMetrics:\n            - resourceType: Microsoft.Compute/virtualMachines\n              metrics:\n                - name: Available Memory Bytes\n              aggregations:\n                - Average\n                - Maximum\n                - Minimum\n          azureCloudEnvironment: AzurePublicCloud\n          scrapeInterval: 3e+11\n          labelSettings:\n            extraLabels:\n              env: prod\n          exporters:\n            - prometheus\n      isPaused: false\noutputs:\n  # Output the data integration IDs for reference\n  cloudwatchDataintegrationId: ${cloudwatchExample.id}\n  gcpmetricsDataintegrationId: ${gcpExample.id}\n  azuremetricsDataintegrationId: ${azureExample.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "cluster": {
+                    "type": "string",
+                    "description": "The cluster where the data integration runs. If unspecified, it will run in the backend.\n"
+                },
+                "config": {
+                    "type": "string",
+                    "description": "The JSON configuration for the data integration.\n"
+                },
+                "isPaused": {
+                    "type": "boolean",
+                    "description": "Whether the data integration is paused. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of data integration (e.g., 'cloudwatch', etc.).\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last update timestamp of the data integration configuration.\n"
+                },
+                "updatedBy": {
+                    "type": "string",
+                    "description": "The user who last updated the data integration configuration.\n"
+                }
+            },
+            "required": [
+                "config",
+                "isPaused",
+                "type",
+                "updatedAt",
+                "updatedBy"
+            ],
+            "inputProperties": {
+                "cluster": {
+                    "type": "string",
+                    "description": "The cluster where the data integration runs. If unspecified, it will run in the backend.\n"
+                },
+                "config": {
+                    "type": "string",
+                    "description": "The JSON configuration for the data integration.\n"
+                },
+                "isPaused": {
+                    "type": "boolean",
+                    "description": "Whether the data integration is paused. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of data integration (e.g., 'cloudwatch', etc.).\n"
+                }
+            },
+            "requiredInputs": [
+                "config",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Dataintegration resources.\n",
+                "properties": {
+                    "cluster": {
+                        "type": "string",
+                        "description": "The cluster where the data integration runs. If unspecified, it will run in the backend.\n"
+                    },
+                    "config": {
+                        "type": "string",
+                        "description": "The JSON configuration for the data integration.\n"
+                    },
+                    "isPaused": {
+                        "type": "boolean",
+                        "description": "Whether the data integration is paused. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of data integration (e.g., 'cloudwatch', etc.).\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The last update timestamp of the data integration configuration.\n"
+                    },
+                    "updatedBy": {
+                        "type": "string",
+                        "description": "The user who last updated the data integration configuration.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/ingestionkey:Ingestionkey": {
+            "description": "Ingestion Key resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Ingestion Key\nconst example = new groundcover.Ingestionkey(\"example\", {\n    type: \"ingestion\",\n    remoteConfig: true,\n    tags: [\n        \"terraform\",\n        \"example\",\n        \"ingestion\",\n    ],\n});\n// Example Ingestion Key with minimal configuration\nconst minimal = new groundcover.Ingestionkey(\"minimal\", {type: \"ingestion\"});\nexport const ingestionkeyExampleKey = example.key;\nexport const ingestionkeyExampleCreationDate = example.creationDate;\nexport const ingestionkeyExampleCreatedBy = example.createdBy;\nexport const ingestionkeyMinimalKey = minimal.key;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Ingestion Key\nexample = groundcover.Ingestionkey(\"example\",\n    type=\"ingestion\",\n    remote_config=True,\n    tags=[\n        \"terraform\",\n        \"example\",\n        \"ingestion\",\n    ])\n# Example Ingestion Key with minimal configuration\nminimal = groundcover.Ingestionkey(\"minimal\", type=\"ingestion\")\npulumi.export(\"ingestionkeyExampleKey\", example.key)\npulumi.export(\"ingestionkeyExampleCreationDate\", example.creation_date)\npulumi.export(\"ingestionkeyExampleCreatedBy\", example.created_by)\npulumi.export(\"ingestionkeyMinimalKey\", minimal.key)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Ingestion Key\n    var example = new Groundcover.Ingestionkey(\"example\", new()\n    {\n        Type = \"ingestion\",\n        RemoteConfig = true,\n        Tags = new[]\n        {\n            \"terraform\",\n            \"example\",\n            \"ingestion\",\n        },\n    });\n\n    // Example Ingestion Key with minimal configuration\n    var minimal = new Groundcover.Ingestionkey(\"minimal\", new()\n    {\n        Type = \"ingestion\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"ingestionkeyExampleKey\"] = example.Key,\n        [\"ingestionkeyExampleCreationDate\"] = example.CreationDate,\n        [\"ingestionkeyExampleCreatedBy\"] = example.CreatedBy,\n        [\"ingestionkeyMinimalKey\"] = minimal.Key,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Ingestion Key\n\t\texample, err := groundcover.NewIngestionkey(ctx, \"example\", \u0026groundcover.IngestionkeyArgs{\n\t\t\tType:         pulumi.String(\"ingestion\"),\n\t\t\tRemoteConfig: pulumi.Bool(true),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t\tpulumi.String(\"ingestion\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example Ingestion Key with minimal configuration\n\t\tminimal, err := groundcover.NewIngestionkey(ctx, \"minimal\", \u0026groundcover.IngestionkeyArgs{\n\t\t\tType: pulumi.String(\"ingestion\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"ingestionkeyExampleKey\", example.Key)\n\t\tctx.Export(\"ingestionkeyExampleCreationDate\", example.CreationDate)\n\t\tctx.Export(\"ingestionkeyExampleCreatedBy\", example.CreatedBy)\n\t\tctx.Export(\"ingestionkeyMinimalKey\", minimal.Key)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Ingestionkey;\nimport com.pulumi.groundcover.IngestionkeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Ingestion Key\n        var example = new Ingestionkey(\"example\", IngestionkeyArgs.builder()\n            .type(\"ingestion\")\n            .remoteConfig(true)\n            .tags(            \n                \"terraform\",\n                \"example\",\n                \"ingestion\")\n            .build());\n\n        // Example Ingestion Key with minimal configuration\n        var minimal = new Ingestionkey(\"minimal\", IngestionkeyArgs.builder()\n            .type(\"ingestion\")\n            .build());\n\n        ctx.export(\"ingestionkeyExampleKey\", example.key());\n        ctx.export(\"ingestionkeyExampleCreationDate\", example.creationDate());\n        ctx.export(\"ingestionkeyExampleCreatedBy\", example.createdBy());\n        ctx.export(\"ingestionkeyMinimalKey\", minimal.key());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Ingestion Key\n  example:\n    type: groundcover:Ingestionkey\n    properties:\n      type: ingestion\n      # Optional: Enable remote configuration\n      remoteConfig: true\n      # Optional: Add tags\n      tags:\n        - terraform\n        - example\n        - ingestion\n  # Example Ingestion Key with minimal configuration\n  minimal:\n    type: groundcover:Ingestionkey\n    properties:\n      type: ingestion\noutputs:\n  ingestionkeyExampleKey: ${example.key}\n  ingestionkeyExampleCreationDate: ${example.creationDate}\n  ingestionkeyExampleCreatedBy: ${example.createdBy}\n  ingestionkeyMinimalKey: ${minimal.key}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "createdBy": {
+                    "type": "string",
+                    "description": "The user who created the ingestion key.\n"
+                },
+                "creationDate": {
+                    "type": "string",
+                    "description": "The creation date of the ingestion key. Deprecated: No longer provided by API v1.84.0+\n",
+                    "deprecationMessage": "This field is no longer populated by the Groundcover API as of SDK v1.84.0"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The actual key value for ingestion.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the ingestion key.\n"
+                },
+                "remoteConfig": {
+                    "type": "boolean",
+                    "description": "Indicates if the ingestion key is configured for remote configuration.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with the ingestion key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the ingestion key (e.g., 'ingestion').\n"
+                }
+            },
+            "required": [
+                "createdBy",
+                "creationDate",
+                "key",
+                "name",
+                "remoteConfig",
+                "tags",
+                "type"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the ingestion key.\n"
+                },
+                "remoteConfig": {
+                    "type": "boolean",
+                    "description": "Indicates if the ingestion key is configured for remote configuration.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with the ingestion key.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the ingestion key (e.g., 'ingestion').\n"
+                }
+            },
+            "requiredInputs": [
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Ingestionkey resources.\n",
+                "properties": {
+                    "createdBy": {
+                        "type": "string",
+                        "description": "The user who created the ingestion key.\n"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "description": "The creation date of the ingestion key. Deprecated: No longer provided by API v1.84.0+\n",
+                        "deprecationMessage": "This field is no longer populated by the Groundcover API as of SDK v1.84.0"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The actual key value for ingestion.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the ingestion key.\n"
+                    },
+                    "remoteConfig": {
+                        "type": "boolean",
+                        "description": "Indicates if the ingestion key is configured for remote configuration.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags associated with the ingestion key.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the ingestion key (e.g., 'ingestion').\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/logspipeline:Logspipeline": {
+            "description": "Logs Pipeline resource. This is a singleton resource.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Logs Pipeline\nconst logspipeline = new groundcover.Logspipeline(\"logspipeline\", {value: `ottlRules:\n  - ruleName: example-rule\n    conditions:\n      - container_name == \"nginx\"\n    statements:\n      - set(attributes[\"test.key\"], \"test-value\")\n`});\nexport const logsPipelineUpdatedAt = logspipeline.updatedAt;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Logs Pipeline\nlogspipeline = groundcover.Logspipeline(\"logspipeline\", value=\"\"\"ottlRules:\n  - ruleName: example-rule\n    conditions:\n      - container_name == \"nginx\"\n    statements:\n      - set(attributes[\"test.key\"], \"test-value\")\n\"\"\")\npulumi.export(\"logsPipelineUpdatedAt\", logspipeline.updated_at)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Logs Pipeline\n    var logspipeline = new Groundcover.Logspipeline(\"logspipeline\", new()\n    {\n        Value = @\"ottlRules:\n  - ruleName: example-rule\n    conditions:\n      - container_name == \"\"nginx\"\"\n    statements:\n      - set(attributes[\"\"test.key\"\"], \"\"test-value\"\")\n\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"logsPipelineUpdatedAt\"] = logspipeline.UpdatedAt,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Logs Pipeline\n\t\tlogspipeline, err := groundcover.NewLogspipeline(ctx, \"logspipeline\", \u0026groundcover.LogspipelineArgs{\n\t\t\tValue: pulumi.String(`ottlRules:\n  - ruleName: example-rule\n    conditions:\n      - container_name == \"nginx\"\n    statements:\n      - set(attributes[\"test.key\"], \"test-value\")\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"logsPipelineUpdatedAt\", logspipeline.UpdatedAt)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Logspipeline;\nimport com.pulumi.groundcover.LogspipelineArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Logs Pipeline\n        var logspipeline = new Logspipeline(\"logspipeline\", LogspipelineArgs.builder()\n            .value(\"\"\"\nottlRules:\n  - ruleName: example-rule\n    conditions:\n      - container_name == \"nginx\"\n    statements:\n      - set(attributes[\"test.key\"], \"test-value\")\n            \"\"\")\n            .build());\n\n        ctx.export(\"logsPipelineUpdatedAt\", logspipeline.updatedAt());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Logs Pipeline\n  logspipeline:\n    type: groundcover:Logspipeline\n    properties:\n      value: |\n        ottlRules:\n          - ruleName: example-rule\n            conditions:\n              - container_name == \"nginx\"\n            statements:\n              - set(attributes[\"test.key\"], \"test-value\")\noutputs:\n  logsPipelineUpdatedAt: ${logspipeline.updatedAt}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last update timestamp of the logs pipeline configuration.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The YAML representation of the logs pipeline configuration.\n"
+                }
+            },
+            "required": [
+                "updatedAt",
+                "value"
+            ],
+            "inputProperties": {
+                "value": {
+                    "type": "string",
+                    "description": "The YAML representation of the logs pipeline configuration.\n"
+                }
+            },
+            "requiredInputs": [
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Logspipeline resources.\n",
+                "properties": {
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The last update timestamp of the logs pipeline configuration.\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The YAML representation of the logs pipeline configuration.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/metricsaggregation:Metricsaggregation": {
+            "description": "Metrics Aggregation resource. This is a singleton resource that configures metrics aggregation rules.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Metrics Aggregation\n// This resource configures metrics aggregation rules for reducing cardinality\n// and improving query performance.\nconst metricsaggregation = new groundcover.Metricsaggregation(\"metricsaggregation\", {value: `content: |\n  - ignore_old_samples: true\n    match: '{__name__=~\"http_requests_total\"}'\n    without: [instance, pod]\n    interval: 60s\n    outputs: [total_prometheus]\n  - ignore_old_samples: true\n    match: '{__name__=~\"process_cpu_seconds_total\"}'\n    without: [instance]\n    interval: 30s\n    outputs: [total_prometheus]\n`});\nexport const metricsAggregationUpdatedAt = metricsaggregation.updatedAt;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Metrics Aggregation\n# This resource configures metrics aggregation rules for reducing cardinality\n# and improving query performance.\nmetricsaggregation = groundcover.Metricsaggregation(\"metricsaggregation\", value=\"\"\"content: |\n  - ignore_old_samples: true\n    match: '{__name__=~\"http_requests_total\"}'\n    without: [instance, pod]\n    interval: 60s\n    outputs: [total_prometheus]\n  - ignore_old_samples: true\n    match: '{__name__=~\"process_cpu_seconds_total\"}'\n    without: [instance]\n    interval: 30s\n    outputs: [total_prometheus]\n\"\"\")\npulumi.export(\"metricsAggregationUpdatedAt\", metricsaggregation.updated_at)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Metrics Aggregation\n    // This resource configures metrics aggregation rules for reducing cardinality\n    // and improving query performance.\n    var metricsaggregation = new Groundcover.Metricsaggregation(\"metricsaggregation\", new()\n    {\n        Value = @\"content: |\n  - ignore_old_samples: true\n    match: '{__name__=~\"\"http_requests_total\"\"}'\n    without: [instance, pod]\n    interval: 60s\n    outputs: [total_prometheus]\n  - ignore_old_samples: true\n    match: '{__name__=~\"\"process_cpu_seconds_total\"\"}'\n    without: [instance]\n    interval: 30s\n    outputs: [total_prometheus]\n\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"metricsAggregationUpdatedAt\"] = metricsaggregation.UpdatedAt,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Metrics Aggregation\n\t\t// This resource configures metrics aggregation rules for reducing cardinality\n\t\t// and improving query performance.\n\t\tmetricsaggregation, err := groundcover.NewMetricsaggregation(ctx, \"metricsaggregation\", \u0026groundcover.MetricsaggregationArgs{\n\t\t\tValue: pulumi.String(`content: |\n  - ignore_old_samples: true\n    match: '{__name__=~\"http_requests_total\"}'\n    without: [instance, pod]\n    interval: 60s\n    outputs: [total_prometheus]\n  - ignore_old_samples: true\n    match: '{__name__=~\"process_cpu_seconds_total\"}'\n    without: [instance]\n    interval: 30s\n    outputs: [total_prometheus]\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"metricsAggregationUpdatedAt\", metricsaggregation.UpdatedAt)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Metricsaggregation;\nimport com.pulumi.groundcover.MetricsaggregationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Metrics Aggregation\n        // This resource configures metrics aggregation rules for reducing cardinality\n        // and improving query performance.\n        var metricsaggregation = new Metricsaggregation(\"metricsaggregation\", MetricsaggregationArgs.builder()\n            .value(\"\"\"\ncontent: |\n  - ignore_old_samples: true\n    match: '{__name__=~\"http_requests_total\"}'\n    without: [instance, pod]\n    interval: 60s\n    outputs: [total_prometheus]\n  - ignore_old_samples: true\n    match: '{__name__=~\"process_cpu_seconds_total\"}'\n    without: [instance]\n    interval: 30s\n    outputs: [total_prometheus]\n            \"\"\")\n            .build());\n\n        ctx.export(\"metricsAggregationUpdatedAt\", metricsaggregation.updatedAt());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Metrics Aggregation\n  # This resource configures metrics aggregation rules for reducing cardinality\n  # and improving query performance.\n  metricsaggregation:\n    type: groundcover:Metricsaggregation\n    properties:\n      value: |\n        content: |\n          - ignore_old_samples: true\n            match: '{__name__=~\"http_requests_total\"}'\n            without: [instance, pod]\n            interval: 60s\n            outputs: [total_prometheus]\n          - ignore_old_samples: true\n            match: '{__name__=~\"process_cpu_seconds_total\"}'\n            without: [instance]\n            interval: 30s\n            outputs: [total_prometheus]\noutputs:\n  metricsAggregationUpdatedAt: ${metricsaggregation.updatedAt}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The last update timestamp of the metrics aggregation configuration.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The YAML representation of the metrics aggregation configuration.\n"
+                }
+            },
+            "required": [
+                "updatedAt",
+                "value"
+            ],
+            "inputProperties": {
+                "value": {
+                    "type": "string",
+                    "description": "The YAML representation of the metrics aggregation configuration.\n"
+                }
+            },
+            "requiredInputs": [
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Metricsaggregation resources.\n",
+                "properties": {
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The last update timestamp of the metrics aggregation configuration.\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The YAML representation of the metrics aggregation configuration.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/monitor:Monitor": {
+            "description": "groundcover Monitor resource managed via raw YAML.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Monitor: K8s Pod Crash Looping using monitor_yaml\nconst k8sPodCrashLooping = new groundcover.Monitor(\"k8sPodCrashLooping\", {monitorYaml: `title: K8s Pod Crash Looping\ndisplay:\n  header: K8s Pod Crash Looping\n  resourceHeaderLabels:\n  - workload\n  contextHeaderLabels:\n  - cluster\n  - namespace\n  - workload\n  description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\nseverity: S2\nmeasurementType: event\nmodel:\n  queries:\n  - dataType: metrics\n    name: threshold_input_query\n    pipeline:\n      function:\n        name: avg_over_time\n        pipelines:\n        - function:\n            name: avg_by\n            pipelines:\n            - metric: groundcover_kube_pod_container_status_waiting_reason\n            args:\n            - cluster\n            - namespace\n            - workload\n        args:\n        - 5m\n    conditions:\n    - key: reason\n      origin: root\n      type: string\n      filters:\n      - op: match\n        value: CrashLoopBackOff\n  thresholds:\n  - name: threshold_1\n    inputName: threshold_input_query\n    operator: gt\n    values:\n    - 0\nexecutionErrorState: OK\nevaluationInterval:\n  interval: 1m0s\n  pendingFor: 5m0s\n`});\nexport const monitorExampleId = k8sPodCrashLooping.id;\nexport const monitorExampleYamlOutput = k8sPodCrashLooping.monitorYaml;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Monitor: K8s Pod Crash Looping using monitor_yaml\nk8s_pod_crash_looping = groundcover.Monitor(\"k8sPodCrashLooping\", monitor_yaml=\"\"\"title: K8s Pod Crash Looping\ndisplay:\n  header: K8s Pod Crash Looping\n  resourceHeaderLabels:\n  - workload\n  contextHeaderLabels:\n  - cluster\n  - namespace\n  - workload\n  description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\nseverity: S2\nmeasurementType: event\nmodel:\n  queries:\n  - dataType: metrics\n    name: threshold_input_query\n    pipeline:\n      function:\n        name: avg_over_time\n        pipelines:\n        - function:\n            name: avg_by\n            pipelines:\n            - metric: groundcover_kube_pod_container_status_waiting_reason\n            args:\n            - cluster\n            - namespace\n            - workload\n        args:\n        - 5m\n    conditions:\n    - key: reason\n      origin: root\n      type: string\n      filters:\n      - op: match\n        value: CrashLoopBackOff\n  thresholds:\n  - name: threshold_1\n    inputName: threshold_input_query\n    operator: gt\n    values:\n    - 0\nexecutionErrorState: OK\nevaluationInterval:\n  interval: 1m0s\n  pendingFor: 5m0s\n\"\"\")\npulumi.export(\"monitorExampleId\", k8s_pod_crash_looping.id)\npulumi.export(\"monitorExampleYamlOutput\", k8s_pod_crash_looping.monitor_yaml)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Monitor: K8s Pod Crash Looping using monitor_yaml\n    var k8sPodCrashLooping = new Groundcover.Monitor(\"k8sPodCrashLooping\", new()\n    {\n        MonitorYaml = @\"title: K8s Pod Crash Looping\ndisplay:\n  header: K8s Pod Crash Looping\n  resourceHeaderLabels:\n  - workload\n  contextHeaderLabels:\n  - cluster\n  - namespace\n  - workload\n  description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\nseverity: S2\nmeasurementType: event\nmodel:\n  queries:\n  - dataType: metrics\n    name: threshold_input_query\n    pipeline:\n      function:\n        name: avg_over_time\n        pipelines:\n        - function:\n            name: avg_by\n            pipelines:\n            - metric: groundcover_kube_pod_container_status_waiting_reason\n            args:\n            - cluster\n            - namespace\n            - workload\n        args:\n        - 5m\n    conditions:\n    - key: reason\n      origin: root\n      type: string\n      filters:\n      - op: match\n        value: CrashLoopBackOff\n  thresholds:\n  - name: threshold_1\n    inputName: threshold_input_query\n    operator: gt\n    values:\n    - 0\nexecutionErrorState: OK\nevaluationInterval:\n  interval: 1m0s\n  pendingFor: 5m0s\n\",\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"monitorExampleId\"] = k8sPodCrashLooping.Id,\n        [\"monitorExampleYamlOutput\"] = k8sPodCrashLooping.MonitorYaml,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Monitor: K8s Pod Crash Looping using monitor_yaml\n\t\tk8sPodCrashLooping, err := groundcover.NewMonitor(ctx, \"k8sPodCrashLooping\", \u0026groundcover.MonitorArgs{\n\t\t\tMonitorYaml: pulumi.String(`title: K8s Pod Crash Looping\ndisplay:\n  header: K8s Pod Crash Looping\n  resourceHeaderLabels:\n  - workload\n  contextHeaderLabels:\n  - cluster\n  - namespace\n  - workload\n  description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\nseverity: S2\nmeasurementType: event\nmodel:\n  queries:\n  - dataType: metrics\n    name: threshold_input_query\n    pipeline:\n      function:\n        name: avg_over_time\n        pipelines:\n        - function:\n            name: avg_by\n            pipelines:\n            - metric: groundcover_kube_pod_container_status_waiting_reason\n            args:\n            - cluster\n            - namespace\n            - workload\n        args:\n        - 5m\n    conditions:\n    - key: reason\n      origin: root\n      type: string\n      filters:\n      - op: match\n        value: CrashLoopBackOff\n  thresholds:\n  - name: threshold_1\n    inputName: threshold_input_query\n    operator: gt\n    values:\n    - 0\nexecutionErrorState: OK\nevaluationInterval:\n  interval: 1m0s\n  pendingFor: 5m0s\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"monitorExampleId\", k8sPodCrashLooping.ID())\n\t\tctx.Export(\"monitorExampleYamlOutput\", k8sPodCrashLooping.MonitorYaml)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Monitor;\nimport com.pulumi.groundcover.MonitorArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Monitor: K8s Pod Crash Looping using monitor_yaml\n        var k8sPodCrashLooping = new Monitor(\"k8sPodCrashLooping\", MonitorArgs.builder()\n            .monitorYaml(\"\"\"\ntitle: K8s Pod Crash Looping\ndisplay:\n  header: K8s Pod Crash Looping\n  resourceHeaderLabels:\n  - workload\n  contextHeaderLabels:\n  - cluster\n  - namespace\n  - workload\n  description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\nseverity: S2\nmeasurementType: event\nmodel:\n  queries:\n  - dataType: metrics\n    name: threshold_input_query\n    pipeline:\n      function:\n        name: avg_over_time\n        pipelines:\n        - function:\n            name: avg_by\n            pipelines:\n            - metric: groundcover_kube_pod_container_status_waiting_reason\n            args:\n            - cluster\n            - namespace\n            - workload\n        args:\n        - 5m\n    conditions:\n    - key: reason\n      origin: root\n      type: string\n      filters:\n      - op: match\n        value: CrashLoopBackOff\n  thresholds:\n  - name: threshold_1\n    inputName: threshold_input_query\n    operator: gt\n    values:\n    - 0\nexecutionErrorState: OK\nevaluationInterval:\n  interval: 1m0s\n  pendingFor: 5m0s\n            \"\"\")\n            .build());\n\n        ctx.export(\"monitorExampleId\", k8sPodCrashLooping.id());\n        ctx.export(\"monitorExampleYamlOutput\", k8sPodCrashLooping.monitorYaml());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Monitor: K8s Pod Crash Looping using monitor_yaml\n  k8sPodCrashLooping:\n    type: groundcover:Monitor\n    properties:\n      monitorYaml: |\n        title: K8s Pod Crash Looping\n        display:\n          header: K8s Pod Crash Looping\n          resourceHeaderLabels:\n          - workload\n          contextHeaderLabels:\n          - cluster\n          - namespace\n          - workload\n          description: Kubernetes pod is on a CrashLoopBackOff for more than 5 minutes\n        severity: S2\n        measurementType: event\n        model:\n          queries:\n          - dataType: metrics\n            name: threshold_input_query\n            pipeline:\n              function:\n                name: avg_over_time\n                pipelines:\n                - function:\n                    name: avg_by\n                    pipelines:\n                    - metric: groundcover_kube_pod_container_status_waiting_reason\n                    args:\n                    - cluster\n                    - namespace\n                    - workload\n                args:\n                - 5m\n            conditions:\n            - key: reason\n              origin: root\n              type: string\n              filters:\n              - op: match\n                value: CrashLoopBackOff\n          thresholds:\n          - name: threshold_1\n            inputName: threshold_input_query\n            operator: gt\n            values:\n            - 0\n        executionErrorState: OK\n        evaluationInterval:\n          interval: 1m0s\n          pendingFor: 5m0s\noutputs:\n  monitorExampleId: ${k8sPodCrashLooping.id}\n  # Note: Accessing specific fields like 'title' directly is not possible\n  # when using monitor_yaml, as the structure is opaque to Terraform.\n  # You would need to parse the YAML output if required.\n  monitorExampleYamlOutput: ${k8sPodCrashLooping.monitorYaml}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "monitorYaml": {
+                    "type": "string",
+                    "description": "The monitor definition in YAML format.\n"
+                }
+            },
+            "required": [
+                "monitorYaml"
+            ],
+            "inputProperties": {
+                "monitorYaml": {
+                    "type": "string",
+                    "description": "The monitor definition in YAML format.\n"
+                }
+            },
+            "requiredInputs": [
+                "monitorYaml"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Monitor resources.\n",
+                "properties": {
+                    "monitorYaml": {
+                        "type": "string",
+                        "description": "The monitor definition in YAML format.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/policy:Policy": {
+            "description": "Manages a groundcover RBAC policy.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\n// Define a groundcover Policy\nconst myPolicy = new groundcover.Policy(\"myPolicy\", {\n    description: \"This policy is managed by Terraform.\",\n    claimRole: \"sso-admin-role\",\n    role: {\n        admin: \"admin\",\n    },\n    dataScope: {\n        simple: {\n            operator: \"and\",\n            conditions: [\n                {\n                    key: \"cluster\",\n                    origin: \"root\",\n                    type: \"string\",\n                    filters: [{\n                        op: \"match\",\n                        value: \"production-cluster\",\n                    }],\n                },\n                {\n                    key: \"namespace\",\n                    origin: \"root\",\n                    type: \"string\",\n                    filters: [{\n                        op: \"not_match\",\n                        value: \"kube-system\",\n                    }],\n                },\n            ],\n        },\n    },\n});\nexport const policyUuid = myPolicy.uuid;\nexport const policyRevisionNumber = myPolicy.revisionNumber;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\n# Define a groundcover Policy\nmy_policy = groundcover.Policy(\"myPolicy\",\n    description=\"This policy is managed by Terraform.\",\n    claim_role=\"sso-admin-role\",\n    role={\n        \"admin\": \"admin\",\n    },\n    data_scope={\n        \"simple\": {\n            \"operator\": \"and\",\n            \"conditions\": [\n                {\n                    \"key\": \"cluster\",\n                    \"origin\": \"root\",\n                    \"type\": \"string\",\n                    \"filters\": [{\n                        \"op\": \"match\",\n                        \"value\": \"production-cluster\",\n                    }],\n                },\n                {\n                    \"key\": \"namespace\",\n                    \"origin\": \"root\",\n                    \"type\": \"string\",\n                    \"filters\": [{\n                        \"op\": \"not_match\",\n                        \"value\": \"kube-system\",\n                    }],\n                },\n            ],\n        },\n    })\npulumi.export(\"policyUuid\", my_policy.uuid)\npulumi.export(\"policyRevisionNumber\", my_policy.revision_number)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Define a groundcover Policy\n    var myPolicy = new Groundcover.Policy(\"myPolicy\", new()\n    {\n        Description = \"This policy is managed by Terraform.\",\n        ClaimRole = \"sso-admin-role\",\n        Role = \n        {\n            { \"admin\", \"admin\" },\n        },\n        DataScope = new Groundcover.Inputs.PolicyDataScopeArgs\n        {\n            Simple = new Groundcover.Inputs.PolicyDataScopeSimpleArgs\n            {\n                Operator = \"and\",\n                Conditions = new[]\n                {\n                    new Groundcover.Inputs.PolicyDataScopeSimpleConditionArgs\n                    {\n                        Key = \"cluster\",\n                        Origin = \"root\",\n                        Type = \"string\",\n                        Filters = new[]\n                        {\n                            new Groundcover.Inputs.PolicyDataScopeSimpleConditionFilterArgs\n                            {\n                                Op = \"match\",\n                                Value = \"production-cluster\",\n                            },\n                        },\n                    },\n                    new Groundcover.Inputs.PolicyDataScopeSimpleConditionArgs\n                    {\n                        Key = \"namespace\",\n                        Origin = \"root\",\n                        Type = \"string\",\n                        Filters = new[]\n                        {\n                            new Groundcover.Inputs.PolicyDataScopeSimpleConditionFilterArgs\n                            {\n                                Op = \"not_match\",\n                                Value = \"kube-system\",\n                            },\n                        },\n                    },\n                },\n            },\n        },\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"policyUuid\"] = myPolicy.Uuid,\n        [\"policyRevisionNumber\"] = myPolicy.RevisionNumber,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Define a groundcover Policy\n\t\tmyPolicy, err := groundcover.NewPolicy(ctx, \"myPolicy\", \u0026groundcover.PolicyArgs{\n\t\t\tDescription: pulumi.String(\"This policy is managed by Terraform.\"),\n\t\t\tClaimRole:   pulumi.String(\"sso-admin-role\"),\n\t\t\tRole: pulumi.StringMap{\n\t\t\t\t\"admin\": pulumi.String(\"admin\"),\n\t\t\t},\n\t\t\tDataScope: \u0026groundcover.PolicyDataScopeArgs{\n\t\t\t\tSimple: \u0026groundcover.PolicyDataScopeSimpleArgs{\n\t\t\t\t\tOperator: pulumi.String(\"and\"),\n\t\t\t\t\tConditions: groundcover.PolicyDataScopeSimpleConditionArray{\n\t\t\t\t\t\t\u0026groundcover.PolicyDataScopeSimpleConditionArgs{\n\t\t\t\t\t\t\tKey:    pulumi.String(\"cluster\"),\n\t\t\t\t\t\t\tOrigin: pulumi.String(\"root\"),\n\t\t\t\t\t\t\tType:   pulumi.String(\"string\"),\n\t\t\t\t\t\t\tFilters: groundcover.PolicyDataScopeSimpleConditionFilterArray{\n\t\t\t\t\t\t\t\t\u0026groundcover.PolicyDataScopeSimpleConditionFilterArgs{\n\t\t\t\t\t\t\t\t\tOp:    pulumi.String(\"match\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"production-cluster\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026groundcover.PolicyDataScopeSimpleConditionArgs{\n\t\t\t\t\t\t\tKey:    pulumi.String(\"namespace\"),\n\t\t\t\t\t\t\tOrigin: pulumi.String(\"root\"),\n\t\t\t\t\t\t\tType:   pulumi.String(\"string\"),\n\t\t\t\t\t\t\tFilters: groundcover.PolicyDataScopeSimpleConditionFilterArray{\n\t\t\t\t\t\t\t\t\u0026groundcover.PolicyDataScopeSimpleConditionFilterArgs{\n\t\t\t\t\t\t\t\t\tOp:    pulumi.String(\"not_match\"),\n\t\t\t\t\t\t\t\t\tValue: pulumi.String(\"kube-system\"),\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"policyUuid\", myPolicy.Uuid)\n\t\tctx.Export(\"policyRevisionNumber\", myPolicy.RevisionNumber)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Policy;\nimport com.pulumi.groundcover.PolicyArgs;\nimport com.pulumi.groundcover.inputs.PolicyDataScopeArgs;\nimport com.pulumi.groundcover.inputs.PolicyDataScopeSimpleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Define a groundcover Policy\n        var myPolicy = new Policy(\"myPolicy\", PolicyArgs.builder()\n            .description(\"This policy is managed by Terraform.\")\n            .claimRole(\"sso-admin-role\")\n            .role(Map.of(\"admin\", \"admin\"))\n            .dataScope(PolicyDataScopeArgs.builder()\n                .simple(PolicyDataScopeSimpleArgs.builder()\n                    .operator(\"and\")\n                    .conditions(                    \n                        PolicyDataScopeSimpleConditionArgs.builder()\n                            .key(\"cluster\")\n                            .origin(\"root\")\n                            .type(\"string\")\n                            .filters(PolicyDataScopeSimpleConditionFilterArgs.builder()\n                                .op(\"match\")\n                                .value(\"production-cluster\")\n                                .build())\n                            .build(),\n                        PolicyDataScopeSimpleConditionArgs.builder()\n                            .key(\"namespace\")\n                            .origin(\"root\")\n                            .type(\"string\")\n                            .filters(PolicyDataScopeSimpleConditionFilterArgs.builder()\n                                .op(\"not_match\")\n                                .value(\"kube-system\")\n                                .build())\n                            .build())\n                    .build())\n                .build())\n            .build());\n\n        ctx.export(\"policyUuid\", myPolicy.uuid());\n        ctx.export(\"policyRevisionNumber\", myPolicy.revisionNumber());\n    }\n}\n```\n```yaml\nresources:\n  # Define a groundcover Policy\n  myPolicy:\n    type: groundcover:Policy\n    properties:\n      description: This policy is managed by Terraform.\n      # Optional: Specify SSO claim role for mapping\n      claimRole: sso-admin-role\n      # Define policy roles (adjust keys/values as needed for your groundcover setup)\n      role:\n        admin: admin\n      # Optional: Define data scope restrictions\n      dataScope:\n        simple:\n          operator: and\n          conditions:\n            - key: cluster\n              origin: root\n              type: string\n              filters:\n                - op: match\n                  value: production-cluster\n            - key: namespace\n              origin: root\n              type: string\n              filters:\n                - op: not_match\n                  value: kube-system\noutputs:\n  # Output the generated policy UUID\n  policyUuid: ${myPolicy.uuid}\n  # Output the policy revision number\n  policyRevisionNumber: ${myPolicy.revisionNumber}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "claimRole": {
+                    "type": "string",
+                    "description": "SSO Role claim name used for mapping.\n"
+                },
+                "dataScope": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScope:PolicyDataScope",
+                    "description": "Defines the data scope restrictions for the policy. Either 'simple' or 'advanced' must be specified, but not both.\n"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "description": "Indicates if the policy is deprecated.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for the policy.\n"
+                },
+                "isSystemDefined": {
+                    "type": "boolean",
+                    "description": "Indicates if the policy is system-defined.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the policy.\n"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Indicates if the policy is read-only (managed internally).\n"
+                },
+                "revisionNumber": {
+                    "type": "integer",
+                    "description": "Revision number of the policy, used for concurrency control.\n"
+                },
+                "role": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Role definitions associated with the policy. Maps role identifiers to specific permissions or access levels.\n"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "The unique identifier (UUID) of the policy.\n"
+                }
+            },
+            "required": [
+                "deprecated",
+                "isSystemDefined",
+                "name",
+                "readOnly",
+                "revisionNumber",
+                "role",
+                "uuid"
+            ],
+            "inputProperties": {
+                "claimRole": {
+                    "type": "string",
+                    "description": "SSO Role claim name used for mapping.\n"
+                },
+                "dataScope": {
+                    "$ref": "#/types/groundcover:index/PolicyDataScope:PolicyDataScope",
+                    "description": "Defines the data scope restrictions for the policy. Either 'simple' or 'advanced' must be specified, but not both.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description for the policy.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the policy.\n"
+                },
+                "role": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Role definitions associated with the policy. Maps role identifiers to specific permissions or access levels.\n"
+                }
+            },
+            "requiredInputs": [
+                "role"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Policy resources.\n",
+                "properties": {
+                    "claimRole": {
+                        "type": "string",
+                        "description": "SSO Role claim name used for mapping.\n"
+                    },
+                    "dataScope": {
+                        "$ref": "#/types/groundcover:index/PolicyDataScope:PolicyDataScope",
+                        "description": "Defines the data scope restrictions for the policy. Either 'simple' or 'advanced' must be specified, but not both.\n"
+                    },
+                    "deprecated": {
+                        "type": "boolean",
+                        "description": "Indicates if the policy is deprecated.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description for the policy.\n"
+                    },
+                    "isSystemDefined": {
+                        "type": "boolean",
+                        "description": "Indicates if the policy is system-defined.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the policy.\n"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Indicates if the policy is read-only (managed internally).\n"
+                    },
+                    "revisionNumber": {
+                        "type": "integer",
+                        "description": "Revision number of the policy, used for concurrency control.\n"
+                    },
+                    "role": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Role definitions associated with the policy. Maps role identifiers to specific permissions or access levels.\n"
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "The unique identifier (UUID) of the policy.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/secret:Secret": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\nconst externalApiKey = config.require(\"externalApiKey\");\nconst databasePassword = config.require(\"databasePassword\");\n// Example: Create an API key secret\nconst apiKeyExample = new groundcover.Secret(\"apiKeyExample\", {\n    type: \"api_key\",\n    content: externalApiKey,\n});\n// Example: Create a password secret\nconst passwordExample = new groundcover.Secret(\"passwordExample\", {\n    type: \"password\",\n    content: databasePassword,\n});\n// The secret ID can be used in other resources like data integrations\n// For example:\n// resource \"groundcover_dataintegration\" \"example\" {\n//   type = \"prometheus\"\n//   config = jsonencode({\n//     endpoint = \"https://prometheus.example.com\"\n//     password = groundcover_secret.password_example.id  # Use secret reference\n//   })\n// }\nexport const apiKeySecretId = apiKeyExample.id;\nexport const passwordSecretId = passwordExample.id;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\nexternal_api_key = config.require(\"externalApiKey\")\ndatabase_password = config.require(\"databasePassword\")\n# Example: Create an API key secret\napi_key_example = groundcover.Secret(\"apiKeyExample\",\n    type=\"api_key\",\n    content=external_api_key)\n# Example: Create a password secret\npassword_example = groundcover.Secret(\"passwordExample\",\n    type=\"password\",\n    content=database_password)\n# The secret ID can be used in other resources like data integrations\n# For example:\n# resource \"groundcover_dataintegration\" \"example\" {\n#   type = \"prometheus\"\n#   config = jsonencode({\n#     endpoint = \"https://prometheus.example.com\"\n#     password = groundcover_secret.password_example.id  # Use secret reference\n#   })\n# }\npulumi.export(\"apiKeySecretId\", api_key_example.id)\npulumi.export(\"passwordSecretId\", password_example.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    var externalApiKey = config.Require(\"externalApiKey\");\n    var databasePassword = config.Require(\"databasePassword\");\n    // Example: Create an API key secret\n    var apiKeyExample = new Groundcover.Secret(\"apiKeyExample\", new()\n    {\n        Type = \"api_key\",\n        Content = externalApiKey,\n    });\n\n    // Example: Create a password secret\n    var passwordExample = new Groundcover.Secret(\"passwordExample\", new()\n    {\n        Type = \"password\",\n        Content = databasePassword,\n    });\n\n    // The secret ID can be used in other resources like data integrations\n    // For example:\n    // resource \"groundcover_dataintegration\" \"example\" {\n    //   type = \"prometheus\"\n    //   config = jsonencode({\n    //     endpoint = \"https://prometheus.example.com\"\n    //     password = groundcover_secret.password_example.id  # Use secret reference\n    //   })\n    // }\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"apiKeySecretId\"] = apiKeyExample.Id,\n        [\"passwordSecretId\"] = passwordExample.Id,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\texternalApiKey := cfg.Require(\"externalApiKey\")\n\t\tdatabasePassword := cfg.Require(\"databasePassword\")\n\t\t// Example: Create an API key secret\n\t\tapiKeyExample, err := groundcover.NewSecret(ctx, \"apiKeyExample\", \u0026groundcover.SecretArgs{\n\t\t\tType:    pulumi.String(\"api_key\"),\n\t\t\tContent: pulumi.String(externalApiKey),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example: Create a password secret\n\t\tpasswordExample, err := groundcover.NewSecret(ctx, \"passwordExample\", \u0026groundcover.SecretArgs{\n\t\t\tType:    pulumi.String(\"password\"),\n\t\t\tContent: pulumi.String(databasePassword),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"apiKeySecretId\", apiKeyExample.ID())\n\t\tctx.Export(\"passwordSecretId\", passwordExample.ID())\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Secret;\nimport com.pulumi.groundcover.SecretArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        final var externalApiKey = config.get(\"externalApiKey\");\n        final var databasePassword = config.get(\"databasePassword\");\n        // Example: Create an API key secret\n        var apiKeyExample = new Secret(\"apiKeyExample\", SecretArgs.builder()\n            .type(\"api_key\")\n            .content(externalApiKey)\n            .build());\n\n        // Example: Create a password secret\n        var passwordExample = new Secret(\"passwordExample\", SecretArgs.builder()\n            .type(\"password\")\n            .content(databasePassword)\n            .build());\n\n        // The secret ID can be used in other resources like data integrations\n        // For example:\n        // resource \"groundcover_dataintegration\" \"example\" {\n        //   type = \"prometheus\"\n        //   config = jsonencode({\n        //     endpoint = \"https://prometheus.example.com\"\n        //     password = groundcover_secret.password_example.id  # Use secret reference\n        //   })\n        // }\n        ctx.export(\"apiKeySecretId\", apiKeyExample.id());\n        ctx.export(\"passwordSecretId\", passwordExample.id());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\n  # Variables for secret content (should be passed securely, e.g., via environment variables or CI/CD secrets)\n  externalApiKey:\n    type: string\n  databasePassword:\n    type: string\nresources:\n  # Example: Create an API key secret\n  apiKeyExample:\n    type: groundcover:Secret\n    properties:\n      type: api_key\n      content: ${externalApiKey}\n  # Example: Create a password secret\n  passwordExample: # The secret ID can be used in other resources like data integrations\n  # For example:\n  # resource \"groundcover_dataintegration\" \"example\" {\n  #   type = \"prometheus\"\n  #   config = jsonencode({\n  #     endpoint = \"https://prometheus.example.com\"\n  #     password = groundcover_secret.password_example.id  # Use secret reference\n  #   })\n  # }\n    type: groundcover:Secret\n    properties:\n      type: password\n      content: ${databasePassword}\noutputs:\n  apiKeySecretId: ${apiKeyExample.id}\n  passwordSecretId: ${passwordExample.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe secret content/value. This is write-only and will not be returned by the API.",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the secret."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secret. Valid values are: \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\"\u003e`api_key`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`basicAuth`\" pulumi-lang-dotnet=\"`BasicAuth`\" pulumi-lang-go=\"`basicAuth`\" pulumi-lang-python=\"`basic_auth`\" pulumi-lang-yaml=\"`basicAuth`\" pulumi-lang-java=\"`basicAuth`\"\u003e`basic_auth`\u003c/span\u003e."
+                }
+            },
+            "required": [
+                "content",
+                "name",
+                "type"
+            ],
+            "inputProperties": {
+                "content": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe secret content/value. This is write-only and will not be returned by the API.",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the secret."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secret. Valid values are: \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\"\u003e`api_key`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`basicAuth`\" pulumi-lang-dotnet=\"`BasicAuth`\" pulumi-lang-go=\"`basicAuth`\" pulumi-lang-python=\"`basic_auth`\" pulumi-lang-yaml=\"`basicAuth`\" pulumi-lang-java=\"`basicAuth`\"\u003e`basic_auth`\u003c/span\u003e."
+                }
+            },
+            "requiredInputs": [
+                "content",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Secret resources.\n",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nThe secret content/value. This is write-only and will not be returned by the API.",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the secret."
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secret. Valid values are: \u003cspan pulumi-lang-nodejs=\"`apiKey`\" pulumi-lang-dotnet=\"`ApiKey`\" pulumi-lang-go=\"`apiKey`\" pulumi-lang-python=\"`api_key`\" pulumi-lang-yaml=\"`apiKey`\" pulumi-lang-java=\"`apiKey`\"\u003e`api_key`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`password`\" pulumi-lang-dotnet=\"`Password`\" pulumi-lang-go=\"`password`\" pulumi-lang-python=\"`password`\" pulumi-lang-yaml=\"`password`\" pulumi-lang-java=\"`password`\"\u003e`password`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`basicAuth`\" pulumi-lang-dotnet=\"`BasicAuth`\" pulumi-lang-go=\"`basicAuth`\" pulumi-lang-python=\"`basic_auth`\" pulumi-lang-yaml=\"`basicAuth`\" pulumi-lang-java=\"`basicAuth`\"\u003e`basic_auth`\u003c/span\u003e."
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "groundcover:index/serviceaccount:Serviceaccount": {
+            "description": "Manages a groundcover Service Account.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as groundcover from \"@pulumiverse/groundcover\";\n\nconst config = new pulumi.Config();\nconst groundcoverApiKey = config.require(\"groundcoverApiKey\");\nconst groundcoverBackendId = config.require(\"groundcoverBackendId\");\n// Example Policy (required for Service Account)\nconst examplePolicy = new groundcover.Policy(\"examplePolicy\", {\n    role: {\n        read: \"read\",\n    },\n    description: \"Example policy for service account resource example.\",\n});\n// Example Service Account\nconst exampleServiceaccount = new groundcover.Serviceaccount(\"exampleServiceaccount\", {\n    email: \"terraform-sa@example.com\",\n    description: \"Service account created via Terraform example.\",\n    policyUuids: [examplePolicy.uuid],\n});\nexport const serviceaccountExampleId = exampleServiceaccount.id;\nexport const serviceaccountExampleEmail = exampleServiceaccount.email;\n```\n```python\nimport pulumi\nimport pulumiverse_groundcover as groundcover\n\nconfig = pulumi.Config()\ngroundcover_api_key = config.require(\"groundcoverApiKey\")\ngroundcover_backend_id = config.require(\"groundcoverBackendId\")\n# Example Policy (required for Service Account)\nexample_policy = groundcover.Policy(\"examplePolicy\",\n    role={\n        \"read\": \"read\",\n    },\n    description=\"Example policy for service account resource example.\")\n# Example Service Account\nexample_serviceaccount = groundcover.Serviceaccount(\"exampleServiceaccount\",\n    email=\"terraform-sa@example.com\",\n    description=\"Service account created via Terraform example.\",\n    policy_uuids=[example_policy.uuid])\npulumi.export(\"serviceaccountExampleId\", example_serviceaccount.id)\npulumi.export(\"serviceaccountExampleEmail\", example_serviceaccount.email)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Groundcover = Pulumiverse.Groundcover;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var groundcoverApiKey = config.Require(\"groundcoverApiKey\");\n    var groundcoverBackendId = config.Require(\"groundcoverBackendId\");\n    // Example Policy (required for Service Account)\n    var examplePolicy = new Groundcover.Policy(\"examplePolicy\", new()\n    {\n        Role = \n        {\n            { \"read\", \"read\" },\n        },\n        Description = \"Example policy for service account resource example.\",\n    });\n\n    // Example Service Account\n    var exampleServiceaccount = new Groundcover.Serviceaccount(\"exampleServiceaccount\", new()\n    {\n        Email = \"terraform-sa@example.com\",\n        Description = \"Service account created via Terraform example.\",\n        PolicyUuids = new[]\n        {\n            examplePolicy.Uuid,\n        },\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"serviceaccountExampleId\"] = exampleServiceaccount.Id,\n        [\"serviceaccountExampleEmail\"] = exampleServiceaccount.Email,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n\t\"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tgroundcoverApiKey := cfg.Require(\"groundcoverApiKey\")\n\t\tgroundcoverBackendId := cfg.Require(\"groundcoverBackendId\")\n\t\t// Example Policy (required for Service Account)\n\t\texamplePolicy, err := groundcover.NewPolicy(ctx, \"examplePolicy\", \u0026groundcover.PolicyArgs{\n\t\t\tRole: pulumi.StringMap{\n\t\t\t\t\"read\": pulumi.String(\"read\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"Example policy for service account resource example.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example Service Account\n\t\texampleServiceaccount, err := groundcover.NewServiceaccount(ctx, \"exampleServiceaccount\", \u0026groundcover.ServiceaccountArgs{\n\t\t\tEmail:       pulumi.String(\"terraform-sa@example.com\"),\n\t\t\tDescription: pulumi.String(\"Service account created via Terraform example.\"),\n\t\t\tPolicyUuids: pulumi.StringArray{\n\t\t\t\texamplePolicy.Uuid,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"serviceaccountExampleId\", exampleServiceaccount.ID())\n\t\tctx.Export(\"serviceaccountExampleEmail\", exampleServiceaccount.Email)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.groundcover.Policy;\nimport com.pulumi.groundcover.PolicyArgs;\nimport com.pulumi.groundcover.Serviceaccount;\nimport com.pulumi.groundcover.ServiceaccountArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var groundcoverApiKey = config.get(\"groundcoverApiKey\");\n        final var groundcoverBackendId = config.get(\"groundcoverBackendId\");\n        // Example Policy (required for Service Account)\n        var examplePolicy = new Policy(\"examplePolicy\", PolicyArgs.builder()\n            .role(Map.of(\"read\", \"read\"))\n            .description(\"Example policy for service account resource example.\")\n            .build());\n\n        // Example Service Account\n        var exampleServiceaccount = new Serviceaccount(\"exampleServiceaccount\", ServiceaccountArgs.builder()\n            .email(\"terraform-sa@example.com\")\n            .description(\"Service account created via Terraform example.\")\n            .policyUuids(examplePolicy.uuid())\n            .build());\n\n        ctx.export(\"serviceaccountExampleId\", exampleServiceaccount.id());\n        ctx.export(\"serviceaccountExampleEmail\", exampleServiceaccount.email());\n    }\n}\n```\n```yaml\nconfiguration:\n  groundcoverApiKey:\n    type: string\n  groundcoverBackendId:\n    type: string\nresources:\n  # Example Policy (required for Service Account)\n  examplePolicy:\n    type: groundcover:Policy\n    properties:\n      role:\n        read: read\n      description: Example policy for service account resource example.\n  # Example Service Account\n  exampleServiceaccount:\n    type: groundcover:Serviceaccount\n    properties:\n      email: terraform-sa@example.com\n      # Optional: specify an email\n      description: Service account created via Terraform example.\n      policyUuids:\n        - ${examplePolicy.uuid}\noutputs:\n  serviceaccountExampleId: ${exampleServiceaccount.id}\n  serviceaccountExampleEmail: ${exampleServiceaccount.email}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "An optional description for the service account.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email associated with the service account.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account.\n"
+                },
+                "policyUuids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policy UUIDs to assign to the service account.\n"
+                }
+            },
+            "required": [
+                "email",
+                "name",
+                "policyUuids"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "An optional description for the service account.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email associated with the service account.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account.\n"
+                },
+                "policyUuids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of policy UUIDs to assign to the service account.\n"
+                }
+            },
+            "requiredInputs": [
+                "email",
+                "policyUuids"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Serviceaccount resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "An optional description for the service account.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email associated with the service account.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the service account.\n"
+                    },
+                    "policyUuids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of policy UUIDs to assign to the service account.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "pulumi:providers:groundcover/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/provider"
+                    }
+                },
+                "type": "pulumi:providers:groundcover/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        }
+    }
+}

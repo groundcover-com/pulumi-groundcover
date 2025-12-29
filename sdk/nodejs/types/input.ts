@@ -4,5 +4,318 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
-import * as enums from "../types/enums";
 
+export interface ApikeyPolicy {
+    /**
+     * Policy name.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Policy UUID.
+     */
+    uuid?: pulumi.Input<string>;
+}
+
+export interface PolicyDataScope {
+    /**
+     * Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
+     */
+    advanced?: pulumi.Input<inputs.PolicyDataScopeAdvanced>;
+    /**
+     * Simple data scope configuration. Applies a single set of filtering rules to all data types.
+     */
+    simple?: pulumi.Input<inputs.PolicyDataScopeSimple>;
+}
+
+export interface PolicyDataScopeAdvanced {
+    /**
+     * Data scope rules for events.
+     */
+    events?: pulumi.Input<inputs.PolicyDataScopeAdvancedEvents>;
+    /**
+     * Data scope rules for logs.
+     */
+    logs?: pulumi.Input<inputs.PolicyDataScopeAdvancedLogs>;
+    /**
+     * Data scope rules for metrics.
+     */
+    metrics?: pulumi.Input<inputs.PolicyDataScopeAdvancedMetrics>;
+    /**
+     * Data scope rules for traces.
+     */
+    traces?: pulumi.Input<inputs.PolicyDataScopeAdvancedTraces>;
+    /**
+     * Data scope rules for workloads.
+     */
+    workloads?: pulumi.Input<inputs.PolicyDataScopeAdvancedWorkloads>;
+}
+
+export interface PolicyDataScopeAdvancedEvents {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedEventsCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedEventsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedEventsConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedEventsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedLogs {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedLogsCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedLogsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedLogsConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedLogsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedMetrics {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedMetricsCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedMetricsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedMetricsConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedMetricsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedTraces {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedTracesCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedTracesCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedTracesConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedTracesConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedWorkloads {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedWorkloadsCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedWorkloadsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeAdvancedWorkloadsConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeAdvancedWorkloadsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeSimple {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeSimpleCondition>[]>;
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeSimpleCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: pulumi.Input<pulumi.Input<inputs.PolicyDataScopeSimpleConditionFilter>[]>;
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The origin of the key.
+     */
+    origin: pulumi.Input<string>;
+    /**
+     * The type of the key.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface PolicyDataScopeSimpleConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: pulumi.Input<string>;
+    /**
+     * The value to filter on.
+     */
+    value: pulumi.Input<string>;
+}

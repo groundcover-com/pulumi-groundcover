@@ -4,5 +4,319 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
-import * as enums from "../types/enums";
+
+export interface ApikeyPolicy {
+    /**
+     * Policy name.
+     */
+    name: string;
+    /**
+     * Policy UUID.
+     */
+    uuid: string;
+}
+
+export interface PolicyDataScope {
+    /**
+     * Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
+     */
+    advanced?: outputs.PolicyDataScopeAdvanced;
+    /**
+     * Simple data scope configuration. Applies a single set of filtering rules to all data types.
+     */
+    simple?: outputs.PolicyDataScopeSimple;
+}
+
+export interface PolicyDataScopeAdvanced {
+    /**
+     * Data scope rules for events.
+     */
+    events?: outputs.PolicyDataScopeAdvancedEvents;
+    /**
+     * Data scope rules for logs.
+     */
+    logs?: outputs.PolicyDataScopeAdvancedLogs;
+    /**
+     * Data scope rules for metrics.
+     */
+    metrics?: outputs.PolicyDataScopeAdvancedMetrics;
+    /**
+     * Data scope rules for traces.
+     */
+    traces?: outputs.PolicyDataScopeAdvancedTraces;
+    /**
+     * Data scope rules for workloads.
+     */
+    workloads?: outputs.PolicyDataScopeAdvancedWorkloads;
+}
+
+export interface PolicyDataScopeAdvancedEvents {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeAdvancedEventsCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeAdvancedEventsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeAdvancedEventsConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeAdvancedEventsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
+
+export interface PolicyDataScopeAdvancedLogs {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeAdvancedLogsCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeAdvancedLogsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeAdvancedLogsConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeAdvancedLogsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
+
+export interface PolicyDataScopeAdvancedMetrics {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeAdvancedMetricsCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeAdvancedMetricsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeAdvancedMetricsConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeAdvancedMetricsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
+
+export interface PolicyDataScopeAdvancedTraces {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeAdvancedTracesCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeAdvancedTracesCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeAdvancedTracesConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeAdvancedTracesConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
+
+export interface PolicyDataScopeAdvancedWorkloads {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeAdvancedWorkloadsCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeAdvancedWorkloadsCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeAdvancedWorkloadsConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeAdvancedWorkloadsConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
+
+export interface PolicyDataScopeSimple {
+    /**
+     * List of conditions for the data scope.
+     */
+    conditions: outputs.PolicyDataScopeSimpleCondition[];
+    /**
+     * Whether this data type is disabled (no data access). When true, users have no access to this data type.
+     */
+    disabled?: boolean;
+    /**
+     * Logical operator (e.g., 'and', 'or').
+     */
+    operator: string;
+}
+
+export interface PolicyDataScopeSimpleCondition {
+    /**
+     * List of filter criteria for the condition.
+     */
+    filters: outputs.PolicyDataScopeSimpleConditionFilter[];
+    /**
+     * The key for the condition (e.g., 'environment').
+     */
+    key: string;
+    /**
+     * The origin of the key.
+     */
+    origin: string;
+    /**
+     * The type of the key.
+     */
+    type: string;
+}
+
+export interface PolicyDataScopeSimpleConditionFilter {
+    /**
+     * The filter operation (e.g., 'match').
+     */
+    op: string;
+    /**
+     * The value to filter on.
+     */
+    value: string;
+}
 

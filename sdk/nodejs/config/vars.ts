@@ -2,21 +2,51 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
-import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 declare var exports: any;
-const __config = new pulumi.Config("xyz");
+const __config = new pulumi.Config("groundcover");
 
 /**
- * A region which should be used.
+ * groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.
  */
-export declare const region: enums.region.Region | undefined;
-Object.defineProperty(exports, "region", {
+export declare const apiKey: string | undefined;
+Object.defineProperty(exports, "apiKey", {
     get() {
-        return __config.getObject<enums.region.Region>("region");
+        return __config.get("apiKey");
+    },
+    enumerable: true,
+});
+
+/**
+ * groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable.
+ */
+export declare const apiUrl: string | undefined;
+Object.defineProperty(exports, "apiUrl", {
+    get() {
+        return __config.get("apiUrl");
+    },
+    enumerable: true,
+});
+
+/**
+ * groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable.
+ */
+export declare const backendId: string | undefined;
+Object.defineProperty(exports, "backendId", {
+    get() {
+        return __config.get("backendId");
+    },
+    enumerable: true,
+});
+
+/**
+ * groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use backendId instead.
+ */
+export declare const orgName: string | undefined;
+Object.defineProperty(exports, "orgName", {
+    get() {
+        return __config.get("orgName");
     },
     enumerable: true,
 });

@@ -1,0 +1,10 @@
+default_provider = "keychain"
+
+[providers.keychain]
+type = "keychain"
+service = "fnox"
+prefix = "GROUNDCOVER"
+
+[secrets]
+GROUNDCOVER_API_KEY = { provider = "keychain", value = "GROUNDCOVER_API_KEY" }
+GROUNDCOVER_BACKEND_ID = { provider = "keychain", value = "GROUNDCOVER_BACKEND_ID" }

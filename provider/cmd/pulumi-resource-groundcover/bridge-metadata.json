@@ -1,0 +1,156 @@
+{
+    "auto-aliasing": {
+        "resources": {
+            "groundcover_apikey": {
+                "current": "groundcover:index/apikey:Apikey",
+                "majorVersion": 1,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "groundcover_dashboard": {
+                "current": "groundcover:index/dashboard:Dashboard",
+                "majorVersion": 1
+            },
+            "groundcover_dataintegration": {
+                "current": "groundcover:index/dataintegration:Dataintegration",
+                "majorVersion": 1
+            },
+            "groundcover_ingestionkey": {
+                "current": "groundcover:index/ingestionkey:Ingestionkey",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "groundcover_logspipeline": {
+                "current": "groundcover:index/logspipeline:Logspipeline",
+                "majorVersion": 1
+            },
+            "groundcover_metricsaggregation": {
+                "current": "groundcover:index/metricsaggregation:Metricsaggregation",
+                "majorVersion": 1
+            },
+            "groundcover_monitor": {
+                "current": "groundcover:index/monitor:Monitor",
+                "majorVersion": 1
+            },
+            "groundcover_policy": {
+                "current": "groundcover:index/policy:Policy",
+                "majorVersion": 1,
+                "fields": {
+                    "data_scope": {
+                        "fields": {
+                            "advanced": {
+                                "fields": {
+                                    "events": {
+                                        "fields": {
+                                            "conditions": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filters": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "logs": {
+                                        "fields": {
+                                            "conditions": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filters": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "metrics": {
+                                        "fields": {
+                                            "conditions": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filters": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "traces": {
+                                        "fields": {
+                                            "conditions": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filters": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "workloads": {
+                                        "fields": {
+                                            "conditions": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "filters": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "simple": {
+                                "fields": {
+                                    "conditions": {
+                                        "maxItemsOne": false,
+                                        "elem": {
+                                            "fields": {
+                                                "filters": {
+                                                    "maxItemsOne": false
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "groundcover_secret": {
+                "current": "groundcover:index/secret:Secret",
+                "majorVersion": 1
+            },
+            "groundcover_serviceaccount": {
+                "current": "groundcover:index/serviceaccount:Serviceaccount",
+                "majorVersion": 1,
+                "fields": {
+                    "policy_uuids": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {}
+}

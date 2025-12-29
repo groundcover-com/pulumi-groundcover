@@ -19,5 +19,5 @@ runs:
       uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
       with:
         name: schema-embed.json
-        path: provider/cmd/pulumi-resource-xyz/schema-embed.json
+        path: provider/cmd/pulumi-resource-groundcover/schema-embed.json
         retention-days: 30

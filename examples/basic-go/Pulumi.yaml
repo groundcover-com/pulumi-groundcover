@@ -1,0 +1,3 @@
+name: basic-go
+runtime: go
+description: Basic Groundcover example in Go

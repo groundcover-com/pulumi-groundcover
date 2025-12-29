@@ -5,28 +5,66 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export { GetDataSourceArgs, GetDataSourceResult, GetDataSourceOutputArgs } from "./getDataSource";
-export const getDataSource: typeof import("./getDataSource").getDataSource = null as any;
-export const getDataSourceOutput: typeof import("./getDataSource").getDataSourceOutput = null as any;
-utilities.lazyLoad(exports, ["getDataSource","getDataSourceOutput"], () => require("./getDataSource"));
+export { ApikeyArgs, ApikeyState } from "./apikey";
+export type Apikey = import("./apikey").Apikey;
+export const Apikey: typeof import("./apikey").Apikey = null as any;
+utilities.lazyLoad(exports, ["Apikey"], () => require("./apikey"));
+
+export { DashboardArgs, DashboardState } from "./dashboard";
+export type Dashboard = import("./dashboard").Dashboard;
+export const Dashboard: typeof import("./dashboard").Dashboard = null as any;
+utilities.lazyLoad(exports, ["Dashboard"], () => require("./dashboard"));
+
+export { DataintegrationArgs, DataintegrationState } from "./dataintegration";
+export type Dataintegration = import("./dataintegration").Dataintegration;
+export const Dataintegration: typeof import("./dataintegration").Dataintegration = null as any;
+utilities.lazyLoad(exports, ["Dataintegration"], () => require("./dataintegration"));
+
+export { IngestionkeyArgs, IngestionkeyState } from "./ingestionkey";
+export type Ingestionkey = import("./ingestionkey").Ingestionkey;
+export const Ingestionkey: typeof import("./ingestionkey").Ingestionkey = null as any;
+utilities.lazyLoad(exports, ["Ingestionkey"], () => require("./ingestionkey"));
+
+export { LogspipelineArgs, LogspipelineState } from "./logspipeline";
+export type Logspipeline = import("./logspipeline").Logspipeline;
+export const Logspipeline: typeof import("./logspipeline").Logspipeline = null as any;
+utilities.lazyLoad(exports, ["Logspipeline"], () => require("./logspipeline"));
+
+export { MetricsaggregationArgs, MetricsaggregationState } from "./metricsaggregation";
+export type Metricsaggregation = import("./metricsaggregation").Metricsaggregation;
+export const Metricsaggregation: typeof import("./metricsaggregation").Metricsaggregation = null as any;
+utilities.lazyLoad(exports, ["Metricsaggregation"], () => require("./metricsaggregation"));
+
+export { MonitorArgs, MonitorState } from "./monitor";
+export type Monitor = import("./monitor").Monitor;
+export const Monitor: typeof import("./monitor").Monitor = null as any;
+utilities.lazyLoad(exports, ["Monitor"], () => require("./monitor"));
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
 export * from "./provider";
 import { Provider } from "./provider";
 
-export { ResourceArgs, ResourceState } from "./resource";
-export type Resource = import("./resource").Resource;
-export const Resource: typeof import("./resource").Resource = null as any;
-utilities.lazyLoad(exports, ["Resource"], () => require("./resource"));
+export { SecretArgs, SecretState } from "./secret";
+export type Secret = import("./secret").Secret;
+export const Secret: typeof import("./secret").Secret = null as any;
+utilities.lazyLoad(exports, ["Secret"], () => require("./secret"));
+
+export { ServiceaccountArgs, ServiceaccountState } from "./serviceaccount";
+export type Serviceaccount = import("./serviceaccount").Serviceaccount;
+export const Serviceaccount: typeof import("./serviceaccount").Serviceaccount = null as any;
+utilities.lazyLoad(exports, ["Serviceaccount"], () => require("./serviceaccount"));
 
 
 // Export sub-modules:
 import * as config from "./config";
-import * as region from "./region";
 import * as types from "./types";
 
 export {
     config,
-    region,
     types,
 };
 
@@ -34,18 +72,45 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "xyz:index/resource:Resource":
-                return new Resource(name, <any>undefined, { urn })
+            case "groundcover:index/apikey:Apikey":
+                return new Apikey(name, <any>undefined, { urn })
+            case "groundcover:index/dashboard:Dashboard":
+                return new Dashboard(name, <any>undefined, { urn })
+            case "groundcover:index/dataintegration:Dataintegration":
+                return new Dataintegration(name, <any>undefined, { urn })
+            case "groundcover:index/ingestionkey:Ingestionkey":
+                return new Ingestionkey(name, <any>undefined, { urn })
+            case "groundcover:index/logspipeline:Logspipeline":
+                return new Logspipeline(name, <any>undefined, { urn })
+            case "groundcover:index/metricsaggregation:Metricsaggregation":
+                return new Metricsaggregation(name, <any>undefined, { urn })
+            case "groundcover:index/monitor:Monitor":
+                return new Monitor(name, <any>undefined, { urn })
+            case "groundcover:index/policy:Policy":
+                return new Policy(name, <any>undefined, { urn })
+            case "groundcover:index/secret:Secret":
+                return new Secret(name, <any>undefined, { urn })
+            case "groundcover:index/serviceaccount:Serviceaccount":
+                return new Serviceaccount(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("xyz", "index/resource", _module)
-pulumi.runtime.registerResourcePackage("xyz", {
+pulumi.runtime.registerResourceModule("groundcover", "index/apikey", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/dashboard", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/dataintegration", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/ingestionkey", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/logspipeline", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/metricsaggregation", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/monitor", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/policy", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/secret", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/serviceaccount", _module)
+pulumi.runtime.registerResourcePackage("groundcover", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {
-        if (type !== "pulumi:providers:xyz") {
+        if (type !== "pulumi:providers:groundcover") {
             throw new Error(`unknown provider type ${type}`);
         }
         return new Provider(name, <any>undefined, { urn });

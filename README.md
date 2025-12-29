@@ -1,14 +1,6 @@
-# Terraform Bridge Provider Boilerplate
+# Groundcover Resource Provider
 
-This repository is the template for authoring a Pulumi package from an existing Terraform provider as part of the guide for [authoring and publishing Pulumi packages](https://www.pulumi.com/docs/iac/packages-and-automation/pulumi-packages/authoring/).
-
-This repository is initially set up as a fictitious provider named "xyz" to demonstrate a resource, a data source and configuration derived from the [github.com/pulumi/terraform-provider-xyz provider](https://github.com/pulumi/terraform-provider-xyz).
-
-Read the [setup instructions](SETUP.md) for step-by-step instructions on how to bridge a new provider and refer to our complete docs [guide for authoring and publishing a Pulumi Package](https://www.pulumi.com/docs/iac/packages-and-automation/pulumi-packages/authoring/).
-
-# Xyz Resource Provider
-
-The Xyz Resource Provider lets you manage [Xyz](http://example.com) resources.
+The Groundcover Resource Provider lets you manage [groundcover](https://groundcover.com) observability resources.
 
 ## Installing
 
@@ -19,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/xyz
+npm install @pulumiverse/groundcover
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/xyz
+yarn add @pulumiverse/groundcover
 ```
 
 ### Python
@@ -33,7 +25,7 @@ yarn add @pulumi/xyz
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_xyz
+pip install pulumiverse_groundcover
 ```
 
 ### Go
@@ -41,7 +33,7 @@ pip install pulumi_xyz
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-xyz/sdk/go/...
+go get github.com/pulumiverse/pulumi-groundcover/sdk/go/...
 ```
 
 ### .NET
@@ -49,15 +41,32 @@ go get github.com/pulumi/pulumi-xyz/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Xyz
+dotnet add package Pulumiverse.Groundcover
 ```
 
 ## Configuration
 
-The following configuration points are available for the `xyz` provider:
+The following configuration options are available for the `groundcover` provider:
 
-- `xyz:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `groundcover:apiKey` (environment: `GROUNDCOVER_API_KEY`) - groundcover API Key
+- `groundcover:backendId` (environment: `GROUNDCOVER_BACKEND_ID`) - groundcover Backend ID
+- `groundcover:apiUrl` (environment: `GROUNDCOVER_API_URL`) - groundcover API URL (defaults to `https://api.groundcover.com`)
+
+## Resources
+
+The provider supports the following resources:
+
+- `groundcover.Apikey` - API Key management
+- `groundcover.Dashboard` - Dashboard management
+- `groundcover.Dataintegration` - Data integration configuration
+- `groundcover.Ingestionkey` - Ingestion key management
+- `groundcover.Logspipeline` - Logs pipeline configuration
+- `groundcover.Metricsaggregation` - Metrics aggregation rules
+- `groundcover.Monitor` - Monitor/alert configuration
+- `groundcover.Policy` - Policy management
+- `groundcover.Secret` - Secret management
+- `groundcover.Serviceaccount` - Service account management
 
 ## Reference
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/xyz/api-docs/).
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/groundcover/api-docs/).

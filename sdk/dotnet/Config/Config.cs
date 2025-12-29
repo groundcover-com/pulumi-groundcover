@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Xyz
+namespace Pulumiverse.Groundcover
 {
     public static class Config
     {
@@ -30,16 +30,46 @@ namespace Pulumi.Xyz
             }
         }
 
-        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("xyz");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("groundcover");
 
-        private static readonly __Value<Pulumi.Xyz.Region.Region?> _region = new __Value<Pulumi.Xyz.Region.Region?>(() => __config.GetObject<Pulumi.Xyz.Region.Region>("region"));
+        private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
         /// <summary>
-        /// A region which should be used.
+        /// groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.
         /// </summary>
-        public static Pulumi.Xyz.Region.Region? Region
+        public static string? ApiKey
         {
-            get => _region.Get();
-            set => _region.Set(value);
+            get => _apiKey.Get();
+            set => _apiKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _apiUrl = new __Value<string?>(() => __config.Get("apiUrl"));
+        /// <summary>
+        /// groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable.
+        /// </summary>
+        public static string? ApiUrl
+        {
+            get => _apiUrl.Get();
+            set => _apiUrl.Set(value);
+        }
+
+        private static readonly __Value<string?> _backendId = new __Value<string?>(() => __config.Get("backendId"));
+        /// <summary>
+        /// groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable.
+        /// </summary>
+        public static string? BackendId
+        {
+            get => _backendId.Get();
+            set => _backendId.Set(value);
+        }
+
+        private static readonly __Value<string?> _orgName = new __Value<string?>(() => __config.Get("orgName"));
+        /// <summary>
+        /// groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use BackendId instead.
+        /// </summary>
+        public static string? OrgName
+        {
+            get => _orgName.Get();
+            set => _orgName.Set(value);
         }
 
     }

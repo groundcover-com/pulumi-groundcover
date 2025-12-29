@@ -3,3 +3,19 @@
 // +build dotnet all
 
 package examples
+
+import (
+	"path/filepath"
+	"testing"
+
+	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
+)
+
+func TestBasicDotnet(t *testing.T) {
+	test := getCSBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(getCwd(t), "basic-dotnet"),
+		})
+
+	integration.ProgramTest(t, &test)
+}

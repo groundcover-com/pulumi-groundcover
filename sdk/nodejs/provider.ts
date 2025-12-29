@@ -2,20 +2,17 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
-import * as enums from "./types/enums";
 import * as utilities from "./utilities";
 
 /**
- * The provider type for the xyz package. By default, resources use package-wide configuration
+ * The provider type for the groundcover package. By default, resources use package-wide configuration
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
  */
 export class Provider extends pulumi.ProviderResource {
     /** @internal */
-    public static readonly __pulumiType = 'xyz';
+    public static readonly __pulumiType = 'groundcover';
 
     /**
      * Returns true if the given object is an instance of Provider.  This is designed to work even
@@ -28,6 +25,22 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    /**
+     * groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.
+     */
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
+    /**
+     * groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable.
+     */
+    declare public readonly apiUrl: pulumi.Output<string | undefined>;
+    /**
+     * groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable.
+     */
+    declare public readonly backendId: pulumi.Output<string | undefined>;
+    /**
+     * groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use backendId instead.
+     */
+    declare public readonly orgName: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -40,9 +53,14 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["region"] = args?.region;
+            resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
+            resourceInputs["apiUrl"] = args?.apiUrl;
+            resourceInputs["backendId"] = args?.backendId;
+            resourceInputs["orgName"] = args?.orgName;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["apiKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 
@@ -50,7 +68,7 @@ export class Provider extends pulumi.ProviderResource {
      * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
      */
     terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
-        return pulumi.runtime.call("pulumi:providers:xyz/terraformConfig", {
+        return pulumi.runtime.call("pulumi:providers:groundcover/terraformConfig", {
             "__self__": this,
         }, this);
     }
@@ -61,9 +79,21 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * A region which should be used.
+     * groundcover API Key. Can also be set via the GROUNDCOVER_API_KEY environment variable.
      */
-    region?: pulumi.Input<enums.region.Region>;
+    apiKey?: pulumi.Input<string>;
+    /**
+     * groundcover API URL. Defaults to the groundcover production URL. Can also be set via the GROUNDCOVER_API_URL environment variable.
+     */
+    apiUrl?: pulumi.Input<string>;
+    /**
+     * groundcover Backend ID. Can also be set via the GROUNDCOVER_BACKEND_ID environment variable.
+     */
+    backendId?: pulumi.Input<string>;
+    /**
+     * groundcover Organization Name. Can also be set via the GROUNDCOVER_ORG_NAME environment variable. Deprecated: Use backendId instead.
+     */
+    orgName?: pulumi.Input<string>;
 }
 
 export namespace Provider {

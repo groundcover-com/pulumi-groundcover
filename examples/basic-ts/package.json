@@ -1,10 +1,11 @@
 {
-    "name": "basic",
-    "main": "index.ts",
-    "devDependencies": {
-        "@types/node": "^18"
-    },
-    "dependencies": {
-        "@pulumi/pulumi": "^3.0.0"
-    }
+  "name": "basic",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/node": "^18"
+  },
+  "dependencies": {
+    "@pulumi/pulumi": "^3.0.0",
+    "@pulumiverse/groundcover": "^1.0.0"
+  }
 }
