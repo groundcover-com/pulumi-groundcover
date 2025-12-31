@@ -53,7 +53,7 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/pulumiverse/pulumi-groundcover" };
+    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/groundcover-com/pulumi-groundcover" };
 }
 
 /** @internal */

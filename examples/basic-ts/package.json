@@ -6,6 +6,6 @@
   },
   "dependencies": {
     "@pulumi/pulumi": "^3.0.0",
-    "@pulumiverse/groundcover": "^1.0.0"
+    "@groundcover-com/groundcover": "^1.0.0"
   }
 }

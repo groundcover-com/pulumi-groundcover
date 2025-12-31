@@ -14,15 +14,15 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
-__all__ = ['LogspipelineArgs', 'Logspipeline']
+__all__ = ['MetricsaggregationArgs', 'Metricsaggregation']
 
 @pulumi.input_type
-class LogspipelineArgs:
+class MetricsaggregationArgs:
     def __init__(__self__, *,
                  value: pulumi.Input[_builtins.str]):
         """
-        The set of arguments for constructing a Logspipeline resource.
-        :param pulumi.Input[_builtins.str] value: The YAML representation of the logs pipeline configuration.
+        The set of arguments for constructing a Metricsaggregation resource.
+        :param pulumi.Input[_builtins.str] value: The YAML representation of the metrics aggregation configuration.
         """
         pulumi.set(__self__, "value", value)
 
@@ -30,7 +30,7 @@ class LogspipelineArgs:
     @pulumi.getter
     def value(self) -> pulumi.Input[_builtins.str]:
         """
-        The YAML representation of the logs pipeline configuration.
+        The YAML representation of the metrics aggregation configuration.
         """
         return pulumi.get(self, "value")
 
@@ -40,14 +40,14 @@ class LogspipelineArgs:
 
 
 @pulumi.input_type
-class _LogspipelineState:
+class _MetricsaggregationState:
     def __init__(__self__, *,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  value: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        Input properties used for looking up and filtering Logspipeline resources.
-        :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the logs pipeline configuration.
-        :param pulumi.Input[_builtins.str] value: The YAML representation of the logs pipeline configuration.
+        Input properties used for looking up and filtering Metricsaggregation resources.
+        :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the metrics aggregation configuration.
+        :param pulumi.Input[_builtins.str] value: The YAML representation of the metrics aggregation configuration.
         """
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
@@ -58,7 +58,7 @@ class _LogspipelineState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The last update timestamp of the logs pipeline configuration.
+        The last update timestamp of the metrics aggregation configuration.
         """
         return pulumi.get(self, "updated_at")
 
@@ -70,7 +70,7 @@ class _LogspipelineState:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The YAML representation of the logs pipeline configuration.
+        The YAML representation of the metrics aggregation configuration.
         """
         return pulumi.get(self, "value")
 
@@ -79,8 +79,8 @@ class _LogspipelineState:
         pulumi.set(self, "value", value)
 
 
-@pulumi.type_token("groundcover:index/logspipeline:Logspipeline")
-class Logspipeline(pulumi.CustomResource):
+@pulumi.type_token("groundcover:index/metricsaggregation:Metricsaggregation")
+class Metricsaggregation(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -88,68 +88,82 @@ class Logspipeline(pulumi.CustomResource):
                  value: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Logs Pipeline resource. This is a singleton resource.
+        Metrics Aggregation resource. This is a singleton resource that configures metrics aggregation rules.
 
         ## Example Usage
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
-        # Example Logs Pipeline
-        logspipeline = groundcover.Logspipeline("logspipeline", value=\"\"\"ottlRules:
-          - ruleName: example-rule
-            conditions:
-              - container_name == "nginx"
-            statements:
-              - set(attributes["test.key"], "test-value")
+        # Example Metrics Aggregation
+        # This resource configures metrics aggregation rules for reducing cardinality
+        # and improving query performance.
+        metricsaggregation = groundcover.Metricsaggregation("metricsaggregation", value=\"\"\"content: |
+          - ignore_old_samples: true
+            match: '{__name__=~"http_requests_total"}'
+            without: [instance, pod]
+            interval: 60s
+            outputs: [total_prometheus]
+          - ignore_old_samples: true
+            match: '{__name__=~"process_cpu_seconds_total"}'
+            without: [instance]
+            interval: 30s
+            outputs: [total_prometheus]
         \"\"\")
-        pulumi.export("logsPipelineUpdatedAt", logspipeline.updated_at)
+        pulumi.export("metricsAggregationUpdatedAt", metricsaggregation.updated_at)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] value: The YAML representation of the logs pipeline configuration.
+        :param pulumi.Input[_builtins.str] value: The YAML representation of the metrics aggregation configuration.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: LogspipelineArgs,
+                 args: MetricsaggregationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Logs Pipeline resource. This is a singleton resource.
+        Metrics Aggregation resource. This is a singleton resource that configures metrics aggregation rules.
 
         ## Example Usage
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
-        # Example Logs Pipeline
-        logspipeline = groundcover.Logspipeline("logspipeline", value=\"\"\"ottlRules:
-          - ruleName: example-rule
-            conditions:
-              - container_name == "nginx"
-            statements:
-              - set(attributes["test.key"], "test-value")
+        # Example Metrics Aggregation
+        # This resource configures metrics aggregation rules for reducing cardinality
+        # and improving query performance.
+        metricsaggregation = groundcover.Metricsaggregation("metricsaggregation", value=\"\"\"content: |
+          - ignore_old_samples: true
+            match: '{__name__=~"http_requests_total"}'
+            without: [instance, pod]
+            interval: 60s
+            outputs: [total_prometheus]
+          - ignore_old_samples: true
+            match: '{__name__=~"process_cpu_seconds_total"}'
+            without: [instance]
+            interval: 30s
+            outputs: [total_prometheus]
         \"\"\")
-        pulumi.export("logsPipelineUpdatedAt", logspipeline.updated_at)
+        pulumi.export("metricsAggregationUpdatedAt", metricsaggregation.updated_at)
         ```
 
         :param str resource_name: The name of the resource.
-        :param LogspipelineArgs args: The arguments to use to populate this resource's properties.
+        :param MetricsaggregationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(LogspipelineArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(MetricsaggregationArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -166,14 +180,14 @@ class Logspipeline(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = LogspipelineArgs.__new__(LogspipelineArgs)
+            __props__ = MetricsaggregationArgs.__new__(MetricsaggregationArgs)
 
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
             __props__.__dict__["value"] = value
             __props__.__dict__["updated_at"] = None
-        super(Logspipeline, __self__).__init__(
-            'groundcover:index/logspipeline:Logspipeline',
+        super(Metricsaggregation, __self__).__init__(
+            'groundcover:index/metricsaggregation:Metricsaggregation',
             resource_name,
             __props__,
             opts)
@@ -183,30 +197,30 @@ class Logspipeline(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            value: Optional[pulumi.Input[_builtins.str]] = None) -> 'Logspipeline':
+            value: Optional[pulumi.Input[_builtins.str]] = None) -> 'Metricsaggregation':
         """
-        Get an existing Logspipeline resource's state with the given name, id, and optional extra
+        Get an existing Metricsaggregation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the logs pipeline configuration.
-        :param pulumi.Input[_builtins.str] value: The YAML representation of the logs pipeline configuration.
+        :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the metrics aggregation configuration.
+        :param pulumi.Input[_builtins.str] value: The YAML representation of the metrics aggregation configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _LogspipelineState.__new__(_LogspipelineState)
+        __props__ = _MetricsaggregationState.__new__(_MetricsaggregationState)
 
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["value"] = value
-        return Logspipeline(resource_name, opts=opts, __props__=__props__)
+        return Metricsaggregation(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[_builtins.str]:
         """
-        The last update timestamp of the logs pipeline configuration.
+        The last update timestamp of the metrics aggregation configuration.
         """
         return pulumi.get(self, "updated_at")
 
@@ -214,7 +228,7 @@ class Logspipeline(pulumi.CustomResource):
     @pulumi.getter
     def value(self) -> pulumi.Output[_builtins.str]:
         """
-        The YAML representation of the logs pipeline configuration.
+        The YAML representation of the metrics aggregation configuration.
         """
         return pulumi.get(self, "value")
 

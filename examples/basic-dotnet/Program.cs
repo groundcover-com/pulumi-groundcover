@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Pulumi;
-using Groundcover = Pulumiverse.Groundcover;
+using Groundcover = GroundcoverCom.Groundcover;
 
 return await Deployment.RunAsync(() =>
 {

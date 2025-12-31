@@ -1,5 +1,5 @@
 import pulumi
-import pulumiverse_groundcover as groundcover
+import groundcover_groundcover as groundcover
 
 policy = groundcover.Policy(
     "test-policy",

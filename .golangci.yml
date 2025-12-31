@@ -33,7 +33,7 @@ formatters:
         - blank
         - default
         - prefix(github.com/pulumi/)
-        - prefix(github.com/pulumiverse/pulumi-groundcover)
+        - prefix(github.com/groundcover-com/pulumi-groundcover)
       custom-order: true
   exclusions:
     generated: lax

@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as groundcover from "@pulumiverse/groundcover";
+ * import * as groundcover from "@groundcover-com/groundcover";
  *
  * const config = new pulumi.Config();
  * const groundcoverApiKey = config.require("groundcoverApiKey");

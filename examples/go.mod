@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-groundcover/examples
+module github.com/groundcover-com/pulumi-groundcover/examples
 
 go 1.24.7
 

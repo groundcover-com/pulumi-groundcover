@@ -20,7 +20,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
-	groundcover "github.com/pulumiverse/pulumi-groundcover/provider"
+	groundcover "github.com/groundcover-com/pulumi-groundcover/provider"
 )
 
 //go:embed schema.json

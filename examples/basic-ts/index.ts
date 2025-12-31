@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as groundcover from "@pulumiverse/groundcover";
+import * as groundcover from "@groundcover-com/groundcover";
 
 const policy = new groundcover.Policy("test-policy", {
   name: "pulumi-test-policy",

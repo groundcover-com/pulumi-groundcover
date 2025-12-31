@@ -16,7 +16,7 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"@pulumiverse/groundcover",
+			"@groundcover-com/groundcover",
 		},
 	})
 
@@ -49,7 +49,7 @@ func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			fmt.Sprintf("github.com/pulumiverse/pulumi-groundcover/sdk=%s", rootSdkPath),
+			fmt.Sprintf("github.com/groundcover-com/pulumi-groundcover/sdk=%s", rootSdkPath),
 		},
 		Env: []string{
 			fmt.Sprintf("PULUMI_GO_DEP_ROOT=%s", goDepRoot),
@@ -64,7 +64,7 @@ func getCSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"Pulumiverse.Groundcover",
+			"GroundcoverCom.Groundcover",
 		},
 	})
 

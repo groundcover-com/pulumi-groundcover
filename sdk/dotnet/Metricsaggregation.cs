@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Groundcover
+namespace GroundcoverCom.Groundcover
 {
     /// <summary>
     /// Metrics Aggregation resource. This is a singleton resource that configures metrics aggregation rules.
@@ -19,7 +19,7 @@ namespace Pulumiverse.Groundcover
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Groundcover = Pulumiverse.Groundcover;
+    /// using Groundcover = GroundcoverCom.Groundcover;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -90,7 +90,7 @@ namespace Pulumiverse.Groundcover
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-groundcover",
+                PluginDownloadURL = "github://api.github.com/groundcover-com/pulumi-groundcover",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

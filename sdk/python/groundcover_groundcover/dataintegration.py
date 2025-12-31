@@ -209,7 +209,7 @@ class Dataintegration(pulumi.CustomResource):
         ```python
         import pulumi
         import json
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         # Example: CloudWatch DataIntegration
         # For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:
@@ -323,7 +323,7 @@ class Dataintegration(pulumi.CustomResource):
         ```python
         import pulumi
         import json
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         # Example: CloudWatch DataIntegration
         # For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:

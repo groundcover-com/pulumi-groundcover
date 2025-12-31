@@ -9,7 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover/internal"
+	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover/internal"
 )
 
 // ## Example Usage
@@ -21,7 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover"
+//	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover"
 //
 // )
 //

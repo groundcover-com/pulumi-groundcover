@@ -2,5 +2,5 @@
   "resource": true,
   "name": "groundcover",
   "version": "1.0.0-alpha.0+dev",
-  "server": "github://api.github.com/pulumiverse/pulumi-groundcover"
+  "server": "github://api.github.com/groundcover-com/pulumi-groundcover"
 }

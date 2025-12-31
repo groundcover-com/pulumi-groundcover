@@ -19,11 +19,11 @@ import (
 
 	_ "embed"
 
+	"github.com/groundcover-com/pulumi-groundcover/provider/pkg/version"
 	"github.com/groundcover-com/terraform-provider-groundcover/shim"
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	"github.com/pulumiverse/pulumi-groundcover/provider/pkg/version"
 )
 
 const (
@@ -36,33 +36,33 @@ var metadata []byte
 
 func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
-		P:           pfbridge.ShimProvider(shim.NewProvider(version.Version)),
-		Name:        "groundcover",
-		Version:     version.Version,
-		DisplayName: "Groundcover",
-		Publisher:   "Pulumiverse",
-		LogoURL:     "https://raw.githubusercontent.com/pulumiverse/pulumi-groundcover/main/docs/groundcover.png",
-		PluginDownloadURL: "github://api.github.com/pulumiverse/pulumi-groundcover",
+		P:                 pfbridge.ShimProvider(shim.NewProvider(version.Version)),
+		Name:              "groundcover",
+		Version:           version.Version,
+		DisplayName:       "Groundcover",
+		Publisher:         "groundcover",
+		LogoURL:           "https://raw.githubusercontent.com/groundcover-com/pulumi-groundcover/main/docs/groundcover.png",
+		PluginDownloadURL: "github://api.github.com/groundcover-com/pulumi-groundcover",
 		Description:       "A Pulumi package for creating and managing groundcover resources.",
 		Keywords:          []string{"groundcover", "observability", "monitoring", "category/monitoring"},
 		License:           "Apache-2.0",
 		Homepage:          "https://groundcover.com",
-		Repository:        "https://github.com/pulumiverse/pulumi-groundcover",
+		Repository:        "https://github.com/groundcover-com/pulumi-groundcover",
 		GitHubOrg:         "groundcover-com",
 		MetadataInfo:      tfbridge.NewProviderMetadata(metadata),
 		Config:            map[string]*tfbridge.SchemaInfo{},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@pulumiverse/groundcover",
+			PackageName:          "@groundcover-com/groundcover",
 			RespectSchemaVersion: true,
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumiverse_groundcover",
+			PackageName:          "groundcover_groundcover",
 			RespectSchemaVersion: true,
 			PyProject:            struct{ Enabled bool }{true},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: path.Join(
-				"github.com/pulumiverse/pulumi-groundcover/sdk/",
+				"github.com/groundcover-com/pulumi-groundcover/sdk/",
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				mainPkg,
@@ -72,7 +72,7 @@ func Provider() tfbridge.ProviderInfo {
 			RespectSchemaVersion:           true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Pulumiverse",
+			RootNamespace: "GroundcoverCom",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

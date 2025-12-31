@@ -17,7 +17,7 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 
-	groundcover "github.com/pulumiverse/pulumi-groundcover/provider"
+	groundcover "github.com/groundcover-com/pulumi-groundcover/provider"
 )
 
 func main() {

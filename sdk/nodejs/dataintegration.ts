@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as groundcover from "@pulumiverse/groundcover";
+ * import * as groundcover from "@groundcover-com/groundcover";
  *
  * // Example: CloudWatch DataIntegration
  * // For a full list of supported AWS metrics and statistics, visit the official CloudWatch documentation:

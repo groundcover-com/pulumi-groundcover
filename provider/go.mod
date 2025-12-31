@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-groundcover/provider
+module github.com/groundcover-com/pulumi-groundcover/provider
 
 go 1.24.10
 
