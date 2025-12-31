@@ -7,8 +7,8 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover/internal"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // The provider type for the groundcover package. By default, resources use package-wide configuration

@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover/internal"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Dashboard resource for managing groundcover dashboards.
@@ -23,9 +23,9 @@ import (
 //
 //	"encoding/json"
 //
+//	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover"
 //
 // )
 //
