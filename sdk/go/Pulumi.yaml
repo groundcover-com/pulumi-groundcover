@@ -1,0 +1,3 @@
+name: groundcover
+description: A Pulumi resource provider for groundcover.
+language: go
