@@ -1,6 +1,6 @@
 module github.com/groundcover-com/pulumi-groundcover/provider
 
-go 1.24.10
+go 1.25
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 

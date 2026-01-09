@@ -19,11 +19,13 @@ import (
 
 	_ "embed"
 
-	"github.com/groundcover-com/pulumi-groundcover/provider/pkg/version"
 	"github.com/groundcover-com/terraform-provider-groundcover/shim"
+
 	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+
+	"github.com/groundcover-com/pulumi-groundcover/provider/pkg/version"
 )
 
 const (
