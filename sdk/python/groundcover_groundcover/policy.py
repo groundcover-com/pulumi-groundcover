@@ -292,7 +292,7 @@ class Policy(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         # Define a groundcover Policy
         my_policy = groundcover.Policy("myPolicy",
@@ -351,7 +351,7 @@ class Policy(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         # Define a groundcover Policy
         my_policy = groundcover.Policy("myPolicy",

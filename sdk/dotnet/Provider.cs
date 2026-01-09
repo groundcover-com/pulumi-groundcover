@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Groundcover
+namespace GroundcoverCom.Groundcover
 {
     /// <summary>
     /// The provider type for the groundcover package. By default, resources use package-wide configuration
@@ -61,7 +61,7 @@ namespace Pulumiverse.Groundcover
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse/pulumi-groundcover",
+                PluginDownloadURL = "github://api.github.com/groundcover-com/pulumi-groundcover",
                 AdditionalSecretOutputs =
                 {
                     "apiKey",

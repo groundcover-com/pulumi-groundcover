@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Groundcover.Inputs
+namespace GroundcoverCom.Groundcover.Inputs
 {
 
     public sealed class PolicyDataScopeAdvancedWorkloadsConditionArgs : global::Pulumi.ResourceArgs

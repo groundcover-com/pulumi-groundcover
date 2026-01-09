@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Pulumi" Version="3.*" />
-    <PackageReference Include="Pulumiverse.Groundcover" Version="*" />
+    <PackageReference Include="GroundcoverCom.Groundcover" Version="*" />
   </ItemGroup>
 
 </Project>

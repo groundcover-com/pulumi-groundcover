@@ -176,7 +176,7 @@ class Serviceaccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")
@@ -216,7 +216,7 @@ class Serviceaccount(pulumi.CustomResource):
 
         ```python
         import pulumi
-        import pulumiverse_groundcover as groundcover
+        import groundcover_groundcover as groundcover
 
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")

@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumiverse/groundcover
+npm install @groundcover-com/groundcover
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumiverse/groundcover
+yarn add @groundcover-com/groundcover
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumiverse/groundcover
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumiverse_groundcover
+pip install groundcover_groundcover
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumiverse_groundcover
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumiverse/pulumi-groundcover/sdk/go/...
+go get github.com/groundcover-com/pulumi-groundcover/sdk/go/...
 ```
 
 ### .NET
@@ -41,7 +41,7 @@ go get github.com/pulumiverse/pulumi-groundcover/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumiverse.Groundcover
+dotnet add package GroundcoverCom.Groundcover
 ```
 
 ## Configuration

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumiverse.Groundcover
+namespace GroundcoverCom.Groundcover
 {
     public static class Config
     {

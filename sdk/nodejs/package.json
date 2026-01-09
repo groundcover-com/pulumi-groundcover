@@ -1,5 +1,5 @@
 {
-    "name": "@pulumiverse/groundcover",
+    "name": "@groundcover-com/groundcover",
     "version": "1.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing groundcover resources.",
     "keywords": [
@@ -9,7 +9,7 @@
         "category/monitoring"
     ],
     "homepage": "https://groundcover.com",
-    "repository": "https://github.com/pulumiverse/pulumi-groundcover",
+    "repository": "https://github.com/groundcover-com/pulumi-groundcover",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"
@@ -25,6 +25,6 @@
         "resource": true,
         "name": "groundcover",
         "version": "1.0.0-alpha.0+dev",
-        "server": "github://api.github.com/pulumiverse/pulumi-groundcover"
+        "server": "github://api.github.com/groundcover-com/pulumi-groundcover"
     }
 }

@@ -58,12 +58,13 @@ jobs:
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
     - name: Setup mise
-      uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
+      uses: blampe/mise-action@blampe/plugins
       env:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2025.11.6
         github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+        plugin_install: https://github.com/pulumi/vfox-pulumi
         cache_save: false
     - name: Create dist directory
       run: mkdir -p dist
@@ -90,11 +91,11 @@ jobs:
       shell: bash
       run: |
         # Get latest stable release. Return only first column from result (tag).
-        LAST_VERSION=$(gh release view --repo pulumiverse/pulumi-groundcover --json tagName -q .tagName || echo "No stable release" )
+        LAST_VERSION=$(gh release view --repo groundcover-com/pulumi-groundcover --json tagName -q .tagName || echo "No stable release" )
         {
           echo 'summary<<EOF'
           if [[ "$LAST_VERSION" != "No stable release" ]]; then
-            schema-tools compare --provider="groundcover" --old-commit="$LAST_VERSION" --repository="github://api.github.com/pulumiverse" --new-commit="--local-path=provider/cmd/pulumi-resource-groundcover/schema.json"
+            schema-tools compare --provider="groundcover" --old-commit="$LAST_VERSION" --repository="github://api.github.com/groundcover-com" --new-commit="--local-path=provider/cmd/pulumi-resource-groundcover/schema.json"
           fi
           echo 'EOF'
         } >> "$GITHUB_OUTPUT"
@@ -130,12 +131,13 @@ jobs:
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
     - name: Setup mise
-      uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
+      uses: blampe/mise-action@blampe/plugins
       env:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2025.11.6
         github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+        plugin_install: https://github.com/pulumi/vfox-pulumi
         # only saving the cache in the prerequisites job
         cache_save: false
     - name: Setup Node

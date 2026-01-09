@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Pulumiverse</Authors>
-    <Company>Pulumiverse</Company>
+    <Authors>groundcover</Authors>
+    <Company>groundcover</Company>
     <Description>A Pulumi package for creating and managing groundcover resources.</Description>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://groundcover.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/pulumiverse/pulumi-groundcover</RepositoryUrl>
+    <RepositoryUrl>https://github.com/groundcover-com/pulumi-groundcover</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
     <Version>1.0.0-alpha.0+dev</Version>
 

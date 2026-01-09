@@ -8,8 +8,8 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover/internal"
 )
 
 // DataIntegration resource for managing groundcover's integrations with external services such as cloud providers, databases and more. This resource is composed of general metadata on the integration and a specific configuration per data source. Navigate to the relevant nested schema according to your specific needs.
@@ -23,8 +23,8 @@ import (
 //
 //	"encoding/json"
 //
+//	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover"
 //
 // )
 //

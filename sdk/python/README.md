@@ -1,6 +1,6 @@
 # Groundcover Resource Provider
 
-The Groundcover Resource Provider lets you manage [Groundcover](http://example.com) resources.
+The Groundcover Resource Provider lets you manage [groundcover](https://groundcover.com) observability resources.
 
 ## Installing
 
@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/groundcover
+npm install @groundcover-com/groundcover
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/groundcover
+yarn add @groundcover-com/groundcover
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumi/groundcover
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi_groundcover
+pip install groundcover_groundcover
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumi_groundcover
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumi/pulumi-groundcover/sdk/go/...
+go get github.com/groundcover-com/pulumi-groundcover/sdk/go/...
 ```
 
 ### .NET
@@ -41,14 +41,31 @@ go get github.com/pulumi/pulumi-groundcover/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumi.Groundcover
+dotnet add package GroundcoverCom.Groundcover
 ```
 
 ## Configuration
 
-The following configuration points are available for the `groundcover` provider:
+The following configuration options are available for the `groundcover` provider:
 
-- `groundcover:region` (environment: `GROUNDCOVER_REGION`) - the region in which to deploy resources
+- `groundcover:apiKey` (environment: `GROUNDCOVER_API_KEY`) - groundcover API Key
+- `groundcover:backendId` (environment: `GROUNDCOVER_BACKEND_ID`) - groundcover Backend ID
+- `groundcover:apiUrl` (environment: `GROUNDCOVER_API_URL`) - groundcover API URL (defaults to `https://api.groundcover.com`)
+
+## Resources
+
+The provider supports the following resources:
+
+- `groundcover.Apikey` - API Key management
+- `groundcover.Dashboard` - Dashboard management
+- `groundcover.Dataintegration` - Data integration configuration
+- `groundcover.Ingestionkey` - Ingestion key management
+- `groundcover.Logspipeline` - Logs pipeline configuration
+- `groundcover.Metricsaggregation` - Metrics aggregation rules
+- `groundcover.Monitor` - Monitor/alert configuration
+- `groundcover.Policy` - Policy management
+- `groundcover.Secret` - Secret management
+- `groundcover.Serviceaccount` - Service account management
 
 ## Reference
 

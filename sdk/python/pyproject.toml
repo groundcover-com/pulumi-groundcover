@@ -1,5 +1,5 @@
 [project]
-  name = "pulumiverse_groundcover"
+  name = "groundcover_groundcover"
   description = "A Pulumi package for creating and managing groundcover resources."
   dependencies = ["parver>=0.2.1", "pulumi>=3.165.0,<4.0.0", "semver>=2.8.1", "typing-extensions>=4.11,<5; python_version < \"3.11\""]
   keywords = ["groundcover", "observability", "monitoring", "category/monitoring"]
@@ -10,7 +10,7 @@
     text = "Apache-2.0"
   [project.urls]
     Homepage = "https://groundcover.com"
-    Repository = "https://github.com/pulumiverse/pulumi-groundcover"
+    Repository = "https://github.com/groundcover-com/pulumi-groundcover"
 
 [build-system]
   requires = ["setuptools>=61.0"]
@@ -19,4 +19,4 @@
 [tool]
   [tool.setuptools]
     [tool.setuptools.package-data]
-      pulumiverse_groundcover = ["py.typed", "pulumi-plugin.json"]
+      groundcover_groundcover = ["py.typed", "pulumi-plugin.json"]

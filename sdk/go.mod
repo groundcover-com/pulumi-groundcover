@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-groundcover/sdk
+module github.com/groundcover-com/pulumi-groundcover/sdk
 
 go 1.24.0
 

@@ -4,9 +4,9 @@
 package config
 
 import (
+	"github.com/groundcover-com/pulumi-groundcover/sdk/go/groundcover/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-	"github.com/pulumiverse/pulumi-groundcover/sdk/go/groundcover/internal"
 )
 
 var _ = internal.GetEnvOrDefault

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Groundcover.Outputs
+namespace GroundcoverCom.Groundcover.Outputs
 {
 
     [OutputType]

@@ -22,10 +22,10 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumiverse_groundcover.config as __config
+    import groundcover_groundcover.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('pulumiverse_groundcover.config')
+    config = _utilities.lazy_import('groundcover_groundcover.config')
 
 _utilities.register(
     resource_modules="""
@@ -33,7 +33,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/apikey",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/apikey:Apikey": "Apikey"
   }
@@ -41,7 +41,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/dashboard",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/dashboard:Dashboard": "Dashboard"
   }
@@ -49,7 +49,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/dataintegration",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/dataintegration:Dataintegration": "Dataintegration"
   }
@@ -57,7 +57,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/ingestionkey",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/ingestionkey:Ingestionkey": "Ingestionkey"
   }
@@ -65,7 +65,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/logspipeline",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/logspipeline:Logspipeline": "Logspipeline"
   }
@@ -73,7 +73,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/metricsaggregation",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/metricsaggregation:Metricsaggregation": "Metricsaggregation"
   }
@@ -81,7 +81,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/monitor",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/monitor:Monitor": "Monitor"
   }
@@ -89,7 +89,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/policy",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/policy:Policy": "Policy"
   }
@@ -97,7 +97,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/secret",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/secret:Secret": "Secret"
   }
@@ -105,7 +105,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "mod": "index/serviceaccount",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/serviceaccount:Serviceaccount": "Serviceaccount"
   }
@@ -117,7 +117,7 @@ _utilities.register(
  {
   "pkg": "groundcover",
   "token": "pulumi:providers:groundcover",
-  "fqn": "pulumiverse_groundcover",
+  "fqn": "groundcover_groundcover",
   "class": "Provider"
  }
 ]
