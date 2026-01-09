@@ -37,5 +37,10 @@ publish:
   cdn: false
 publishRegistry: false
 
+license:
+  ignore:
+    # The shim module is internal and doesn't need license verification
+    - github.com/groundcover-com/terraform-provider-groundcover/shim
+
 github-app:
   enabled: false
