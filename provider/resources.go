@@ -17,7 +17,7 @@ package groundcover
 import (
 	"path"
 
-	_ "embed"
+	_ "embed" // for go:embed
 
 	"github.com/groundcover-com/terraform-provider-groundcover/shim"
 
