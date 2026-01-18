@@ -9,6 +9,7 @@ upstreamProviderOrg: groundcover-com
 # Environment variables for CI workflows (pulled from GitHub secrets)
 env:
   GROUNDCOVER_API_KEY: ${{ secrets.GROUNDCOVER_API_KEY }}
+  GROUNDCOVER_API_URL: ${{ secrets.GROUNDCOVER_API_URL }}
   GROUNDCOVER_BACKEND_ID: ${{ secrets.GROUNDCOVER_BACKEND_ID }}
 # major version of the current provider - used in make files
 # This should always be set by all providers as this is key to go module paths.
