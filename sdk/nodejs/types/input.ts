@@ -16,6 +16,35 @@ export interface ApikeyPolicy {
     uuid?: pulumi.Input<string>;
 }
 
+export interface NotificationRouteNotificationSettings {
+    /**
+     * Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+     */
+    renotificationInterval?: pulumi.Input<string>;
+}
+
+export interface NotificationRouteRoute {
+    /**
+     * List of connected apps to notify for this route.
+     */
+    connectedApps: pulumi.Input<pulumi.Input<inputs.NotificationRouteRouteConnectedApp>[]>;
+    /**
+     * List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+     */
+    statuses: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface NotificationRouteRouteConnectedApp {
+    /**
+     * ID of the connected app.
+     */
+    id: pulumi.Input<string>;
+    /**
+     * Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface PolicyDataScope {
     /**
      * Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
@@ -318,4 +347,122 @@ export interface PolicyDataScopeSimpleConditionFilter {
      * The value to filter on.
      */
     value: pulumi.Input<string>;
+}
+
+export interface SilenceMatcher {
+    /**
+     * If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+     */
+    isContains?: pulumi.Input<boolean>;
+    /**
+     * If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+     */
+    isEqual?: pulumi.Input<boolean>;
+    /**
+     * The name of the label to match (e.g., `service`, `environment`, `workload`).
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface SyntheticTestAssertion {
+    /**
+     * Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * Property path for header or JSON body assertions (e.g. `Content-Type` or `data.id`).
+     */
+    property?: pulumi.Input<string>;
+    /**
+     * Assertion severity: `critical` (default) or `degraded`.
+     */
+    severity?: pulumi.Input<string>;
+    /**
+     * What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`.
+     */
+    source: pulumi.Input<string>;
+    /**
+     * Expected value to compare against (as string, e.g. `"200"` for status code).
+     */
+    target?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheck {
+    /**
+     * Whether to allow insecure TLS connections.
+     */
+    allowInsecure?: pulumi.Input<boolean>;
+    /**
+     * HTTP authentication. Supports `basic`, `bearer`, or `none`.
+     */
+    auth?: pulumi.Input<inputs.SyntheticTestHttpCheckAuth>;
+    /**
+     * HTTP request body.
+     */
+    body?: pulumi.Input<inputs.SyntheticTestHttpCheckBody>;
+    /**
+     * Whether to follow HTTP redirects.
+     */
+    followRedirects?: pulumi.Input<boolean>;
+    /**
+     * HTTP headers to send with the request.
+     */
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+     */
+    method: pulumi.Input<string>;
+    /**
+     * Request timeout (e.g. `10s`, `30s`).
+     */
+    timeout?: pulumi.Input<string>;
+    /**
+     * The URL to check (must include http:// or https://).
+     */
+    url: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheckAuth {
+    /**
+     * Password for basic auth. Supports `secretRef::store::<id>` references.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Token for bearer auth. Supports `secretRef::store::<id>` references.
+     */
+    token?: pulumi.Input<string>;
+    /**
+     * Auth type: `basic`, `bearer`, or `none`.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Username for basic auth.
+     */
+    username?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheckBody {
+    /**
+     * Body content string.
+     */
+    content?: pulumi.Input<string>;
+    /**
+     * Body content type: `json`, `text`, or `raw`.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestRetry {
+    /**
+     * Number of retry attempts.
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * Delay between retries (e.g. `1s`, `500ms`).
+     */
+    interval?: pulumi.Input<string>;
 }

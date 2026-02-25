@@ -171,11 +171,349 @@ namespace GroundcoverCom.Groundcover
     ///         IsPaused = false,
     ///     });
     /// 
+    ///     // Example: Prometheus Static Targets
+    ///     var prometheusStaticExample = new Groundcover.Dataintegration("prometheusStaticExample", new()
+    ///     {
+    ///         Type = "prometheusscrape",
+    ///         Config = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["version"] = 1,
+    ///             ["enabled"] = true,
+    ///             ["name"] = "prometheus-static-config",
+    ///             ["scheme"] = "https",
+    ///             ["metricsPath"] = "/metrics",
+    ///             ["scrapeInterval"] = 30000000000,
+    ///             ["scrapeTimeout"] = 10000000000,
+    ///             ["staticTargets"] = new[]
+    ///             {
+    ///                 "prometheus-target.example.com:9090",
+    ///             },
+    ///             ["exporters"] = new[]
+    ///             {
+    ///                 "prometheus",
+    ///             },
+    ///             ["metricsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     "[*]cpu[*]",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     "DB1[*]",
+    ///                 },
+    ///                 ["raw"] = @"# additional relabeling rules that can be applied such as adding a prefix
+    ///   - action: labelmap
+    ///     replacement: ""groundcover_$1""
+    /// ",
+    ///             },
+    ///             ["labelSettings"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["extraLabels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["env"] = "prod",
+    ///                 },
+    ///             },
+    ///             ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["username"] = "prometheus-user",
+    ///                     ["password"] = "secretRef::store::d1fc037f11f8ce58",
+    ///                 },
+    ///             },
+    ///         }),
+    ///         IsPaused = false,
+    ///     });
+    /// 
+    ///     // Example: Prometheus HTTPs Target Discovery
+    ///     var prometheusDiscoveryExample = new Groundcover.Dataintegration("prometheusDiscoveryExample", new()
+    ///     {
+    ///         Type = "prometheusscrape",
+    ///         Config = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["version"] = 1,
+    ///             ["enabled"] = true,
+    ///             ["name"] = "Target discovery scraping example",
+    ///             ["exporters"] = new[]
+    ///             {
+    ///                 "prometheus",
+    ///             },
+    ///             ["scrapeInterval"] = 30000000000,
+    ///             ["scrapeTimeout"] = 10000000000,
+    ///             ["metricsPath"] = "/metrics",
+    ///             ["scheme"] = "http",
+    ///             ["httpDiscovery"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["url"] = "https://cloud.mongodb.com/prometheus/v1.0/groups/example",
+    ///                 ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["username"] = "prom_user_6909b9ab19480f045c1f2eca",
+    ///                         ["password"] = "secretRef::store::5219731e4bc798eb",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             ["targetsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-02.*",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-01.*",
+    ///                 },
+    ///             },
+    ///             ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["username"] = "prom_user_6909b9ab19480f045c1f2eca",
+    ///                     ["password"] = "secretRef::store::15e1b4b9c0ce0a45",
+    ///                 },
+    ///             },
+    ///             ["metricsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     "[*]cpu[*]",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     "DB1[*]",
+    ///                 },
+    ///                 ["raw"] = @"# additional relabeling rules that can be applied such as adding a prefix
+    ///   - action: labelmap
+    ///     replacement: ""groundcover_$1""
+    /// ",
+    ///             },
+    ///             ["labelSettings"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["extraLabels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["env"] = "prod",
+    ///                 },
+    ///             },
+    ///         }),
+    ///         IsPaused = false,
+    ///     });
+    /// 
+    ///     // Example: MongoDB Atlas
+    ///     var mongodbAtlasExample = new Groundcover.Dataintegration("mongodbAtlasExample", new()
+    ///     {
+    ///         Type = "mongoatlasscrape",
+    ///         Config = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["version"] = 1,
+    ///             ["enabled"] = true,
+    ///             ["name"] = "MongoDB Atlas example",
+    ///             ["exporters"] = new[]
+    ///             {
+    ///                 "prometheus",
+    ///             },
+    ///             ["scrapeInterval"] = 30000000000,
+    ///             ["scrapeTimeout"] = 10000000000,
+    ///             ["metricsPath"] = "/metrics",
+    ///             ["scheme"] = "http",
+    ///             ["httpDiscovery"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["url"] = "https://cloud.mongodb.com/prometheus/v1.0/groups/example/discovery",
+    ///                 ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["username"] = "prom_user_6909b9ab19480f045c1f2eca",
+    ///                         ["password"] = "secretRef::store::5219731e4bc798eb",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             ["targetsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-02.*",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-01.*",
+    ///                 },
+    ///             },
+    ///             ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["username"] = "prom_user_6909b9ab19480f045c1f2eca",
+    ///                     ["password"] = "secretRef::store::15e1b4b9c0ce0a45",
+    ///                 },
+    ///             },
+    ///             ["metricsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     "[*]catalogStats[*]",
+    ///                 },
+    ///                 ["raw"] = @"# additional relabeling rules that can be applied such as adding a prefix
+    ///   - action: labelmap
+    ///     replacement: ""groundcover_$1""
+    /// ",
+    ///             },
+    ///             ["labelSettings"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["extraLabels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["env"] = "prod",
+    ///                 },
+    ///             },
+    ///         }),
+    ///         IsPaused = false,
+    ///     });
+    /// 
+    ///     // Example: RabbitMQ
+    ///     var rabbitmqExample = new Groundcover.Dataintegration("rabbitmqExample", new()
+    ///     {
+    ///         Type = "rabbitscrape",
+    ///         Config = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["version"] = 1,
+    ///             ["enabled"] = true,
+    ///             ["name"] = "RabbitMQ example",
+    ///             ["exporters"] = new[]
+    ///             {
+    ///                 "prometheus",
+    ///             },
+    ///             ["scrapeInterval"] = 30000000000,
+    ///             ["scrapeTimeout"] = 10000000000,
+    ///             ["metricsPath"] = "/metrics",
+    ///             ["scheme"] = "https",
+    ///             ["staticTargets"] = new[]
+    ///             {
+    ///                 "myserver1:9090",
+    ///                 "myserver2:9090",
+    ///             },
+    ///             ["targetsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-02.*",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-01.*",
+    ///                 },
+    ///             },
+    ///             ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["basicAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["username"] = "prom_user_6909b9ab19480f045c1f2eca",
+    ///                     ["password"] = "secretRef::store::15e1b4b9c0ce0a45",
+    ///                 },
+    ///             },
+    ///             ["metricsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     "[*]catalogStats[*]",
+    ///                 },
+    ///                 ["raw"] = @"# additional relabeling rules that can be applied such as adding a prefix
+    ///   - action: labelmap
+    ///     replacement: ""groundcover_$1""
+    /// ",
+    ///             },
+    ///             ["labelSettings"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["extraLabels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["env"] = "prod",
+    ///                 },
+    ///             },
+    ///         }),
+    ///         IsPaused = false,
+    ///     });
+    /// 
+    ///     // Example: Redis Cloud
+    ///     var rediscloudExample = new Groundcover.Dataintegration("rediscloudExample", new()
+    ///     {
+    ///         Type = "rediscloudscrape",
+    ///         Config = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["version"] = 1,
+    ///             ["enabled"] = true,
+    ///             ["name"] = "Redis Cloud example",
+    ///             ["exporters"] = new[]
+    ///             {
+    ///                 "prometheus",
+    ///             },
+    ///             ["scrapeInterval"] = 30000000000,
+    ///             ["scrapeTimeout"] = 10000000000,
+    ///             ["metricsPath"] = "/metrics",
+    ///             ["scheme"] = "https",
+    ///             ["staticTargets"] = new[]
+    ///             {
+    ///                 "https://your-redis-cloud-address:8070",
+    ///             },
+    ///             ["targetsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-02.*",
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     ".*shard-00-01.*",
+    ///                 },
+    ///             },
+    ///             ["authentication"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["headerAuth"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["key"] = "bearer_token",
+    ///                     ["value"] = "secretRef::store::15e1b4b9c0ce0a45",
+    ///                 },
+    ///             },
+    ///             ["metricsRelabels"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["keepRegex"] = new[]
+    ///                 {
+    ///                 },
+    ///                 ["dropRegex"] = new[]
+    ///                 {
+    ///                     "[*]catalogStats[*]",
+    ///                 },
+    ///                 ["raw"] = @"# additional relabeling rules that can be applied such as adding a prefix
+    ///   - action: labelmap
+    ///     replacement: ""groundcover_$1""
+    /// ",
+    ///             },
+    ///             ["labelSettings"] = new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["extraLabels"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["env"] = "prod",
+    ///                 },
+    ///             },
+    ///         }),
+    ///         IsPaused = false,
+    ///     });
+    /// 
     ///     return new Dictionary&lt;string, object?&gt;
     ///     {
     ///         ["cloudwatchDataintegrationId"] = cloudwatchExample.Id,
     ///         ["gcpmetricsDataintegrationId"] = gcpExample.Id,
     ///         ["azuremetricsDataintegrationId"] = azureExample.Id,
+    ///         ["prometheusStaticDataintegrationId"] = prometheusStaticExample.Id,
+    ///         ["prometheusDiscoveryDataintegrationId"] = prometheusDiscoveryExample.Id,
+    ///         ["mongodbAtlasDataintegrationId"] = mongodbAtlasExample.Id,
+    ///         ["rabbitmqDataintegrationId"] = rabbitmqExample.Id,
+    ///         ["rediscloudDataintegrationId"] = rediscloudExample.Id,
     ///     };
     /// });
     /// ```
