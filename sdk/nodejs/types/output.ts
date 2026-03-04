@@ -16,6 +16,35 @@ export interface ApikeyPolicy {
     uuid: string;
 }
 
+export interface NotificationRouteNotificationSettings {
+    /**
+     * Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+     */
+    renotificationInterval?: string;
+}
+
+export interface NotificationRouteRoute {
+    /**
+     * List of connected apps to notify for this route.
+     */
+    connectedApps: outputs.NotificationRouteRouteConnectedApp[];
+    /**
+     * List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+     */
+    statuses: string[];
+}
+
+export interface NotificationRouteRouteConnectedApp {
+    /**
+     * ID of the connected app.
+     */
+    id: string;
+    /**
+     * Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+     */
+    type: string;
+}
+
 export interface PolicyDataScope {
     /**
      * Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
@@ -318,5 +347,123 @@ export interface PolicyDataScopeSimpleConditionFilter {
      * The value to filter on.
      */
     value: string;
+}
+
+export interface SilenceMatcher {
+    /**
+     * If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+     */
+    isContains: boolean;
+    /**
+     * If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+     */
+    isEqual: boolean;
+    /**
+     * The name of the label to match (e.g., `service`, `environment`, `workload`).
+     */
+    name: string;
+    /**
+     * The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+     */
+    value: string;
+}
+
+export interface SyntheticTestAssertion {
+    /**
+     * Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+     */
+    operator: string;
+    /**
+     * Property path for header or JSON body assertions (e.g. `Content-Type` or `data.id`).
+     */
+    property?: string;
+    /**
+     * Assertion severity: `critical` (default) or `degraded`.
+     */
+    severity?: string;
+    /**
+     * What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`.
+     */
+    source: string;
+    /**
+     * Expected value to compare against (as string, e.g. `"200"` for status code).
+     */
+    target?: string;
+}
+
+export interface SyntheticTestHttpCheck {
+    /**
+     * Whether to allow insecure TLS connections.
+     */
+    allowInsecure?: boolean;
+    /**
+     * HTTP authentication. Supports `basic`, `bearer`, or `none`.
+     */
+    auth?: outputs.SyntheticTestHttpCheckAuth;
+    /**
+     * HTTP request body.
+     */
+    body?: outputs.SyntheticTestHttpCheckBody;
+    /**
+     * Whether to follow HTTP redirects.
+     */
+    followRedirects?: boolean;
+    /**
+     * HTTP headers to send with the request.
+     */
+    headers?: {[key: string]: string};
+    /**
+     * HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+     */
+    method: string;
+    /**
+     * Request timeout (e.g. `10s`, `30s`).
+     */
+    timeout: string;
+    /**
+     * The URL to check (must include http:// or https://).
+     */
+    url: string;
+}
+
+export interface SyntheticTestHttpCheckAuth {
+    /**
+     * Password for basic auth. Supports `secretRef::store::<id>` references.
+     */
+    password?: string;
+    /**
+     * Token for bearer auth. Supports `secretRef::store::<id>` references.
+     */
+    token?: string;
+    /**
+     * Auth type: `basic`, `bearer`, or `none`.
+     */
+    type?: string;
+    /**
+     * Username for basic auth.
+     */
+    username?: string;
+}
+
+export interface SyntheticTestHttpCheckBody {
+    /**
+     * Body content string.
+     */
+    content?: string;
+    /**
+     * Body content type: `json`, `text`, or `raw`.
+     */
+    type?: string;
+}
+
+export interface SyntheticTestRetry {
+    /**
+     * Number of retry attempts.
+     */
+    count?: number;
+    /**
+     * Delay between retries (e.g. `1s`, `500ms`).
+     */
+    interval?: string;
 }
 
