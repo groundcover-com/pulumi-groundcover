@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "groundcover:index/apikey:Apikey":
 		r = &Apikey{}
+	case "groundcover:index/connectedApp:ConnectedApp":
+		r = &ConnectedApp{}
 	case "groundcover:index/dashboard:Dashboard":
 		r = &Dashboard{}
 	case "groundcover:index/dataintegration:Dataintegration":
@@ -35,12 +37,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Metricsaggregation{}
 	case "groundcover:index/monitor:Monitor":
 		r = &Monitor{}
+	case "groundcover:index/notificationRoute:NotificationRoute":
+		r = &NotificationRoute{}
 	case "groundcover:index/policy:Policy":
 		r = &Policy{}
 	case "groundcover:index/secret:Secret":
 		r = &Secret{}
 	case "groundcover:index/serviceaccount:Serviceaccount":
 		r = &Serviceaccount{}
+	case "groundcover:index/silence:Silence":
+		r = &Silence{}
+	case "groundcover:index/syntheticTest:SyntheticTest":
+		r = &SyntheticTest{}
+	case "groundcover:index/tracespipeline:Tracespipeline":
+		r = &Tracespipeline{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -79,6 +89,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"groundcover",
+		"index/connectedApp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"groundcover",
 		"index/dashboard",
 		&module{version},
 	)
@@ -109,6 +124,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"groundcover",
+		"index/notificationRoute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"groundcover",
 		"index/policy",
 		&module{version},
 	)
@@ -120,6 +140,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"groundcover",
 		"index/serviceaccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"groundcover",
+		"index/silence",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"groundcover",
+		"index/syntheticTest",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"groundcover",
+		"index/tracespipeline",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(
