@@ -1,6 +1,6 @@
 module github.com/groundcover-com/pulumi-groundcover/provider
 
-go 1.25
+go 1.25.7
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20250923233607-7f1981c8674a
 
@@ -77,8 +77,8 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.12.2 // indirect
-	github.com/groundcover-com/groundcover-sdk-go v1.128.0 // indirect
-	github.com/groundcover-com/terraform-provider-groundcover v1.5.2 // indirect
+	github.com/groundcover-com/groundcover-sdk-go v1.192.0 // indirect
+	github.com/groundcover-com/terraform-provider-groundcover v1.8.1 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
