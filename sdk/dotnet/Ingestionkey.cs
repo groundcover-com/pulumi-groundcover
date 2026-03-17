@@ -26,23 +26,23 @@ namespace GroundcoverCom.Groundcover
     ///     var config = new Config();
     ///     var groundcoverApiKey = config.Require("groundcoverApiKey");
     ///     var groundcoverBackendId = config.Require("groundcoverBackendId");
-    ///     // Example Ingestion Key
+    ///     // Example Ingestion Key with type "sensor"
     ///     var example = new Groundcover.Ingestionkey("example", new()
     ///     {
-    ///         Type = "ingestion",
+    ///         Type = "sensor",
     ///         RemoteConfig = true,
     ///         Tags = new[]
     ///         {
     ///             "terraform",
     ///             "example",
-    ///             "ingestion",
+    ///             "sensor",
     ///         },
     ///     });
     /// 
     ///     // Example Ingestion Key with minimal configuration
     ///     var minimal = new Groundcover.Ingestionkey("minimal", new()
     ///     {
-    ///         Type = "ingestion",
+    ///         Type = "sensor",
     ///     });
     /// 
     ///     return new Dictionary&lt;string, object?&gt;
@@ -95,7 +95,7 @@ namespace GroundcoverCom.Groundcover
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the ingestion key (e.g., 'ingestion').
+        /// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -172,7 +172,7 @@ namespace GroundcoverCom.Groundcover
         }
 
         /// <summary>
-        /// The type of the ingestion key (e.g., 'ingestion').
+        /// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -228,7 +228,7 @@ namespace GroundcoverCom.Groundcover
         }
 
         /// <summary>
-        /// The type of the ingestion key (e.g., 'ingestion').
+        /// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
