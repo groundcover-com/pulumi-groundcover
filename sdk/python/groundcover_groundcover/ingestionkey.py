@@ -25,7 +25,7 @@ class IngestionkeyArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Ingestionkey resource.
-        :param pulumi.Input[_builtins.str] type: The type of the ingestion key (e.g., 'ingestion').
+        :param pulumi.Input[_builtins.str] type: The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         :param pulumi.Input[_builtins.str] name: The name of the ingestion key.
         :param pulumi.Input[_builtins.bool] remote_config: Indicates if the ingestion key is configured for remote configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the ingestion key.
@@ -42,7 +42,7 @@ class IngestionkeyArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of the ingestion key (e.g., 'ingestion').
+        The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         return pulumi.get(self, "type")
 
@@ -105,7 +105,7 @@ class _IngestionkeyState:
         :param pulumi.Input[_builtins.str] name: The name of the ingestion key.
         :param pulumi.Input[_builtins.bool] remote_config: Indicates if the ingestion key is configured for remote configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the ingestion key.
-        :param pulumi.Input[_builtins.str] type: The type of the ingestion key (e.g., 'ingestion').
+        :param pulumi.Input[_builtins.str] type: The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         if created_by is not None:
             pulumi.set(__self__, "created_by", created_by)
@@ -202,7 +202,7 @@ class _IngestionkeyState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of the ingestion key (e.g., 'ingestion').
+        The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         return pulumi.get(self, "type")
 
@@ -234,17 +234,17 @@ class Ingestionkey(pulumi.CustomResource):
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
-        # Example Ingestion Key
+        # Example Ingestion Key with type "sensor"
         example = groundcover.Ingestionkey("example",
-            type="ingestion",
+            type="sensor",
             remote_config=True,
             tags=[
                 "terraform",
                 "example",
-                "ingestion",
+                "sensor",
             ])
         # Example Ingestion Key with minimal configuration
-        minimal = groundcover.Ingestionkey("minimal", type="ingestion")
+        minimal = groundcover.Ingestionkey("minimal", type="sensor")
         pulumi.export("ingestionkeyExampleKey", example.key)
         pulumi.export("ingestionkeyExampleCreationDate", example.creation_date)
         pulumi.export("ingestionkeyExampleCreatedBy", example.created_by)
@@ -256,7 +256,7 @@ class Ingestionkey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the ingestion key.
         :param pulumi.Input[_builtins.bool] remote_config: Indicates if the ingestion key is configured for remote configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the ingestion key.
-        :param pulumi.Input[_builtins.str] type: The type of the ingestion key (e.g., 'ingestion').
+        :param pulumi.Input[_builtins.str] type: The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         ...
     @overload
@@ -276,17 +276,17 @@ class Ingestionkey(pulumi.CustomResource):
         config = pulumi.Config()
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
-        # Example Ingestion Key
+        # Example Ingestion Key with type "sensor"
         example = groundcover.Ingestionkey("example",
-            type="ingestion",
+            type="sensor",
             remote_config=True,
             tags=[
                 "terraform",
                 "example",
-                "ingestion",
+                "sensor",
             ])
         # Example Ingestion Key with minimal configuration
-        minimal = groundcover.Ingestionkey("minimal", type="ingestion")
+        minimal = groundcover.Ingestionkey("minimal", type="sensor")
         pulumi.export("ingestionkeyExampleKey", example.key)
         pulumi.export("ingestionkeyExampleCreationDate", example.creation_date)
         pulumi.export("ingestionkeyExampleCreatedBy", example.created_by)
@@ -360,7 +360,7 @@ class Ingestionkey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the ingestion key.
         :param pulumi.Input[_builtins.bool] remote_config: Indicates if the ingestion key is configured for remote configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the ingestion key.
-        :param pulumi.Input[_builtins.str] type: The type of the ingestion key (e.g., 'ingestion').
+        :param pulumi.Input[_builtins.str] type: The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -428,7 +428,7 @@ class Ingestionkey(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of the ingestion key (e.g., 'ingestion').
+        The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
         """
         return pulumi.get(self, "type")
 

@@ -16,18 +16,18 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const groundcoverApiKey = config.require("groundcoverApiKey");
  * const groundcoverBackendId = config.require("groundcoverBackendId");
- * // Example Ingestion Key
+ * // Example Ingestion Key with type "sensor"
  * const example = new groundcover.Ingestionkey("example", {
- *     type: "ingestion",
+ *     type: "sensor",
  *     remoteConfig: true,
  *     tags: [
  *         "terraform",
  *         "example",
- *         "ingestion",
+ *         "sensor",
  *     ],
  * });
  * // Example Ingestion Key with minimal configuration
- * const minimal = new groundcover.Ingestionkey("minimal", {type: "ingestion"});
+ * const minimal = new groundcover.Ingestionkey("minimal", {type: "sensor"});
  * export const ingestionkeyExampleKey = example.key;
  * export const ingestionkeyExampleCreationDate = example.creationDate;
  * export const ingestionkeyExampleCreatedBy = example.createdBy;
@@ -89,7 +89,7 @@ export class Ingestionkey extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[]>;
     /**
-     * The type of the ingestion key (e.g., 'ingestion').
+     * The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -162,7 +162,7 @@ export interface IngestionkeyState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the ingestion key (e.g., 'ingestion').
+     * The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
      */
     type?: pulumi.Input<string>;
 }
@@ -184,7 +184,7 @@ export interface IngestionkeyArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the ingestion key (e.g., 'ingestion').
+     * The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
      */
     type: pulumi.Input<string>;
 }
