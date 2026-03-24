@@ -177,6 +177,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+// ```
 type Dashboard struct {
 	pulumi.CustomResourceState
 

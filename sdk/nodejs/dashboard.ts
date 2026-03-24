@@ -127,6 +127,12 @@ import * as utilities from "./utilities";
  * export const simpleDashboardId = simpleDashboard.id;
  * export const simpleDashboardOwner = simpleDashboard.owner;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+ * ```
  */
 export class Dashboard extends pulumi.CustomResource {
     /**

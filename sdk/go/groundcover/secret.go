@@ -55,6 +55,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/secret:Secret example "<id>"
+// ```
 type Secret struct {
 	pulumi.CustomResourceState
 

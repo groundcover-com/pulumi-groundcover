@@ -375,6 +375,12 @@ class Dashboard(pulumi.CustomResource):
         pulumi.export("simpleDashboardOwner", simple_dashboard.owner)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the dashboard.
@@ -511,6 +517,12 @@ class Dashboard(pulumi.CustomResource):
         pulumi.export("metricsDashboardOwner", metrics_dashboard.owner)
         pulumi.export("simpleDashboardId", simple_dashboard.id)
         pulumi.export("simpleDashboardOwner", simple_dashboard.owner)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

@@ -173,6 +173,12 @@ class Secret(pulumi.CustomResource):
         pulumi.export("passwordSecretId", password_example.id)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/secret:Secret example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -217,6 +223,12 @@ class Secret(pulumi.CustomResource):
         # }
         pulumi.export("apiKeySecretId", api_key_example.id)
         pulumi.export("passwordSecretId", password_example.id)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/secret:Secret example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

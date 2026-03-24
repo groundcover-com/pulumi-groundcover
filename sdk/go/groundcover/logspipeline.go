@@ -53,6 +53,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Logs pipeline is a singleton resource. The import ID value is ignored.
+//
+// ```sh
+// $ pulumi import groundcover:index/logspipeline:Logspipeline example any
+// ```
 type Logspipeline struct {
 	pulumi.CustomResourceState
 

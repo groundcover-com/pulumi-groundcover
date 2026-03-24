@@ -186,6 +186,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/dashboard:Dashboard example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/dashboard:Dashboard")]
     public partial class Dashboard : global::Pulumi.CustomResource

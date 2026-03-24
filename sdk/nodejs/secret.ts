@@ -38,6 +38,12 @@ import * as utilities from "./utilities";
  * export const apiKeySecretId = apiKeyExample.id;
  * export const passwordSecretId = passwordExample.id;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/secret:Secret example "<id>"
+ * ```
  */
 export class Secret extends pulumi.CustomResource {
     /**
