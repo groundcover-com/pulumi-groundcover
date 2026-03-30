@@ -51,6 +51,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/metricsaggregation:Metricsaggregation example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/metricsaggregation:Metricsaggregation")]
     public partial class Metricsaggregation : global::Pulumi.CustomResource

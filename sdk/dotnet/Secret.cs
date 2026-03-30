@@ -53,8 +53,15 @@ namespace GroundcoverCom.Groundcover
     ///     {
     ///         ["apiKeySecretId"] = apiKeyExample.Id,
     ///         ["passwordSecretId"] = passwordExample.Id,
+    ///         ["apiKeyContentHash"] = apiKeyExample.ContentHash,
     ///     };
     /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/secret:Secret example "&lt;id&gt;"
     /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/secret:Secret")]
@@ -66,6 +73,12 @@ namespace GroundcoverCom.Groundcover
         /// </summary>
         [Output("content")]
         public Output<string> Content { get; private set; } = null!;
+
+        /// <summary>
+        /// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+        /// </summary>
+        [Output("contentHash")]
+        public Output<string> ContentHash { get; private set; } = null!;
 
         /// <summary>
         /// The name of the secret.
@@ -183,6 +196,12 @@ namespace GroundcoverCom.Groundcover
                 _content = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+        /// </summary>
+        [Input("contentHash")]
+        public Input<string>? ContentHash { get; set; }
 
         /// <summary>
         /// The name of the secret.

@@ -39,6 +39,9 @@ import (
 //					"us-east-2",
 //				},
 //				"roleArn": "arn:aws:iam::123456789012:role/test-role",
+//				"awsNamespaces": []string{
+//					"AWS/ApplicationELB",
+//				},
 //				"awsMetrics": []map[string]interface{}{
 //					map[string]interface{}{
 //						"namespace": "AWS/EC2",
@@ -57,7 +60,8 @@ import (
 //						"env": "prod",
 //					},
 //				},
-//				"scrapeInterval": 300000000000,
+//				"withContextTagsOnInfoMetrics": true,
+//				"scrapeInterval":               300000000000,
 //				"exporters": []string{
 //					"prometheus",
 //				},
@@ -167,13 +171,535 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON3, err := json.Marshal(map[string]interface{}{
+//				"version":        1,
+//				"enabled":        true,
+//				"name":           "prometheus-static-config",
+//				"scheme":         "https",
+//				"metricsPath":    "/metrics",
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"staticTargets": []string{
+//					"prometheus-target.example.com:9090",
+//				},
+//				"exporters": []string{
+//					"prometheus",
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						"[*]cpu[*]",
+//					},
+//					"dropRegex": []string{
+//						"DB1[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "prometheus-user",
+//						"password": "secretRef::store::d1fc037f11f8ce58",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json3 := string(tmpJSON3)
+//			// Example: Prometheus Static Targets
+//			prometheusStaticExample, err := groundcover.NewDataintegration(ctx, "prometheusStaticExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("prometheusscrape"),
+//				Config:   pulumi.String(json3),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON4, err := json.Marshal(map[string]interface{}{
+//				"version": 1,
+//				"enabled": true,
+//				"name":    "Target discovery scraping example",
+//				"exporters": []string{
+//					"prometheus",
+//				},
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"metricsPath":    "/metrics",
+//				"scheme":         "http",
+//				"httpDiscovery": map[string]interface{}{
+//					"url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example",
+//					"authentication": map[string]interface{}{
+//						"basicAuth": map[string]interface{}{
+//							"username": "prom_user_6909b9ab19480f045c1f2eca",
+//							"password": "secretRef::store::5219731e4bc798eb",
+//						},
+//					},
+//				},
+//				"targetsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						".*shard-00-02.*",
+//					},
+//					"dropRegex": []string{
+//						".*shard-00-01.*",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "prom_user_6909b9ab19480f045c1f2eca",
+//						"password": "secretRef::store::15e1b4b9c0ce0a45",
+//					},
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						"[*]cpu[*]",
+//					},
+//					"dropRegex": []string{
+//						"DB1[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json4 := string(tmpJSON4)
+//			// Example: Prometheus HTTPs Target Discovery
+//			prometheusDiscoveryExample, err := groundcover.NewDataintegration(ctx, "prometheusDiscoveryExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("prometheusscrape"),
+//				Config:   pulumi.String(json4),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON5, err := json.Marshal(map[string]interface{}{
+//				"version": 1,
+//				"enabled": true,
+//				"name":    "MongoDB Atlas example",
+//				"exporters": []string{
+//					"prometheus",
+//				},
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"metricsPath":    "/metrics",
+//				"scheme":         "http",
+//				"httpDiscovery": map[string]interface{}{
+//					"url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example/discovery",
+//					"authentication": map[string]interface{}{
+//						"basicAuth": map[string]interface{}{
+//							"username": "prom_user_6909b9ab19480f045c1f2eca",
+//							"password": "secretRef::store::5219731e4bc798eb",
+//						},
+//					},
+//				},
+//				"targetsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						".*shard-00-02.*",
+//					},
+//					"dropRegex": []string{
+//						".*shard-00-01.*",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "prom_user_6909b9ab19480f045c1f2eca",
+//						"password": "secretRef::store::15e1b4b9c0ce0a45",
+//					},
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []interface{}{},
+//					"dropRegex": []string{
+//						"[*]catalogStats[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json5 := string(tmpJSON5)
+//			// Example: MongoDB Atlas
+//			mongodbAtlasExample, err := groundcover.NewDataintegration(ctx, "mongodbAtlasExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("mongoatlasscrape"),
+//				Config:   pulumi.String(json5),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON6, err := json.Marshal(map[string]interface{}{
+//				"version": 1,
+//				"enabled": true,
+//				"name":    "RabbitMQ example",
+//				"exporters": []string{
+//					"prometheus",
+//				},
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"metricsPath":    "/metrics",
+//				"scheme":         "https",
+//				"staticTargets": []string{
+//					"myserver1:9090",
+//					"myserver2:9090",
+//				},
+//				"targetsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						".*shard-00-02.*",
+//					},
+//					"dropRegex": []string{
+//						".*shard-00-01.*",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "prom_user_6909b9ab19480f045c1f2eca",
+//						"password": "secretRef::store::15e1b4b9c0ce0a45",
+//					},
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []interface{}{},
+//					"dropRegex": []string{
+//						"[*]catalogStats[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json6 := string(tmpJSON6)
+//			// Example: RabbitMQ
+//			rabbitmqExample, err := groundcover.NewDataintegration(ctx, "rabbitmqExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("rabbitscrape"),
+//				Config:   pulumi.String(json6),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON7, err := json.Marshal(map[string]interface{}{
+//				"version": 1,
+//				"enabled": true,
+//				"name":    "Redis Cloud example",
+//				"exporters": []string{
+//					"prometheus",
+//				},
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"metricsPath":    "/metrics",
+//				"scheme":         "https",
+//				"staticTargets": []string{
+//					"https://your-redis-cloud-address:8070",
+//				},
+//				"targetsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						".*shard-00-02.*",
+//					},
+//					"dropRegex": []string{
+//						".*shard-00-01.*",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"headerAuth": map[string]interface{}{
+//						"key":   "bearer_token",
+//						"value": "secretRef::store::15e1b4b9c0ce0a45",
+//					},
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []interface{}{},
+//					"dropRegex": []string{
+//						"[*]catalogStats[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json7 := string(tmpJSON7)
+//			// Example: Redis Cloud
+//			rediscloudExample, err := groundcover.NewDataintegration(ctx, "rediscloudExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("rediscloudscrape"),
+//				Config:   pulumi.String(json7),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON8, err := json.Marshal(map[string]interface{}{
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "default",
+//						"password": "secretRef::k8s::groundcover::groundcover-clickhouse::admin-password",
+//					},
+//				},
+//				"clusterMode": true,
+//				"clusterName": "clustername",
+//				"database":    "your clickhouse db name",
+//				"dialTimeout": "10s",
+//				"enabled":     true,
+//				"host":        "your clickhouse host details",
+//				"name":        "clickhouse demo integration",
+//				"port":        9000,
+//				"skipVerify":  false,
+//				"version":     1,
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//				"customMetricQueries": map[string]interface{}{
+//					"collectionInterval": "5m",
+//					"queries": []map[string]interface{}{
+//						map[string]interface{}{
+//							"name":         "test query",
+//							"metricPrefix": "gc_clickhouse",
+//							"extraLabels":  map[string]interface{}{},
+//							"metricsColumns": []map[string]interface{}{
+//								map[string]interface{}{
+//									"name":       "accounts_count",
+//									"metricName": "total",
+//									"type":       "counter",
+//								},
+//							},
+//							"query": `SELECT
+//	    tier,
+//	    count() as accounts_count
+//
+// FROM my_accounts
+// GROUP BY tier
+// `,
+//
+//						},
+//					},
+//				},
+//				"tables": map[string]interface{}{
+//					"queryLog": map[string]interface{}{
+//						"enabled":       true,
+//						"filterInserts": true,
+//					},
+//					"queryViewsLog": map[string]interface{}{
+//						"enabled": true,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json8 := string(tmpJSON8)
+//			// Example: ClickHouse - Query Log & Custom Metrics
+//			clickhouseDemo, err := groundcover.NewDataintegration(ctx, "clickhouseDemo", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("clickhousedbm"),
+//				IsPaused: pulumi.Bool(false),
+//				Config:   pulumi.String(json8),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON9, err := json.Marshal(map[string]interface{}{
+//				"version":        1,
+//				"enabled":        true,
+//				"name":           "clickhouse-system-metrics-config",
+//				"scheme":         "https",
+//				"metricsPath":    "/metrics",
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"staticTargets": []string{
+//					"clickhouse-target.example.com:9090",
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						"[*]cpu[*]",
+//					},
+//					"dropRegex": []string{
+//						"DB1[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "clickhouse-user",
+//						"password": "secretRef::store::d1fc037f11f8ce58",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json9 := string(tmpJSON9)
+//			// Example: ClickHouse System Metrics DataIntegration
+//			clickhouseSystemMetricsExample, err := groundcover.NewDataintegration(ctx, "clickhouseSystemMetricsExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("clickhousescrape"),
+//				Config:   pulumi.String(json9),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON10, err := json.Marshal(map[string]interface{}{
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "postgres",
+//						"password": "secretRef::k8s::groundcover::groundcover-postgresql::admin-password",
+//					},
+//				},
+//				"database":    "your postgresql db name",
+//				"dialTimeout": "10s",
+//				"enabled":     true,
+//				"host":        "your postgres host details",
+//				"name":        "postgres demo integration",
+//				"port":        5432,
+//				"secure":      true,
+//				"skipVerify":  false,
+//				"version":     1,
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//				"customMetricQueries": map[string]interface{}{
+//					"collectionInterval": "5m",
+//					"queries": []map[string]interface{}{
+//						map[string]interface{}{
+//							"name":         "test query",
+//							"metricPrefix": "gc_postgres",
+//							"metricsColumns": []map[string]interface{}{
+//								map[string]interface{}{
+//									"name":       "accounts_count",
+//									"metricName": "total",
+//									"type":       "counter",
+//								},
+//							},
+//							"query": `SELECT
+//	    tier,
+//	    count(*) as accounts_count
+//
+// FROM my_accounts
+// GROUP BY tier
+// `,
+//
+//						},
+//					},
+//				},
+//				"tables": map[string]interface{}{
+//					"pgStatStatements": map[string]interface{}{
+//						"enabled":       true,
+//						"filterInserts": false,
+//						"maxQueries":    200,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json10 := string(tmpJSON10)
+//			// Example: PostgreSQL - Slow Queries & Custom Metrics
+//			postgresqlDemo, err := groundcover.NewDataintegration(ctx, "postgresqlDemo", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("postgresqldbm"),
+//				IsPaused: pulumi.Bool(false),
+//				Config:   pulumi.String(json10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON11, err := json.Marshal(map[string]interface{}{
+//				"version":        1,
+//				"enabled":        true,
+//				"name":           "postgresql-system-metrics-config",
+//				"scheme":         "https",
+//				"metricsPath":    "/metrics",
+//				"scrapeInterval": 30000000000,
+//				"scrapeTimeout":  10000000000,
+//				"staticTargets": []string{
+//					"postgresql-target.example.com:9090",
+//				},
+//				"metricsRelabels": map[string]interface{}{
+//					"keepRegex": []string{
+//						"[*]cpu[*]",
+//					},
+//					"dropRegex": []string{
+//						"DB1[*]",
+//					},
+//					"raw": "# additional relabeling rules that can be applied such as adding a prefix\n  - action: labelmap\n    replacement: \"groundcover_$1\"\n",
+//				},
+//				"labelSettings": map[string]interface{}{
+//					"extraLabels": map[string]interface{}{
+//						"env": "prod",
+//					},
+//				},
+//				"authentication": map[string]interface{}{
+//					"basicAuth": map[string]interface{}{
+//						"username": "postgresql-user",
+//						"password": "secretRef::store::d1fc037f11f8ce58",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json11 := string(tmpJSON11)
+//			// Example: PostgreSQL System Metrics DataIntegration
+//			postgresqlSystemMetricsExample, err := groundcover.NewDataintegration(ctx, "postgresqlSystemMetricsExample", &groundcover.DataintegrationArgs{
+//				Type:     pulumi.String("postgresscrape"),
+//				Config:   pulumi.String(json11),
+//				IsPaused: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			ctx.Export("cloudwatchDataintegrationId", cloudwatchExample.ID())
 //			ctx.Export("gcpmetricsDataintegrationId", gcpExample.ID())
 //			ctx.Export("azuremetricsDataintegrationId", azureExample.ID())
+//			ctx.Export("prometheusStaticDataintegrationId", prometheusStaticExample.ID())
+//			ctx.Export("prometheusDiscoveryDataintegrationId", prometheusDiscoveryExample.ID())
+//			ctx.Export("mongodbAtlasDataintegrationId", mongodbAtlasExample.ID())
+//			ctx.Export("rabbitmqDataintegrationId", rabbitmqExample.ID())
+//			ctx.Export("rediscloudDataintegrationId", rediscloudExample.ID())
+//			ctx.Export("clickhouseDemoDataintegrationId", clickhouseDemo.ID())
+//			ctx.Export("clickhouseSystemMetricsDataintegrationId", clickhouseSystemMetricsExample.ID())
+//			ctx.Export("postgresqlDemoDataintegrationId", postgresqlDemo.ID())
+//			ctx.Export("postgresqlSystemMetricsDataintegrationId", postgresqlSystemMetricsExample.ID())
 //			return nil
 //		})
 //	}
 //
+// ```
+//
+// ## Import
+//
+// Import format: type:id (e.g., cloudwatch:abc123)
+//
+// ```sh
+// $ pulumi import groundcover:index/dataintegration:Dataintegration example "<type>:<id>"
 // ```
 type Dataintegration struct {
 	pulumi.CustomResourceState
