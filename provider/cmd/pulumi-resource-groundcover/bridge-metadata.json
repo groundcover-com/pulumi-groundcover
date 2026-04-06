@@ -10,6 +10,10 @@
                     }
                 }
             },
+            "groundcover_connected_app": {
+                "current": "groundcover:index/connectedApp:ConnectedApp",
+                "majorVersion": 1
+            },
             "groundcover_dashboard": {
                 "current": "groundcover:index/dashboard:Dashboard",
                 "majorVersion": 1
@@ -38,6 +42,25 @@
             "groundcover_monitor": {
                 "current": "groundcover:index/monitor:Monitor",
                 "majorVersion": 1
+            },
+            "groundcover_notification_route": {
+                "current": "groundcover:index/notificationRoute:NotificationRoute",
+                "majorVersion": 1,
+                "fields": {
+                    "routes": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "connected_apps": {
+                                    "maxItemsOne": false
+                                },
+                                "status": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "groundcover_policy": {
                 "current": "groundcover:index/policy:Policy",
@@ -137,6 +160,21 @@
                     }
                 }
             },
+            "groundcover_recurring_silence": {
+                "current": "groundcover:index/recurringSilence:RecurringSilence",
+                "majorVersion": 1,
+                "fields": {
+                    "days_of_month": {
+                        "maxItemsOne": false
+                    },
+                    "days_of_week": {
+                        "maxItemsOne": false
+                    },
+                    "matchers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "groundcover_secret": {
                 "current": "groundcover:index/secret:Secret",
                 "majorVersion": 1
@@ -149,6 +187,41 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "groundcover_silence": {
+                "current": "groundcover:index/silence:Silence",
+                "majorVersion": 1,
+                "fields": {
+                    "matchers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "groundcover_synthetic_test": {
+                "current": "groundcover:index/syntheticTest:SyntheticTest",
+                "majorVersion": 1,
+                "fields": {
+                    "assertion": {
+                        "maxItemsOne": false
+                    },
+                    "monitor": {
+                        "fields": {
+                            "connected_apps": {
+                                "maxItemsOne": false
+                            },
+                            "enabled_workflows": {
+                                "maxItemsOne": false
+                            },
+                            "status_filters": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "groundcover_tracespipeline": {
+                "current": "groundcover:index/tracespipeline:Tracespipeline",
+                "majorVersion": 1
             }
         }
     },
