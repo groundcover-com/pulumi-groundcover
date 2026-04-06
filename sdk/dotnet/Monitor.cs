@@ -86,6 +86,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/monitor:Monitor example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/monitor:Monitor")]
     public partial class Monitor : global::Pulumi.CustomResource

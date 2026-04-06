@@ -76,17 +76,21 @@ class SecretArgs:
 class _SecretState:
     def __init__(__self__, *,
                  content: Optional[pulumi.Input[_builtins.str]] = None,
+                 content_hash: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
         :param pulumi.Input[_builtins.str] content: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret content/value. This is write-only and will not be returned by the API.
+        :param pulumi.Input[_builtins.str] content_hash: FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
         :param pulumi.Input[_builtins.str] name: The name of the secret.
         :param pulumi.Input[_builtins.str] type: The type of the secret. Valid values are: `api_key`, `password`, `basic_auth`.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
+        if content_hash is not None:
+            pulumi.set(__self__, "content_hash", content_hash)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if type is not None:
@@ -104,6 +108,18 @@ class _SecretState:
     @content.setter
     def content(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "content", value)
+
+    @_builtins.property
+    @pulumi.getter(name="contentHash")
+    def content_hash(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+        """
+        return pulumi.get(self, "content_hash")
+
+    @content_hash.setter
+    def content_hash(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "content_hash", value)
 
     @_builtins.property
     @pulumi.getter
@@ -171,6 +187,13 @@ class Secret(pulumi.CustomResource):
         # }
         pulumi.export("apiKeySecretId", api_key_example.id)
         pulumi.export("passwordSecretId", password_example.id)
+        pulumi.export("apiKeyContentHash", api_key_example.content_hash)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/secret:Secret example "<id>"
         ```
 
         :param str resource_name: The name of the resource.
@@ -217,6 +240,13 @@ class Secret(pulumi.CustomResource):
         # }
         pulumi.export("apiKeySecretId", api_key_example.id)
         pulumi.export("passwordSecretId", password_example.id)
+        pulumi.export("apiKeyContentHash", api_key_example.content_hash)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/secret:Secret example "<id>"
         ```
 
         :param str resource_name: The name of the resource.
@@ -253,6 +283,7 @@ class Secret(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["content_hash"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["content"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Secret, __self__).__init__(
@@ -266,6 +297,7 @@ class Secret(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             content: Optional[pulumi.Input[_builtins.str]] = None,
+            content_hash: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Secret':
         """
@@ -277,6 +309,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] content: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The secret content/value. This is write-only and will not be returned by the API.
+        :param pulumi.Input[_builtins.str] content_hash: FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
         :param pulumi.Input[_builtins.str] name: The name of the secret.
         :param pulumi.Input[_builtins.str] type: The type of the secret. Valid values are: `api_key`, `password`, `basic_auth`.
         """
@@ -285,6 +318,7 @@ class Secret(pulumi.CustomResource):
         __props__ = _SecretState.__new__(_SecretState)
 
         __props__.__dict__["content"] = content
+        __props__.__dict__["content_hash"] = content_hash
         __props__.__dict__["name"] = name
         __props__.__dict__["type"] = type
         return Secret(resource_name, opts=opts, __props__=__props__)
@@ -297,6 +331,14 @@ class Secret(pulumi.CustomResource):
         The secret content/value. This is write-only and will not be returned by the API.
         """
         return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter(name="contentHash")
+    def content_hash(self) -> pulumi.Output[_builtins.str]:
+        """
+        FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+        """
+        return pulumi.get(self, "content_hash")
 
     @_builtins.property
     @pulumi.getter

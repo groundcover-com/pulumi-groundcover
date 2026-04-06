@@ -16,6 +16,35 @@ export interface ApikeyPolicy {
     uuid?: pulumi.Input<string>;
 }
 
+export interface NotificationRouteNotificationSettings {
+    /**
+     * Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+     */
+    renotificationInterval?: pulumi.Input<string>;
+}
+
+export interface NotificationRouteRoute {
+    /**
+     * List of connected apps to notify for this route.
+     */
+    connectedApps: pulumi.Input<pulumi.Input<inputs.NotificationRouteRouteConnectedApp>[]>;
+    /**
+     * List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+     */
+    statuses: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface NotificationRouteRouteConnectedApp {
+    /**
+     * ID of the connected app.
+     */
+    id: pulumi.Input<string>;
+    /**
+     * Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+     */
+    type: pulumi.Input<string>;
+}
+
 export interface PolicyDataScope {
     /**
      * Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
@@ -318,4 +347,238 @@ export interface PolicyDataScopeSimpleConditionFilter {
      * The value to filter on.
      */
     value: pulumi.Input<string>;
+}
+
+export interface RecurringSilenceMatcher {
+    /**
+     * If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+     */
+    isContains?: pulumi.Input<boolean>;
+    /**
+     * If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+     */
+    isEqual?: pulumi.Input<boolean>;
+    /**
+     * The name of the label to match (e.g., `service`, `environment`, `workload`).
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface SilenceMatcher {
+    /**
+     * If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+     */
+    isContains?: pulumi.Input<boolean>;
+    /**
+     * If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+     */
+    isEqual?: pulumi.Input<boolean>;
+    /**
+     * The name of the label to match (e.g., `service`, `environment`, `workload`).
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface SyntheticTestAssertion {
+    /**
+     * Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * Property path for header, JSON body, or SSL assertions (e.g. `Content-Type`, `data.id`, `certificateValid`, `certificateExpiresIn`, `tlsVersion`, `chainValid`).
+     */
+    property?: pulumi.Input<string>;
+    /**
+     * Assertion severity: `critical` (default) or `degraded`.
+     */
+    severity?: pulumi.Input<string>;
+    /**
+     * What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`.
+     */
+    source: pulumi.Input<string>;
+    /**
+     * Expected value to compare against (as string, e.g. `"200"` for status code).
+     */
+    target?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheck {
+    /**
+     * Whether to allow insecure TLS connections.
+     */
+    allowInsecure?: pulumi.Input<boolean>;
+    /**
+     * HTTP authentication. Supports `basic`, `bearer`, or `none`.
+     */
+    auth?: pulumi.Input<inputs.SyntheticTestHttpCheckAuth>;
+    /**
+     * HTTP request body.
+     */
+    body?: pulumi.Input<inputs.SyntheticTestHttpCheckBody>;
+    /**
+     * Whether to follow HTTP redirects.
+     */
+    followRedirects?: pulumi.Input<boolean>;
+    /**
+     * HTTP headers to send with the request.
+     */
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * Request timeout (e.g. `10s`, `30s`).
+     */
+    timeout?: pulumi.Input<string>;
+    /**
+     * (Required) The URL to check (must include http:// or https://).
+     */
+    url?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheckAuth {
+    /**
+     * Password for basic auth. Supports `secretRef::store::<id>` references.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Token for bearer auth. Supports `secretRef::store::<id>` references.
+     */
+    token?: pulumi.Input<string>;
+    /**
+     * Auth type: `basic`, `bearer`, or `none`.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Username for basic auth.
+     */
+    username?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestHttpCheckBody {
+    /**
+     * Body content string.
+     */
+    content?: pulumi.Input<string>;
+    /**
+     * Body content type: `json`, `text`, or `raw`.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestMonitor {
+    /**
+     * List of connected app IDs for direct notification delivery. Required when `notificationMethod` is `connectedApps`.
+     */
+    connectedApps?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Disable repeated notifications for the same issue.
+     */
+    disableRenotification?: pulumi.Input<boolean>;
+    /**
+     * List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+     */
+    enabledWorkflows?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Evaluation interval settings for the monitor.
+     */
+    evaluationInterval?: pulumi.Input<inputs.SyntheticTestMonitorEvaluationInterval>;
+    /**
+     * How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+     */
+    executionErrorState?: pulumi.Input<string>;
+    /**
+     * Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+     */
+    issueDescription?: pulumi.Input<string>;
+    /**
+     * Summary template for issues created by this monitor. Supports Jinja2 templating.
+     */
+    issueSummary?: pulumi.Input<string>;
+    /**
+     * The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+     */
+    lookbehindWindow?: pulumi.Input<string>;
+    /**
+     * Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+     */
+    monitorName?: pulumi.Input<string>;
+    /**
+     * How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+     */
+    noDataState?: pulumi.Input<string>;
+    /**
+     * How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+     */
+    notificationMethod?: pulumi.Input<string>;
+    /**
+     * How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+     */
+    renotificationInterval?: pulumi.Input<string>;
+    /**
+     * Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+     */
+    severity?: pulumi.Input<string>;
+    /**
+     * Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notificationMethod` is `connectedApps`.
+     */
+    statusFilters?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface SyntheticTestMonitorEvaluationInterval {
+    /**
+     * How often the monitor evaluates (e.g. `1m`, `5m`).
+     */
+    interval?: pulumi.Input<string>;
+    /**
+     * How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+     */
+    pendingFor?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestRetry {
+    /**
+     * Number of retry attempts.
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * Delay between retries (e.g. `1s`, `500ms`).
+     */
+    interval?: pulumi.Input<string>;
+}
+
+export interface SyntheticTestSslCheck {
+    /**
+     * The hostname to connect to for the SSL check.
+     */
+    host?: pulumi.Input<string>;
+    /**
+     * Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+     */
+    minVersion?: pulumi.Input<string>;
+    /**
+     * The port to connect to (1-65535).
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+     */
+    sni?: pulumi.Input<string>;
+    /**
+     * Timeout for the SSL check (e.g. `5s`, `10s`).
+     */
+    timeout?: pulumi.Input<string>;
+    /**
+     * Whether to verify the SSL certificate.
+     */
+    verify?: pulumi.Input<boolean>;
 }

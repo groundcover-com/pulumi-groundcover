@@ -330,6 +330,12 @@ class Policy(pulumi.CustomResource):
         pulumi.export("policyRevisionNumber", my_policy.revision_number)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/policy:Policy example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] claim_role: SSO Role claim name used for mapping.
@@ -387,6 +393,12 @@ class Policy(pulumi.CustomResource):
             })
         pulumi.export("policyUuid", my_policy.uuid)
         pulumi.export("policyRevisionNumber", my_policy.revision_number)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/policy:Policy example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

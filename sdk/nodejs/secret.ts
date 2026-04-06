@@ -37,6 +37,13 @@ import * as utilities from "./utilities";
  * // }
  * export const apiKeySecretId = apiKeyExample.id;
  * export const passwordSecretId = passwordExample.id;
+ * export const apiKeyContentHash = apiKeyExample.contentHash;
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/secret:Secret example "<id>"
  * ```
  */
 export class Secret extends pulumi.CustomResource {
@@ -73,6 +80,10 @@ export class Secret extends pulumi.CustomResource {
      */
     declare public readonly content: pulumi.Output<string>;
     /**
+     * FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+     */
+    declare public /*out*/ readonly contentHash: pulumi.Output<string>;
+    /**
      * The name of the secret.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -95,6 +106,7 @@ export class Secret extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretState | undefined;
             resourceInputs["content"] = state?.content;
+            resourceInputs["contentHash"] = state?.contentHash;
             resourceInputs["name"] = state?.name;
             resourceInputs["type"] = state?.type;
         } else {
@@ -108,6 +120,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["content"] = args?.content ? pulumi.secret(args.content) : undefined;
             resourceInputs["name"] = args?.name;
             resourceInputs["type"] = args?.type;
+            resourceInputs["contentHash"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["content"] };
@@ -125,6 +138,10 @@ export interface SecretState {
      * The secret content/value. This is write-only and will not be returned by the API.
      */
     content?: pulumi.Input<string>;
+    /**
+     * FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+     */
+    contentHash?: pulumi.Input<string>;
     /**
      * The name of the secret.
      */

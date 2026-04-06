@@ -68,6 +68,12 @@ import * as utilities from "./utilities";
  * export const monitorExampleId = k8sPodCrashLooping.id;
  * export const monitorExampleYamlOutput = k8sPodCrashLooping.monitorYaml;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/monitor:Monitor example "<id>"
+ * ```
  */
 export class Monitor extends pulumi.CustomResource {
     /**

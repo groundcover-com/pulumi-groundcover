@@ -17,6 +17,12 @@ from . import _utilities
 __all__ = [
     'ApikeyPolicyArgs',
     'ApikeyPolicyArgsDict',
+    'NotificationRouteNotificationSettingsArgs',
+    'NotificationRouteNotificationSettingsArgsDict',
+    'NotificationRouteRouteArgs',
+    'NotificationRouteRouteArgsDict',
+    'NotificationRouteRouteConnectedAppArgs',
+    'NotificationRouteRouteConnectedAppArgsDict',
     'PolicyDataScopeArgs',
     'PolicyDataScopeArgsDict',
     'PolicyDataScopeAdvancedArgs',
@@ -57,6 +63,26 @@ __all__ = [
     'PolicyDataScopeSimpleConditionArgsDict',
     'PolicyDataScopeSimpleConditionFilterArgs',
     'PolicyDataScopeSimpleConditionFilterArgsDict',
+    'RecurringSilenceMatcherArgs',
+    'RecurringSilenceMatcherArgsDict',
+    'SilenceMatcherArgs',
+    'SilenceMatcherArgsDict',
+    'SyntheticTestAssertionArgs',
+    'SyntheticTestAssertionArgsDict',
+    'SyntheticTestHttpCheckArgs',
+    'SyntheticTestHttpCheckArgsDict',
+    'SyntheticTestHttpCheckAuthArgs',
+    'SyntheticTestHttpCheckAuthArgsDict',
+    'SyntheticTestHttpCheckBodyArgs',
+    'SyntheticTestHttpCheckBodyArgsDict',
+    'SyntheticTestMonitorArgs',
+    'SyntheticTestMonitorArgsDict',
+    'SyntheticTestMonitorEvaluationIntervalArgs',
+    'SyntheticTestMonitorEvaluationIntervalArgsDict',
+    'SyntheticTestRetryArgs',
+    'SyntheticTestRetryArgsDict',
+    'SyntheticTestSslCheckArgs',
+    'SyntheticTestSslCheckArgsDict',
 ]
 
 MYPY = False
@@ -111,6 +137,138 @@ class ApikeyPolicyArgs:
     @uuid.setter
     def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "uuid", value)
+
+
+if not MYPY:
+    class NotificationRouteNotificationSettingsArgsDict(TypedDict):
+        renotification_interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+        """
+elif False:
+    NotificationRouteNotificationSettingsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NotificationRouteNotificationSettingsArgs:
+    def __init__(__self__, *,
+                 renotification_interval: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] renotification_interval: Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+        """
+        if renotification_interval is not None:
+            pulumi.set(__self__, "renotification_interval", renotification_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="renotificationInterval")
+    def renotification_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+        """
+        return pulumi.get(self, "renotification_interval")
+
+    @renotification_interval.setter
+    def renotification_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "renotification_interval", value)
+
+
+if not MYPY:
+    class NotificationRouteRouteArgsDict(TypedDict):
+        connected_apps: pulumi.Input[Sequence[pulumi.Input['NotificationRouteRouteConnectedAppArgsDict']]]
+        """
+        List of connected apps to notify for this route.
+        """
+        statuses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+        """
+        List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+        """
+elif False:
+    NotificationRouteRouteArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NotificationRouteRouteArgs:
+    def __init__(__self__, *,
+                 connected_apps: pulumi.Input[Sequence[pulumi.Input['NotificationRouteRouteConnectedAppArgs']]],
+                 statuses: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['NotificationRouteRouteConnectedAppArgs']]] connected_apps: List of connected apps to notify for this route.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] statuses: List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+        """
+        pulumi.set(__self__, "connected_apps", connected_apps)
+        pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter(name="connectedApps")
+    def connected_apps(self) -> pulumi.Input[Sequence[pulumi.Input['NotificationRouteRouteConnectedAppArgs']]]:
+        """
+        List of connected apps to notify for this route.
+        """
+        return pulumi.get(self, "connected_apps")
+
+    @connected_apps.setter
+    def connected_apps(self, value: pulumi.Input[Sequence[pulumi.Input['NotificationRouteRouteConnectedAppArgs']]]):
+        pulumi.set(self, "connected_apps", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+        """
+        return pulumi.get(self, "statuses")
+
+    @statuses.setter
+    def statuses(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "statuses", value)
+
+
+if not MYPY:
+    class NotificationRouteRouteConnectedAppArgsDict(TypedDict):
+        id: pulumi.Input[_builtins.str]
+        """
+        ID of the connected app.
+        """
+        type: pulumi.Input[_builtins.str]
+        """
+        Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+        """
+elif False:
+    NotificationRouteRouteConnectedAppArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class NotificationRouteRouteConnectedAppArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[_builtins.str],
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] id: ID of the connected app.
+        :param pulumi.Input[_builtins.str] type: Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[_builtins.str]:
+        """
+        ID of the connected app.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
 
 
 if not MYPY:
@@ -1523,5 +1681,1139 @@ class PolicyDataScopeSimpleConditionFilterArgs:
     @value.setter
     def value(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class RecurringSilenceMatcherArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        The name of the label to match (e.g., `service`, `environment`, `workload`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        """
+        is_contains: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        """
+        is_equal: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+elif False:
+    RecurringSilenceMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RecurringSilenceMatcherArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str],
+                 is_contains: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_equal: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: The name of the label to match (e.g., `service`, `environment`, `workload`).
+        :param pulumi.Input[_builtins.str] value: The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        :param pulumi.Input[_builtins.bool] is_contains: If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] is_equal: If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if is_contains is not None:
+            pulumi.set(__self__, "is_contains", is_contains)
+        if is_equal is not None:
+            pulumi.set(__self__, "is_equal", is_equal)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the label to match (e.g., `service`, `environment`, `workload`).
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isContains")
+    def is_contains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_contains")
+
+    @is_contains.setter
+    def is_contains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_contains", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isEqual")
+    def is_equal(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        return pulumi.get(self, "is_equal")
+
+    @is_equal.setter
+    def is_equal(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_equal", value)
+
+
+if not MYPY:
+    class SilenceMatcherArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        The name of the label to match (e.g., `service`, `environment`, `workload`).
+        """
+        value: pulumi.Input[_builtins.str]
+        """
+        The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        """
+        is_contains: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        """
+        is_equal: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+elif False:
+    SilenceMatcherArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SilenceMatcherArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str],
+                 is_contains: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_equal: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: The name of the label to match (e.g., `service`, `environment`, `workload`).
+        :param pulumi.Input[_builtins.str] value: The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        :param pulumi.Input[_builtins.bool] is_contains: If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] is_equal: If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if is_contains is not None:
+            pulumi.set(__self__, "is_contains", is_contains)
+        if is_equal is not None:
+            pulumi.set(__self__, "is_equal", is_equal)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the label to match (e.g., `service`, `environment`, `workload`).
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isContains")
+    def is_contains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_contains")
+
+    @is_contains.setter
+    def is_contains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_contains", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isEqual")
+    def is_equal(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        return pulumi.get(self, "is_equal")
+
+    @is_equal.setter
+    def is_equal(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "is_equal", value)
+
+
+if not MYPY:
+    class SyntheticTestAssertionArgsDict(TypedDict):
+        operator: pulumi.Input[_builtins.str]
+        """
+        Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+        """
+        source: pulumi.Input[_builtins.str]
+        """
+        What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`.
+        """
+        property: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Property path for header, JSON body, or SSL assertions (e.g. `Content-Type`, `data.id`, `certificateValid`, `certificateExpiresIn`, `tlsVersion`, `chainValid`).
+        """
+        severity: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Assertion severity: `critical` (default) or `degraded`.
+        """
+        target: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Expected value to compare against (as string, e.g. `"200"` for status code).
+        """
+elif False:
+    SyntheticTestAssertionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestAssertionArgs:
+    def __init__(__self__, *,
+                 operator: pulumi.Input[_builtins.str],
+                 source: pulumi.Input[_builtins.str],
+                 property: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity: Optional[pulumi.Input[_builtins.str]] = None,
+                 target: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] operator: Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+        :param pulumi.Input[_builtins.str] source: What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`.
+        :param pulumi.Input[_builtins.str] property: Property path for header, JSON body, or SSL assertions (e.g. `Content-Type`, `data.id`, `certificateValid`, `certificateExpiresIn`, `tlsVersion`, `chainValid`).
+        :param pulumi.Input[_builtins.str] severity: Assertion severity: `critical` (default) or `degraded`.
+        :param pulumi.Input[_builtins.str] target: Expected value to compare against (as string, e.g. `"200"` for status code).
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "source", source)
+        if property is not None:
+            pulumi.set(__self__, "property", property)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[_builtins.str]:
+        """
+        Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> pulumi.Input[_builtins.str]:
+        """
+        What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`.
+        """
+        return pulumi.get(self, "source")
+
+    @source.setter
+    def source(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def property(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Property path for header, JSON body, or SSL assertions (e.g. `Content-Type`, `data.id`, `certificateValid`, `certificateExpiresIn`, `tlsVersion`, `chainValid`).
+        """
+        return pulumi.get(self, "property")
+
+    @property.setter
+    def property(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "property", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Assertion severity: `critical` (default) or `degraded`.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def target(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Expected value to compare against (as string, e.g. `"200"` for status code).
+        """
+        return pulumi.get(self, "target")
+
+    @target.setter
+    def target(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "target", value)
+
+
+if not MYPY:
+    class SyntheticTestHttpCheckArgsDict(TypedDict):
+        allow_insecure: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether to allow insecure TLS connections.
+        """
+        auth: NotRequired[pulumi.Input['SyntheticTestHttpCheckAuthArgsDict']]
+        """
+        HTTP authentication. Supports `basic`, `bearer`, or `none`.
+        """
+        body: NotRequired[pulumi.Input['SyntheticTestHttpCheckBodyArgsDict']]
+        """
+        HTTP request body.
+        """
+        follow_redirects: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether to follow HTTP redirects.
+        """
+        headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        HTTP headers to send with the request.
+        """
+        method: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+        """
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Request timeout (e.g. `10s`, `30s`).
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        (Required) The URL to check (must include http:// or https://).
+        """
+elif False:
+    SyntheticTestHttpCheckArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestHttpCheckArgs:
+    def __init__(__self__, *,
+                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 auth: Optional[pulumi.Input['SyntheticTestHttpCheckAuthArgs']] = None,
+                 body: Optional[pulumi.Input['SyntheticTestHttpCheckBodyArgs']] = None,
+                 follow_redirects: Optional[pulumi.Input[_builtins.bool]] = None,
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 method: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] allow_insecure: Whether to allow insecure TLS connections.
+        :param pulumi.Input['SyntheticTestHttpCheckAuthArgs'] auth: HTTP authentication. Supports `basic`, `bearer`, or `none`.
+        :param pulumi.Input['SyntheticTestHttpCheckBodyArgs'] body: HTTP request body.
+        :param pulumi.Input[_builtins.bool] follow_redirects: Whether to follow HTTP redirects.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: HTTP headers to send with the request.
+        :param pulumi.Input[_builtins.str] method: (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+        :param pulumi.Input[_builtins.str] timeout: Request timeout (e.g. `10s`, `30s`).
+        :param pulumi.Input[_builtins.str] url: (Required) The URL to check (must include http:// or https://).
+        """
+        if allow_insecure is not None:
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if body is not None:
+            pulumi.set(__self__, "body", body)
+        if follow_redirects is not None:
+            pulumi.set(__self__, "follow_redirects", follow_redirects)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter(name="allowInsecure")
+    def allow_insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to allow insecure TLS connections.
+        """
+        return pulumi.get(self, "allow_insecure")
+
+    @allow_insecure.setter
+    def allow_insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_insecure", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def auth(self) -> Optional[pulumi.Input['SyntheticTestHttpCheckAuthArgs']]:
+        """
+        HTTP authentication. Supports `basic`, `bearer`, or `none`.
+        """
+        return pulumi.get(self, "auth")
+
+    @auth.setter
+    def auth(self, value: Optional[pulumi.Input['SyntheticTestHttpCheckAuthArgs']]):
+        pulumi.set(self, "auth", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def body(self) -> Optional[pulumi.Input['SyntheticTestHttpCheckBodyArgs']]:
+        """
+        HTTP request body.
+        """
+        return pulumi.get(self, "body")
+
+    @body.setter
+    def body(self, value: Optional[pulumi.Input['SyntheticTestHttpCheckBodyArgs']]):
+        pulumi.set(self, "body", value)
+
+    @_builtins.property
+    @pulumi.getter(name="followRedirects")
+    def follow_redirects(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to follow HTTP redirects.
+        """
+        return pulumi.get(self, "follow_redirects")
+
+    @follow_redirects.setter
+    def follow_redirects(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "follow_redirects", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        HTTP headers to send with the request.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "headers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "method", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Request timeout (e.g. `10s`, `30s`).
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        (Required) The URL to check (must include http:// or https://).
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+
+if not MYPY:
+    class SyntheticTestHttpCheckAuthArgsDict(TypedDict):
+        password: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Password for basic auth. Supports `secretRef::store::<id>` references.
+        """
+        token: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Token for bearer auth. Supports `secretRef::store::<id>` references.
+        """
+        type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Auth type: `basic`, `bearer`, or `none`.
+        """
+        username: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Username for basic auth.
+        """
+elif False:
+    SyntheticTestHttpCheckAuthArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestHttpCheckAuthArgs:
+    def __init__(__self__, *,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 token: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] password: Password for basic auth. Supports `secretRef::store::<id>` references.
+        :param pulumi.Input[_builtins.str] token: Token for bearer auth. Supports `secretRef::store::<id>` references.
+        :param pulumi.Input[_builtins.str] type: Auth type: `basic`, `bearer`, or `none`.
+        :param pulumi.Input[_builtins.str] username: Username for basic auth.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Password for basic auth. Supports `secretRef::store::<id>` references.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Token for bearer auth. Supports `secretRef::store::<id>` references.
+        """
+        return pulumi.get(self, "token")
+
+    @token.setter
+    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Auth type: `basic`, `bearer`, or `none`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Username for basic auth.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
+
+
+if not MYPY:
+    class SyntheticTestHttpCheckBodyArgsDict(TypedDict):
+        content: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Body content string.
+        """
+        type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Body content type: `json`, `text`, or `raw`.
+        """
+elif False:
+    SyntheticTestHttpCheckBodyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestHttpCheckBodyArgs:
+    def __init__(__self__, *,
+                 content: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] content: Body content string.
+        :param pulumi.Input[_builtins.str] type: Body content type: `json`, `text`, or `raw`.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Body content string.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "content", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Body content type: `json`, `text`, or `raw`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class SyntheticTestMonitorArgsDict(TypedDict):
+        connected_apps: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        List of connected app IDs for direct notification delivery. Required when `notification_method` is `connectedApps`.
+        """
+        disable_renotification: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Disable repeated notifications for the same issue.
+        """
+        enabled_workflows: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+        """
+        evaluation_interval: NotRequired[pulumi.Input['SyntheticTestMonitorEvaluationIntervalArgsDict']]
+        """
+        Evaluation interval settings for the monitor.
+        """
+        execution_error_state: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+        """
+        issue_description: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+        """
+        issue_summary: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Summary template for issues created by this monitor. Supports Jinja2 templating.
+        """
+        lookbehind_window: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+        """
+        monitor_name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+        """
+        no_data_state: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+        """
+        notification_method: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+        """
+        renotification_interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+        """
+        severity: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+        """
+        status_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notification_method` is `connectedApps`.
+        """
+elif False:
+    SyntheticTestMonitorArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestMonitorArgs:
+    def __init__(__self__, *,
+                 connected_apps: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_renotification: Optional[pulumi.Input[_builtins.bool]] = None,
+                 enabled_workflows: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 evaluation_interval: Optional[pulumi.Input['SyntheticTestMonitorEvaluationIntervalArgs']] = None,
+                 execution_error_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 issue_description: Optional[pulumi.Input[_builtins.str]] = None,
+                 issue_summary: Optional[pulumi.Input[_builtins.str]] = None,
+                 lookbehind_window: Optional[pulumi.Input[_builtins.str]] = None,
+                 monitor_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 no_data_state: Optional[pulumi.Input[_builtins.str]] = None,
+                 notification_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 renotification_interval: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity: Optional[pulumi.Input[_builtins.str]] = None,
+                 status_filters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connected_apps: List of connected app IDs for direct notification delivery. Required when `notification_method` is `connectedApps`.
+        :param pulumi.Input[_builtins.bool] disable_renotification: Disable repeated notifications for the same issue.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_workflows: List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+        :param pulumi.Input['SyntheticTestMonitorEvaluationIntervalArgs'] evaluation_interval: Evaluation interval settings for the monitor.
+        :param pulumi.Input[_builtins.str] execution_error_state: How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+        :param pulumi.Input[_builtins.str] issue_description: Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+        :param pulumi.Input[_builtins.str] issue_summary: Summary template for issues created by this monitor. Supports Jinja2 templating.
+        :param pulumi.Input[_builtins.str] lookbehind_window: The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+        :param pulumi.Input[_builtins.str] monitor_name: Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+        :param pulumi.Input[_builtins.str] no_data_state: How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+        :param pulumi.Input[_builtins.str] notification_method: How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+        :param pulumi.Input[_builtins.str] renotification_interval: How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+        :param pulumi.Input[_builtins.str] severity: Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] status_filters: Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notification_method` is `connectedApps`.
+        """
+        if connected_apps is not None:
+            pulumi.set(__self__, "connected_apps", connected_apps)
+        if disable_renotification is not None:
+            pulumi.set(__self__, "disable_renotification", disable_renotification)
+        if enabled_workflows is not None:
+            pulumi.set(__self__, "enabled_workflows", enabled_workflows)
+        if evaluation_interval is not None:
+            pulumi.set(__self__, "evaluation_interval", evaluation_interval)
+        if execution_error_state is not None:
+            pulumi.set(__self__, "execution_error_state", execution_error_state)
+        if issue_description is not None:
+            pulumi.set(__self__, "issue_description", issue_description)
+        if issue_summary is not None:
+            pulumi.set(__self__, "issue_summary", issue_summary)
+        if lookbehind_window is not None:
+            pulumi.set(__self__, "lookbehind_window", lookbehind_window)
+        if monitor_name is not None:
+            pulumi.set(__self__, "monitor_name", monitor_name)
+        if no_data_state is not None:
+            pulumi.set(__self__, "no_data_state", no_data_state)
+        if notification_method is not None:
+            pulumi.set(__self__, "notification_method", notification_method)
+        if renotification_interval is not None:
+            pulumi.set(__self__, "renotification_interval", renotification_interval)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if status_filters is not None:
+            pulumi.set(__self__, "status_filters", status_filters)
+
+    @_builtins.property
+    @pulumi.getter(name="connectedApps")
+    def connected_apps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of connected app IDs for direct notification delivery. Required when `notification_method` is `connectedApps`.
+        """
+        return pulumi.get(self, "connected_apps")
+
+    @connected_apps.setter
+    def connected_apps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "connected_apps", value)
+
+    @_builtins.property
+    @pulumi.getter(name="disableRenotification")
+    def disable_renotification(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Disable repeated notifications for the same issue.
+        """
+        return pulumi.get(self, "disable_renotification")
+
+    @disable_renotification.setter
+    def disable_renotification(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "disable_renotification", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enabledWorkflows")
+    def enabled_workflows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+        """
+        return pulumi.get(self, "enabled_workflows")
+
+    @enabled_workflows.setter
+    def enabled_workflows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "enabled_workflows", value)
+
+    @_builtins.property
+    @pulumi.getter(name="evaluationInterval")
+    def evaluation_interval(self) -> Optional[pulumi.Input['SyntheticTestMonitorEvaluationIntervalArgs']]:
+        """
+        Evaluation interval settings for the monitor.
+        """
+        return pulumi.get(self, "evaluation_interval")
+
+    @evaluation_interval.setter
+    def evaluation_interval(self, value: Optional[pulumi.Input['SyntheticTestMonitorEvaluationIntervalArgs']]):
+        pulumi.set(self, "evaluation_interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="executionErrorState")
+    def execution_error_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+        """
+        return pulumi.get(self, "execution_error_state")
+
+    @execution_error_state.setter
+    def execution_error_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "execution_error_state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="issueDescription")
+    def issue_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+        """
+        return pulumi.get(self, "issue_description")
+
+    @issue_description.setter
+    def issue_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "issue_description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="issueSummary")
+    def issue_summary(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Summary template for issues created by this monitor. Supports Jinja2 templating.
+        """
+        return pulumi.get(self, "issue_summary")
+
+    @issue_summary.setter
+    def issue_summary(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "issue_summary", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lookbehindWindow")
+    def lookbehind_window(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+        """
+        return pulumi.get(self, "lookbehind_window")
+
+    @lookbehind_window.setter
+    def lookbehind_window(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "lookbehind_window", value)
+
+    @_builtins.property
+    @pulumi.getter(name="monitorName")
+    def monitor_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+        """
+        return pulumi.get(self, "monitor_name")
+
+    @monitor_name.setter
+    def monitor_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "monitor_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="noDataState")
+    def no_data_state(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+        """
+        return pulumi.get(self, "no_data_state")
+
+    @no_data_state.setter
+    def no_data_state(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "no_data_state", value)
+
+    @_builtins.property
+    @pulumi.getter(name="notificationMethod")
+    def notification_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+        """
+        return pulumi.get(self, "notification_method")
+
+    @notification_method.setter
+    def notification_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "notification_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="renotificationInterval")
+    def renotification_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+        """
+        return pulumi.get(self, "renotification_interval")
+
+    @renotification_interval.setter
+    def renotification_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "renotification_interval", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+        """
+        return pulumi.get(self, "severity")
+
+    @severity.setter
+    def severity(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity", value)
+
+    @_builtins.property
+    @pulumi.getter(name="statusFilters")
+    def status_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notification_method` is `connectedApps`.
+        """
+        return pulumi.get(self, "status_filters")
+
+    @status_filters.setter
+    def status_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "status_filters", value)
+
+
+if not MYPY:
+    class SyntheticTestMonitorEvaluationIntervalArgsDict(TypedDict):
+        interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How often the monitor evaluates (e.g. `1m`, `5m`).
+        """
+        pending_for: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+        """
+elif False:
+    SyntheticTestMonitorEvaluationIntervalArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestMonitorEvaluationIntervalArgs:
+    def __init__(__self__, *,
+                 interval: Optional[pulumi.Input[_builtins.str]] = None,
+                 pending_for: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] interval: How often the monitor evaluates (e.g. `1m`, `5m`).
+        :param pulumi.Input[_builtins.str] pending_for: How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+        """
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if pending_for is not None:
+            pulumi.set(__self__, "pending_for", pending_for)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How often the monitor evaluates (e.g. `1m`, `5m`).
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "interval", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pendingFor")
+    def pending_for(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+        """
+        return pulumi.get(self, "pending_for")
+
+    @pending_for.setter
+    def pending_for(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "pending_for", value)
+
+
+if not MYPY:
+    class SyntheticTestRetryArgsDict(TypedDict):
+        count: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Number of retry attempts.
+        """
+        interval: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Delay between retries (e.g. `1s`, `500ms`).
+        """
+elif False:
+    SyntheticTestRetryArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestRetryArgs:
+    def __init__(__self__, *,
+                 count: Optional[pulumi.Input[_builtins.int]] = None,
+                 interval: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] count: Number of retry attempts.
+        :param pulumi.Input[_builtins.str] interval: Delay between retries (e.g. `1s`, `500ms`).
+        """
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of retry attempts.
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Delay between retries (e.g. `1s`, `500ms`).
+        """
+        return pulumi.get(self, "interval")
+
+    @interval.setter
+    def interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "interval", value)
+
+
+if not MYPY:
+    class SyntheticTestSslCheckArgsDict(TypedDict):
+        host: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The hostname to connect to for the SSL check.
+        """
+        min_version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+        """
+        port: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The port to connect to (1-65535).
+        """
+        sni: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+        """
+        timeout: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Timeout for the SSL check (e.g. `5s`, `10s`).
+        """
+        verify: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether to verify the SSL certificate.
+        """
+elif False:
+    SyntheticTestSslCheckArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SyntheticTestSslCheckArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[_builtins.str]] = None,
+                 min_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
+                 sni: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeout: Optional[pulumi.Input[_builtins.str]] = None,
+                 verify: Optional[pulumi.Input[_builtins.bool]] = None):
+        """
+        :param pulumi.Input[_builtins.str] host: The hostname to connect to for the SSL check.
+        :param pulumi.Input[_builtins.str] min_version: Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+        :param pulumi.Input[_builtins.int] port: The port to connect to (1-65535).
+        :param pulumi.Input[_builtins.str] sni: Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+        :param pulumi.Input[_builtins.str] timeout: Timeout for the SSL check (e.g. `5s`, `10s`).
+        :param pulumi.Input[_builtins.bool] verify: Whether to verify the SSL certificate.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if min_version is not None:
+            pulumi.set(__self__, "min_version", min_version)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if sni is not None:
+            pulumi.set(__self__, "sni", sni)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if verify is not None:
+            pulumi.set(__self__, "verify", verify)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The hostname to connect to for the SSL check.
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minVersion")
+    def min_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+        """
+        return pulumi.get(self, "min_version")
+
+    @min_version.setter
+    def min_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "min_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The port to connect to (1-65535).
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sni(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+        """
+        return pulumi.get(self, "sni")
+
+    @sni.setter
+    def sni(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "sni", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Timeout for the SSL check (e.g. `5s`, `10s`).
+        """
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether to verify the SSL certificate.
+        """
+        return pulumi.get(self, "verify")
+
+    @verify.setter
+    def verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "verify", value)
 
 

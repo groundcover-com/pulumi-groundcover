@@ -44,6 +44,14 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Logs pipeline is a singleton resource. The import ID value is ignored.
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/logspipeline:Logspipeline example any
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/logspipeline:Logspipeline")]
     public partial class Logspipeline : global::Pulumi.CustomResource
