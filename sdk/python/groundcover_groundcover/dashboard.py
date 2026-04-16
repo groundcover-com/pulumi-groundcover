@@ -29,7 +29,6 @@ class DashboardArgs:
         :param pulumi.Input[_builtins.str] preset: The preset configuration for the dashboard.
         :param pulumi.Input[_builtins.str] description: The description of the dashboard.
         :param pulumi.Input[_builtins.str] name: The name of the dashboard.
-        :param pulumi.Input[_builtins.bool] override: Whether to override the dashboard on update.
         :param pulumi.Input[_builtins.str] team: The team that owns the dashboard.
         """
         pulumi.set(__self__, "preset", preset)
@@ -37,6 +36,9 @@ class DashboardArgs:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if override is not None:
+            warnings.warn("""This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""", DeprecationWarning)
+            pulumi.log.warn("""override is deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""")
         if override is not None:
             pulumi.set(__self__, "override", override)
         if team is not None:
@@ -80,10 +82,8 @@ class DashboardArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""")
     def override(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        Whether to override the dashboard on update.
-        """
         return pulumi.get(self, "override")
 
     @override.setter
@@ -118,7 +118,6 @@ class _DashboardState:
         Input properties used for looking up and filtering Dashboard resources.
         :param pulumi.Input[_builtins.str] description: The description of the dashboard.
         :param pulumi.Input[_builtins.str] name: The name of the dashboard.
-        :param pulumi.Input[_builtins.bool] override: Whether to override the dashboard on update.
         :param pulumi.Input[_builtins.str] owner: The owner of the dashboard.
         :param pulumi.Input[_builtins.str] preset: The preset configuration for the dashboard.
         :param pulumi.Input[_builtins.int] revision_number: The revision number of the dashboard.
@@ -129,6 +128,9 @@ class _DashboardState:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if override is not None:
+            warnings.warn("""This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""", DeprecationWarning)
+            pulumi.log.warn("""override is deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""")
         if override is not None:
             pulumi.set(__self__, "override", override)
         if owner is not None:
@@ -168,10 +170,8 @@ class _DashboardState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""")
     def override(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        Whether to override the dashboard on update.
-        """
         return pulumi.get(self, "override")
 
     @override.setter
@@ -375,11 +375,16 @@ class Dashboard(pulumi.CustomResource):
         pulumi.export("simpleDashboardOwner", simple_dashboard.owner)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the dashboard.
         :param pulumi.Input[_builtins.str] name: The name of the dashboard.
-        :param pulumi.Input[_builtins.bool] override: Whether to override the dashboard on update.
         :param pulumi.Input[_builtins.str] preset: The preset configuration for the dashboard.
         :param pulumi.Input[_builtins.str] team: The team that owns the dashboard.
         """
@@ -513,6 +518,12 @@ class Dashboard(pulumi.CustomResource):
         pulumi.export("simpleDashboardOwner", simple_dashboard.owner)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param DashboardArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -579,7 +590,6 @@ class Dashboard(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: The description of the dashboard.
         :param pulumi.Input[_builtins.str] name: The name of the dashboard.
-        :param pulumi.Input[_builtins.bool] override: Whether to override the dashboard on update.
         :param pulumi.Input[_builtins.str] owner: The owner of the dashboard.
         :param pulumi.Input[_builtins.str] preset: The preset configuration for the dashboard.
         :param pulumi.Input[_builtins.int] revision_number: The revision number of the dashboard.
@@ -618,10 +628,8 @@ class Dashboard(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.""")
     def override(self) -> pulumi.Output[Optional[_builtins.bool]]:
-        """
-        Whether to override the dashboard on update.
-        """
         return pulumi.get(self, "override")
 
     @_builtins.property

@@ -117,6 +117,12 @@ class Metricsaggregation(pulumi.CustomResource):
         pulumi.export("metricsAggregationUpdatedAt", metricsaggregation.updated_at)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/metricsaggregation:Metricsaggregation example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] value: The YAML representation of the metrics aggregation configuration.
@@ -155,6 +161,12 @@ class Metricsaggregation(pulumi.CustomResource):
             outputs: [total_prometheus]
         \"\"\")
         pulumi.export("metricsAggregationUpdatedAt", metricsaggregation.updated_at)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/metricsaggregation:Metricsaggregation example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

@@ -177,6 +177,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+// ```
 type Dashboard struct {
 	pulumi.CustomResourceState
 
@@ -184,7 +190,7 @@ type Dashboard struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the dashboard.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Whether to override the dashboard on update.
+	// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 	Override pulumi.BoolPtrOutput `pulumi:"override"`
 	// The owner of the dashboard.
 	Owner pulumi.StringOutput `pulumi:"owner"`
@@ -235,7 +241,7 @@ type dashboardState struct {
 	Description *string `pulumi:"description"`
 	// The name of the dashboard.
 	Name *string `pulumi:"name"`
-	// Whether to override the dashboard on update.
+	// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 	Override *bool `pulumi:"override"`
 	// The owner of the dashboard.
 	Owner *string `pulumi:"owner"`
@@ -254,7 +260,7 @@ type DashboardState struct {
 	Description pulumi.StringPtrInput
 	// The name of the dashboard.
 	Name pulumi.StringPtrInput
-	// Whether to override the dashboard on update.
+	// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 	Override pulumi.BoolPtrInput
 	// The owner of the dashboard.
 	Owner pulumi.StringPtrInput
@@ -277,7 +283,7 @@ type dashboardArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of the dashboard.
 	Name *string `pulumi:"name"`
-	// Whether to override the dashboard on update.
+	// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 	Override *bool `pulumi:"override"`
 	// The preset configuration for the dashboard.
 	Preset string `pulumi:"preset"`
@@ -291,7 +297,7 @@ type DashboardArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of the dashboard.
 	Name pulumi.StringPtrInput
-	// Whether to override the dashboard on update.
+	// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 	Override pulumi.BoolPtrInput
 	// The preset configuration for the dashboard.
 	Preset pulumi.StringInput
@@ -396,7 +402,7 @@ func (o DashboardOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Whether to override the dashboard on update.
+// Deprecated: This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
 func (o DashboardOutput) Override() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Dashboard) pulumi.BoolPtrOutput { return v.Override }).(pulumi.BoolPtrOutput)
 }
