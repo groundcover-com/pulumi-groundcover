@@ -119,6 +119,355 @@ func (o ApikeyPolicyArrayOutput) Index(i pulumi.IntInput) ApikeyPolicyOutput {
 	}).(ApikeyPolicyOutput)
 }
 
+type NotificationRouteNotificationSettings struct {
+	// Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+	RenotificationInterval *string `pulumi:"renotificationInterval"`
+}
+
+// NotificationRouteNotificationSettingsInput is an input type that accepts NotificationRouteNotificationSettingsArgs and NotificationRouteNotificationSettingsOutput values.
+// You can construct a concrete instance of `NotificationRouteNotificationSettingsInput` via:
+//
+//	NotificationRouteNotificationSettingsArgs{...}
+type NotificationRouteNotificationSettingsInput interface {
+	pulumi.Input
+
+	ToNotificationRouteNotificationSettingsOutput() NotificationRouteNotificationSettingsOutput
+	ToNotificationRouteNotificationSettingsOutputWithContext(context.Context) NotificationRouteNotificationSettingsOutput
+}
+
+type NotificationRouteNotificationSettingsArgs struct {
+	// Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+	RenotificationInterval pulumi.StringPtrInput `pulumi:"renotificationInterval"`
+}
+
+func (NotificationRouteNotificationSettingsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteNotificationSettings)(nil)).Elem()
+}
+
+func (i NotificationRouteNotificationSettingsArgs) ToNotificationRouteNotificationSettingsOutput() NotificationRouteNotificationSettingsOutput {
+	return i.ToNotificationRouteNotificationSettingsOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteNotificationSettingsArgs) ToNotificationRouteNotificationSettingsOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteNotificationSettingsOutput)
+}
+
+func (i NotificationRouteNotificationSettingsArgs) ToNotificationRouteNotificationSettingsPtrOutput() NotificationRouteNotificationSettingsPtrOutput {
+	return i.ToNotificationRouteNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteNotificationSettingsArgs) ToNotificationRouteNotificationSettingsPtrOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteNotificationSettingsOutput).ToNotificationRouteNotificationSettingsPtrOutputWithContext(ctx)
+}
+
+// NotificationRouteNotificationSettingsPtrInput is an input type that accepts NotificationRouteNotificationSettingsArgs, NotificationRouteNotificationSettingsPtr and NotificationRouteNotificationSettingsPtrOutput values.
+// You can construct a concrete instance of `NotificationRouteNotificationSettingsPtrInput` via:
+//
+//	        NotificationRouteNotificationSettingsArgs{...}
+//
+//	or:
+//
+//	        nil
+type NotificationRouteNotificationSettingsPtrInput interface {
+	pulumi.Input
+
+	ToNotificationRouteNotificationSettingsPtrOutput() NotificationRouteNotificationSettingsPtrOutput
+	ToNotificationRouteNotificationSettingsPtrOutputWithContext(context.Context) NotificationRouteNotificationSettingsPtrOutput
+}
+
+type notificationRouteNotificationSettingsPtrType NotificationRouteNotificationSettingsArgs
+
+func NotificationRouteNotificationSettingsPtr(v *NotificationRouteNotificationSettingsArgs) NotificationRouteNotificationSettingsPtrInput {
+	return (*notificationRouteNotificationSettingsPtrType)(v)
+}
+
+func (*notificationRouteNotificationSettingsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationRouteNotificationSettings)(nil)).Elem()
+}
+
+func (i *notificationRouteNotificationSettingsPtrType) ToNotificationRouteNotificationSettingsPtrOutput() NotificationRouteNotificationSettingsPtrOutput {
+	return i.ToNotificationRouteNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (i *notificationRouteNotificationSettingsPtrType) ToNotificationRouteNotificationSettingsPtrOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteNotificationSettingsPtrOutput)
+}
+
+type NotificationRouteNotificationSettingsOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteNotificationSettingsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteNotificationSettings)(nil)).Elem()
+}
+
+func (o NotificationRouteNotificationSettingsOutput) ToNotificationRouteNotificationSettingsOutput() NotificationRouteNotificationSettingsOutput {
+	return o
+}
+
+func (o NotificationRouteNotificationSettingsOutput) ToNotificationRouteNotificationSettingsOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsOutput {
+	return o
+}
+
+func (o NotificationRouteNotificationSettingsOutput) ToNotificationRouteNotificationSettingsPtrOutput() NotificationRouteNotificationSettingsPtrOutput {
+	return o.ToNotificationRouteNotificationSettingsPtrOutputWithContext(context.Background())
+}
+
+func (o NotificationRouteNotificationSettingsOutput) ToNotificationRouteNotificationSettingsPtrOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NotificationRouteNotificationSettings) *NotificationRouteNotificationSettings {
+		return &v
+	}).(NotificationRouteNotificationSettingsPtrOutput)
+}
+
+// Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+func (o NotificationRouteNotificationSettingsOutput) RenotificationInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NotificationRouteNotificationSettings) *string { return v.RenotificationInterval }).(pulumi.StringPtrOutput)
+}
+
+type NotificationRouteNotificationSettingsPtrOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteNotificationSettingsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NotificationRouteNotificationSettings)(nil)).Elem()
+}
+
+func (o NotificationRouteNotificationSettingsPtrOutput) ToNotificationRouteNotificationSettingsPtrOutput() NotificationRouteNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o NotificationRouteNotificationSettingsPtrOutput) ToNotificationRouteNotificationSettingsPtrOutputWithContext(ctx context.Context) NotificationRouteNotificationSettingsPtrOutput {
+	return o
+}
+
+func (o NotificationRouteNotificationSettingsPtrOutput) Elem() NotificationRouteNotificationSettingsOutput {
+	return o.ApplyT(func(v *NotificationRouteNotificationSettings) NotificationRouteNotificationSettings {
+		if v != nil {
+			return *v
+		}
+		var ret NotificationRouteNotificationSettings
+		return ret
+	}).(NotificationRouteNotificationSettingsOutput)
+}
+
+// Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+func (o NotificationRouteNotificationSettingsPtrOutput) RenotificationInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NotificationRouteNotificationSettings) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RenotificationInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+type NotificationRouteRoute struct {
+	// List of connected apps to notify for this route.
+	ConnectedApps []NotificationRouteRouteConnectedApp `pulumi:"connectedApps"`
+	// List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+	Statuses []string `pulumi:"statuses"`
+}
+
+// NotificationRouteRouteInput is an input type that accepts NotificationRouteRouteArgs and NotificationRouteRouteOutput values.
+// You can construct a concrete instance of `NotificationRouteRouteInput` via:
+//
+//	NotificationRouteRouteArgs{...}
+type NotificationRouteRouteInput interface {
+	pulumi.Input
+
+	ToNotificationRouteRouteOutput() NotificationRouteRouteOutput
+	ToNotificationRouteRouteOutputWithContext(context.Context) NotificationRouteRouteOutput
+}
+
+type NotificationRouteRouteArgs struct {
+	// List of connected apps to notify for this route.
+	ConnectedApps NotificationRouteRouteConnectedAppArrayInput `pulumi:"connectedApps"`
+	// List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
+}
+
+func (NotificationRouteRouteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationRouteRouteArgs) ToNotificationRouteRouteOutput() NotificationRouteRouteOutput {
+	return i.ToNotificationRouteRouteOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteRouteArgs) ToNotificationRouteRouteOutputWithContext(ctx context.Context) NotificationRouteRouteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteRouteOutput)
+}
+
+// NotificationRouteRouteArrayInput is an input type that accepts NotificationRouteRouteArray and NotificationRouteRouteArrayOutput values.
+// You can construct a concrete instance of `NotificationRouteRouteArrayInput` via:
+//
+//	NotificationRouteRouteArray{ NotificationRouteRouteArgs{...} }
+type NotificationRouteRouteArrayInput interface {
+	pulumi.Input
+
+	ToNotificationRouteRouteArrayOutput() NotificationRouteRouteArrayOutput
+	ToNotificationRouteRouteArrayOutputWithContext(context.Context) NotificationRouteRouteArrayOutput
+}
+
+type NotificationRouteRouteArray []NotificationRouteRouteInput
+
+func (NotificationRouteRouteArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationRouteRoute)(nil)).Elem()
+}
+
+func (i NotificationRouteRouteArray) ToNotificationRouteRouteArrayOutput() NotificationRouteRouteArrayOutput {
+	return i.ToNotificationRouteRouteArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteRouteArray) ToNotificationRouteRouteArrayOutputWithContext(ctx context.Context) NotificationRouteRouteArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteRouteArrayOutput)
+}
+
+type NotificationRouteRouteOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteRouteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationRouteRouteOutput) ToNotificationRouteRouteOutput() NotificationRouteRouteOutput {
+	return o
+}
+
+func (o NotificationRouteRouteOutput) ToNotificationRouteRouteOutputWithContext(ctx context.Context) NotificationRouteRouteOutput {
+	return o
+}
+
+// List of connected apps to notify for this route.
+func (o NotificationRouteRouteOutput) ConnectedApps() NotificationRouteRouteConnectedAppArrayOutput {
+	return o.ApplyT(func(v NotificationRouteRoute) []NotificationRouteRouteConnectedApp { return v.ConnectedApps }).(NotificationRouteRouteConnectedAppArrayOutput)
+}
+
+// List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+func (o NotificationRouteRouteOutput) Statuses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NotificationRouteRoute) []string { return v.Statuses }).(pulumi.StringArrayOutput)
+}
+
+type NotificationRouteRouteArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteRouteArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationRouteRoute)(nil)).Elem()
+}
+
+func (o NotificationRouteRouteArrayOutput) ToNotificationRouteRouteArrayOutput() NotificationRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationRouteRouteArrayOutput) ToNotificationRouteRouteArrayOutputWithContext(ctx context.Context) NotificationRouteRouteArrayOutput {
+	return o
+}
+
+func (o NotificationRouteRouteArrayOutput) Index(i pulumi.IntInput) NotificationRouteRouteOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationRouteRoute {
+		return vs[0].([]NotificationRouteRoute)[vs[1].(int)]
+	}).(NotificationRouteRouteOutput)
+}
+
+type NotificationRouteRouteConnectedApp struct {
+	// ID of the connected app.
+	Id string `pulumi:"id"`
+	// Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+	Type string `pulumi:"type"`
+}
+
+// NotificationRouteRouteConnectedAppInput is an input type that accepts NotificationRouteRouteConnectedAppArgs and NotificationRouteRouteConnectedAppOutput values.
+// You can construct a concrete instance of `NotificationRouteRouteConnectedAppInput` via:
+//
+//	NotificationRouteRouteConnectedAppArgs{...}
+type NotificationRouteRouteConnectedAppInput interface {
+	pulumi.Input
+
+	ToNotificationRouteRouteConnectedAppOutput() NotificationRouteRouteConnectedAppOutput
+	ToNotificationRouteRouteConnectedAppOutputWithContext(context.Context) NotificationRouteRouteConnectedAppOutput
+}
+
+type NotificationRouteRouteConnectedAppArgs struct {
+	// ID of the connected app.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (NotificationRouteRouteConnectedAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteRouteConnectedApp)(nil)).Elem()
+}
+
+func (i NotificationRouteRouteConnectedAppArgs) ToNotificationRouteRouteConnectedAppOutput() NotificationRouteRouteConnectedAppOutput {
+	return i.ToNotificationRouteRouteConnectedAppOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteRouteConnectedAppArgs) ToNotificationRouteRouteConnectedAppOutputWithContext(ctx context.Context) NotificationRouteRouteConnectedAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteRouteConnectedAppOutput)
+}
+
+// NotificationRouteRouteConnectedAppArrayInput is an input type that accepts NotificationRouteRouteConnectedAppArray and NotificationRouteRouteConnectedAppArrayOutput values.
+// You can construct a concrete instance of `NotificationRouteRouteConnectedAppArrayInput` via:
+//
+//	NotificationRouteRouteConnectedAppArray{ NotificationRouteRouteConnectedAppArgs{...} }
+type NotificationRouteRouteConnectedAppArrayInput interface {
+	pulumi.Input
+
+	ToNotificationRouteRouteConnectedAppArrayOutput() NotificationRouteRouteConnectedAppArrayOutput
+	ToNotificationRouteRouteConnectedAppArrayOutputWithContext(context.Context) NotificationRouteRouteConnectedAppArrayOutput
+}
+
+type NotificationRouteRouteConnectedAppArray []NotificationRouteRouteConnectedAppInput
+
+func (NotificationRouteRouteConnectedAppArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationRouteRouteConnectedApp)(nil)).Elem()
+}
+
+func (i NotificationRouteRouteConnectedAppArray) ToNotificationRouteRouteConnectedAppArrayOutput() NotificationRouteRouteConnectedAppArrayOutput {
+	return i.ToNotificationRouteRouteConnectedAppArrayOutputWithContext(context.Background())
+}
+
+func (i NotificationRouteRouteConnectedAppArray) ToNotificationRouteRouteConnectedAppArrayOutputWithContext(ctx context.Context) NotificationRouteRouteConnectedAppArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NotificationRouteRouteConnectedAppArrayOutput)
+}
+
+type NotificationRouteRouteConnectedAppOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteRouteConnectedAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NotificationRouteRouteConnectedApp)(nil)).Elem()
+}
+
+func (o NotificationRouteRouteConnectedAppOutput) ToNotificationRouteRouteConnectedAppOutput() NotificationRouteRouteConnectedAppOutput {
+	return o
+}
+
+func (o NotificationRouteRouteConnectedAppOutput) ToNotificationRouteRouteConnectedAppOutputWithContext(ctx context.Context) NotificationRouteRouteConnectedAppOutput {
+	return o
+}
+
+// ID of the connected app.
+func (o NotificationRouteRouteConnectedAppOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationRouteRouteConnectedApp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+func (o NotificationRouteRouteConnectedAppOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NotificationRouteRouteConnectedApp) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NotificationRouteRouteConnectedAppArrayOutput struct{ *pulumi.OutputState }
+
+func (NotificationRouteRouteConnectedAppArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NotificationRouteRouteConnectedApp)(nil)).Elem()
+}
+
+func (o NotificationRouteRouteConnectedAppArrayOutput) ToNotificationRouteRouteConnectedAppArrayOutput() NotificationRouteRouteConnectedAppArrayOutput {
+	return o
+}
+
+func (o NotificationRouteRouteConnectedAppArrayOutput) ToNotificationRouteRouteConnectedAppArrayOutputWithContext(ctx context.Context) NotificationRouteRouteConnectedAppArrayOutput {
+	return o
+}
+
+func (o NotificationRouteRouteConnectedAppArrayOutput) Index(i pulumi.IntInput) NotificationRouteRouteConnectedAppOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NotificationRouteRouteConnectedApp {
+		return vs[0].([]NotificationRouteRouteConnectedApp)[vs[1].(int)]
+	}).(NotificationRouteRouteConnectedAppOutput)
+}
+
 type PolicyDataScope struct {
 	// Advanced data scope configuration. Allows per-data-type filtering rules for fine-grained access control.
 	Advanced *PolicyDataScopeAdvanced `pulumi:"advanced"`
@@ -2930,9 +3279,2284 @@ func (o PolicyDataScopeSimpleConditionFilterArrayOutput) Index(i pulumi.IntInput
 	}).(PolicyDataScopeSimpleConditionFilterOutput)
 }
 
+type SilenceMatcher struct {
+	// If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+	IsContains *bool `pulumi:"isContains"`
+	// If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+	IsEqual *bool `pulumi:"isEqual"`
+	// The name of the label to match (e.g., `service`, `environment`, `workload`).
+	Name string `pulumi:"name"`
+	// The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+	Value string `pulumi:"value"`
+}
+
+// SilenceMatcherInput is an input type that accepts SilenceMatcherArgs and SilenceMatcherOutput values.
+// You can construct a concrete instance of `SilenceMatcherInput` via:
+//
+//	SilenceMatcherArgs{...}
+type SilenceMatcherInput interface {
+	pulumi.Input
+
+	ToSilenceMatcherOutput() SilenceMatcherOutput
+	ToSilenceMatcherOutputWithContext(context.Context) SilenceMatcherOutput
+}
+
+type SilenceMatcherArgs struct {
+	// If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+	IsContains pulumi.BoolPtrInput `pulumi:"isContains"`
+	// If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+	IsEqual pulumi.BoolPtrInput `pulumi:"isEqual"`
+	// The name of the label to match (e.g., `service`, `environment`, `workload`).
+	Name pulumi.StringInput `pulumi:"name"`
+	// The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SilenceMatcherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilenceMatcher)(nil)).Elem()
+}
+
+func (i SilenceMatcherArgs) ToSilenceMatcherOutput() SilenceMatcherOutput {
+	return i.ToSilenceMatcherOutputWithContext(context.Background())
+}
+
+func (i SilenceMatcherArgs) ToSilenceMatcherOutputWithContext(ctx context.Context) SilenceMatcherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilenceMatcherOutput)
+}
+
+// SilenceMatcherArrayInput is an input type that accepts SilenceMatcherArray and SilenceMatcherArrayOutput values.
+// You can construct a concrete instance of `SilenceMatcherArrayInput` via:
+//
+//	SilenceMatcherArray{ SilenceMatcherArgs{...} }
+type SilenceMatcherArrayInput interface {
+	pulumi.Input
+
+	ToSilenceMatcherArrayOutput() SilenceMatcherArrayOutput
+	ToSilenceMatcherArrayOutputWithContext(context.Context) SilenceMatcherArrayOutput
+}
+
+type SilenceMatcherArray []SilenceMatcherInput
+
+func (SilenceMatcherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilenceMatcher)(nil)).Elem()
+}
+
+func (i SilenceMatcherArray) ToSilenceMatcherArrayOutput() SilenceMatcherArrayOutput {
+	return i.ToSilenceMatcherArrayOutputWithContext(context.Background())
+}
+
+func (i SilenceMatcherArray) ToSilenceMatcherArrayOutputWithContext(ctx context.Context) SilenceMatcherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SilenceMatcherArrayOutput)
+}
+
+type SilenceMatcherOutput struct{ *pulumi.OutputState }
+
+func (SilenceMatcherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SilenceMatcher)(nil)).Elem()
+}
+
+func (o SilenceMatcherOutput) ToSilenceMatcherOutput() SilenceMatcherOutput {
+	return o
+}
+
+func (o SilenceMatcherOutput) ToSilenceMatcherOutputWithContext(ctx context.Context) SilenceMatcherOutput {
+	return o
+}
+
+// If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+func (o SilenceMatcherOutput) IsContains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SilenceMatcher) *bool { return v.IsContains }).(pulumi.BoolPtrOutput)
+}
+
+// If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+func (o SilenceMatcherOutput) IsEqual() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SilenceMatcher) *bool { return v.IsEqual }).(pulumi.BoolPtrOutput)
+}
+
+// The name of the label to match (e.g., `service`, `environment`, `workload`).
+func (o SilenceMatcherOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SilenceMatcher) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The value to match against. Can be an exact value or a partial match pattern if `isContains` is true.
+func (o SilenceMatcherOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SilenceMatcher) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SilenceMatcherArrayOutput struct{ *pulumi.OutputState }
+
+func (SilenceMatcherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SilenceMatcher)(nil)).Elem()
+}
+
+func (o SilenceMatcherArrayOutput) ToSilenceMatcherArrayOutput() SilenceMatcherArrayOutput {
+	return o
+}
+
+func (o SilenceMatcherArrayOutput) ToSilenceMatcherArrayOutputWithContext(ctx context.Context) SilenceMatcherArrayOutput {
+	return o
+}
+
+func (o SilenceMatcherArrayOutput) Index(i pulumi.IntInput) SilenceMatcherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SilenceMatcher {
+		return vs[0].([]SilenceMatcher)[vs[1].(int)]
+	}).(SilenceMatcherOutput)
+}
+
+type SyntheticTestAssertion struct {
+	// Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+	Operator string `pulumi:"operator"`
+	// Specifies which property to evaluate within the assertion source. Usage varies by source — see documentation for per-source details.
+	Property *string `pulumi:"property"`
+	// Assertion severity: `critical` (default) or `degraded`.
+	Severity *string `pulumi:"severity"`
+	// What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`, `tcp`, `dns`.
+	Source string `pulumi:"source"`
+	// Expected value to compare against (as string, e.g. `"200"` for status code).
+	Target *string `pulumi:"target"`
+}
+
+// SyntheticTestAssertionInput is an input type that accepts SyntheticTestAssertionArgs and SyntheticTestAssertionOutput values.
+// You can construct a concrete instance of `SyntheticTestAssertionInput` via:
+//
+//	SyntheticTestAssertionArgs{...}
+type SyntheticTestAssertionInput interface {
+	pulumi.Input
+
+	ToSyntheticTestAssertionOutput() SyntheticTestAssertionOutput
+	ToSyntheticTestAssertionOutputWithContext(context.Context) SyntheticTestAssertionOutput
+}
+
+type SyntheticTestAssertionArgs struct {
+	// Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// Specifies which property to evaluate within the assertion source. Usage varies by source — see documentation for per-source details.
+	Property pulumi.StringPtrInput `pulumi:"property"`
+	// Assertion severity: `critical` (default) or `degraded`.
+	Severity pulumi.StringPtrInput `pulumi:"severity"`
+	// What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`, `tcp`, `dns`.
+	Source pulumi.StringInput `pulumi:"source"`
+	// Expected value to compare against (as string, e.g. `"200"` for status code).
+	Target pulumi.StringPtrInput `pulumi:"target"`
+}
+
+func (SyntheticTestAssertionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestAssertion)(nil)).Elem()
+}
+
+func (i SyntheticTestAssertionArgs) ToSyntheticTestAssertionOutput() SyntheticTestAssertionOutput {
+	return i.ToSyntheticTestAssertionOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestAssertionArgs) ToSyntheticTestAssertionOutputWithContext(ctx context.Context) SyntheticTestAssertionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestAssertionOutput)
+}
+
+// SyntheticTestAssertionArrayInput is an input type that accepts SyntheticTestAssertionArray and SyntheticTestAssertionArrayOutput values.
+// You can construct a concrete instance of `SyntheticTestAssertionArrayInput` via:
+//
+//	SyntheticTestAssertionArray{ SyntheticTestAssertionArgs{...} }
+type SyntheticTestAssertionArrayInput interface {
+	pulumi.Input
+
+	ToSyntheticTestAssertionArrayOutput() SyntheticTestAssertionArrayOutput
+	ToSyntheticTestAssertionArrayOutputWithContext(context.Context) SyntheticTestAssertionArrayOutput
+}
+
+type SyntheticTestAssertionArray []SyntheticTestAssertionInput
+
+func (SyntheticTestAssertionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticTestAssertion)(nil)).Elem()
+}
+
+func (i SyntheticTestAssertionArray) ToSyntheticTestAssertionArrayOutput() SyntheticTestAssertionArrayOutput {
+	return i.ToSyntheticTestAssertionArrayOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestAssertionArray) ToSyntheticTestAssertionArrayOutputWithContext(ctx context.Context) SyntheticTestAssertionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestAssertionArrayOutput)
+}
+
+type SyntheticTestAssertionOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestAssertionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestAssertion)(nil)).Elem()
+}
+
+func (o SyntheticTestAssertionOutput) ToSyntheticTestAssertionOutput() SyntheticTestAssertionOutput {
+	return o
+}
+
+func (o SyntheticTestAssertionOutput) ToSyntheticTestAssertionOutputWithContext(ctx context.Context) SyntheticTestAssertionOutput {
+	return o
+}
+
+// Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+func (o SyntheticTestAssertionOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticTestAssertion) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// Specifies which property to evaluate within the assertion source. Usage varies by source — see documentation for per-source details.
+func (o SyntheticTestAssertionOutput) Property() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestAssertion) *string { return v.Property }).(pulumi.StringPtrOutput)
+}
+
+// Assertion severity: `critical` (default) or `degraded`.
+func (o SyntheticTestAssertionOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestAssertion) *string { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
+// What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`, `tcp`, `dns`.
+func (o SyntheticTestAssertionOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v SyntheticTestAssertion) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// Expected value to compare against (as string, e.g. `"200"` for status code).
+func (o SyntheticTestAssertionOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestAssertion) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestAssertionArrayOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestAssertionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SyntheticTestAssertion)(nil)).Elem()
+}
+
+func (o SyntheticTestAssertionArrayOutput) ToSyntheticTestAssertionArrayOutput() SyntheticTestAssertionArrayOutput {
+	return o
+}
+
+func (o SyntheticTestAssertionArrayOutput) ToSyntheticTestAssertionArrayOutputWithContext(ctx context.Context) SyntheticTestAssertionArrayOutput {
+	return o
+}
+
+func (o SyntheticTestAssertionArrayOutput) Index(i pulumi.IntInput) SyntheticTestAssertionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SyntheticTestAssertion {
+		return vs[0].([]SyntheticTestAssertion)[vs[1].(int)]
+	}).(SyntheticTestAssertionOutput)
+}
+
+type SyntheticTestDnsCheck struct {
+	// Whether to validate DNSSEC.
+	Dnssec *bool `pulumi:"dnssec"`
+	// (Required) The domain name to resolve.
+	Domain *string `pulumi:"domain"`
+	// The DNS server port (1-65535). Defaults to 53.
+	Port *int `pulumi:"port"`
+	// (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+	RecordType *string `pulumi:"recordType"`
+	// Custom DNS resolver address (e.g. `8.8.8.8`).
+	Resolver *string `pulumi:"resolver"`
+	// Timeout for the DNS check (e.g. `5s`, `10s`).
+	Timeout *string `pulumi:"timeout"`
+}
+
+// SyntheticTestDnsCheckInput is an input type that accepts SyntheticTestDnsCheckArgs and SyntheticTestDnsCheckOutput values.
+// You can construct a concrete instance of `SyntheticTestDnsCheckInput` via:
+//
+//	SyntheticTestDnsCheckArgs{...}
+type SyntheticTestDnsCheckInput interface {
+	pulumi.Input
+
+	ToSyntheticTestDnsCheckOutput() SyntheticTestDnsCheckOutput
+	ToSyntheticTestDnsCheckOutputWithContext(context.Context) SyntheticTestDnsCheckOutput
+}
+
+type SyntheticTestDnsCheckArgs struct {
+	// Whether to validate DNSSEC.
+	Dnssec pulumi.BoolPtrInput `pulumi:"dnssec"`
+	// (Required) The domain name to resolve.
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// The DNS server port (1-65535). Defaults to 53.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+	RecordType pulumi.StringPtrInput `pulumi:"recordType"`
+	// Custom DNS resolver address (e.g. `8.8.8.8`).
+	Resolver pulumi.StringPtrInput `pulumi:"resolver"`
+	// Timeout for the DNS check (e.g. `5s`, `10s`).
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (SyntheticTestDnsCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestDnsCheck)(nil)).Elem()
+}
+
+func (i SyntheticTestDnsCheckArgs) ToSyntheticTestDnsCheckOutput() SyntheticTestDnsCheckOutput {
+	return i.ToSyntheticTestDnsCheckOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestDnsCheckArgs) ToSyntheticTestDnsCheckOutputWithContext(ctx context.Context) SyntheticTestDnsCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestDnsCheckOutput)
+}
+
+func (i SyntheticTestDnsCheckArgs) ToSyntheticTestDnsCheckPtrOutput() SyntheticTestDnsCheckPtrOutput {
+	return i.ToSyntheticTestDnsCheckPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestDnsCheckArgs) ToSyntheticTestDnsCheckPtrOutputWithContext(ctx context.Context) SyntheticTestDnsCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestDnsCheckOutput).ToSyntheticTestDnsCheckPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestDnsCheckPtrInput is an input type that accepts SyntheticTestDnsCheckArgs, SyntheticTestDnsCheckPtr and SyntheticTestDnsCheckPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestDnsCheckPtrInput` via:
+//
+//	        SyntheticTestDnsCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestDnsCheckPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestDnsCheckPtrOutput() SyntheticTestDnsCheckPtrOutput
+	ToSyntheticTestDnsCheckPtrOutputWithContext(context.Context) SyntheticTestDnsCheckPtrOutput
+}
+
+type syntheticTestDnsCheckPtrType SyntheticTestDnsCheckArgs
+
+func SyntheticTestDnsCheckPtr(v *SyntheticTestDnsCheckArgs) SyntheticTestDnsCheckPtrInput {
+	return (*syntheticTestDnsCheckPtrType)(v)
+}
+
+func (*syntheticTestDnsCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestDnsCheck)(nil)).Elem()
+}
+
+func (i *syntheticTestDnsCheckPtrType) ToSyntheticTestDnsCheckPtrOutput() SyntheticTestDnsCheckPtrOutput {
+	return i.ToSyntheticTestDnsCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestDnsCheckPtrType) ToSyntheticTestDnsCheckPtrOutputWithContext(ctx context.Context) SyntheticTestDnsCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestDnsCheckPtrOutput)
+}
+
+type SyntheticTestDnsCheckOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestDnsCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestDnsCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestDnsCheckOutput) ToSyntheticTestDnsCheckOutput() SyntheticTestDnsCheckOutput {
+	return o
+}
+
+func (o SyntheticTestDnsCheckOutput) ToSyntheticTestDnsCheckOutputWithContext(ctx context.Context) SyntheticTestDnsCheckOutput {
+	return o
+}
+
+func (o SyntheticTestDnsCheckOutput) ToSyntheticTestDnsCheckPtrOutput() SyntheticTestDnsCheckPtrOutput {
+	return o.ToSyntheticTestDnsCheckPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestDnsCheckOutput) ToSyntheticTestDnsCheckPtrOutputWithContext(ctx context.Context) SyntheticTestDnsCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestDnsCheck) *SyntheticTestDnsCheck {
+		return &v
+	}).(SyntheticTestDnsCheckPtrOutput)
+}
+
+// Whether to validate DNSSEC.
+func (o SyntheticTestDnsCheckOutput) Dnssec() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *bool { return v.Dnssec }).(pulumi.BoolPtrOutput)
+}
+
+// (Required) The domain name to resolve.
+func (o SyntheticTestDnsCheckOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+// The DNS server port (1-65535). Defaults to 53.
+func (o SyntheticTestDnsCheckOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+func (o SyntheticTestDnsCheckOutput) RecordType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *string { return v.RecordType }).(pulumi.StringPtrOutput)
+}
+
+// Custom DNS resolver address (e.g. `8.8.8.8`).
+func (o SyntheticTestDnsCheckOutput) Resolver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *string { return v.Resolver }).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the DNS check (e.g. `5s`, `10s`).
+func (o SyntheticTestDnsCheckOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestDnsCheck) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestDnsCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestDnsCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestDnsCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestDnsCheckPtrOutput) ToSyntheticTestDnsCheckPtrOutput() SyntheticTestDnsCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestDnsCheckPtrOutput) ToSyntheticTestDnsCheckPtrOutputWithContext(ctx context.Context) SyntheticTestDnsCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestDnsCheckPtrOutput) Elem() SyntheticTestDnsCheckOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) SyntheticTestDnsCheck {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestDnsCheck
+		return ret
+	}).(SyntheticTestDnsCheckOutput)
+}
+
+// Whether to validate DNSSEC.
+func (o SyntheticTestDnsCheckPtrOutput) Dnssec() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Dnssec
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Required) The domain name to resolve.
+func (o SyntheticTestDnsCheckPtrOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Domain
+	}).(pulumi.StringPtrOutput)
+}
+
+// The DNS server port (1-65535). Defaults to 53.
+func (o SyntheticTestDnsCheckPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+func (o SyntheticTestDnsCheckPtrOutput) RecordType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RecordType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Custom DNS resolver address (e.g. `8.8.8.8`).
+func (o SyntheticTestDnsCheckPtrOutput) Resolver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Resolver
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the DNS check (e.g. `5s`, `10s`).
+func (o SyntheticTestDnsCheckPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestDnsCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheck struct {
+	// Whether to allow insecure TLS connections.
+	AllowInsecure *bool `pulumi:"allowInsecure"`
+	// HTTP authentication. Supports `basic`, `bearer`, or `none`.
+	Auth *SyntheticTestHttpCheckAuth `pulumi:"auth"`
+	// HTTP request body.
+	Body *SyntheticTestHttpCheckBody `pulumi:"body"`
+	// Whether to follow HTTP redirects.
+	FollowRedirects *bool `pulumi:"followRedirects"`
+	// HTTP headers to send with the request.
+	Headers map[string]string `pulumi:"headers"`
+	// (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+	Method *string `pulumi:"method"`
+	// Request timeout (e.g. `10s`, `30s`).
+	Timeout *string `pulumi:"timeout"`
+	// (Required) The URL to check (must include http:// or https://).
+	Url *string `pulumi:"url"`
+}
+
+// SyntheticTestHttpCheckInput is an input type that accepts SyntheticTestHttpCheckArgs and SyntheticTestHttpCheckOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckInput` via:
+//
+//	SyntheticTestHttpCheckArgs{...}
+type SyntheticTestHttpCheckInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckOutput() SyntheticTestHttpCheckOutput
+	ToSyntheticTestHttpCheckOutputWithContext(context.Context) SyntheticTestHttpCheckOutput
+}
+
+type SyntheticTestHttpCheckArgs struct {
+	// Whether to allow insecure TLS connections.
+	AllowInsecure pulumi.BoolPtrInput `pulumi:"allowInsecure"`
+	// HTTP authentication. Supports `basic`, `bearer`, or `none`.
+	Auth SyntheticTestHttpCheckAuthPtrInput `pulumi:"auth"`
+	// HTTP request body.
+	Body SyntheticTestHttpCheckBodyPtrInput `pulumi:"body"`
+	// Whether to follow HTTP redirects.
+	FollowRedirects pulumi.BoolPtrInput `pulumi:"followRedirects"`
+	// HTTP headers to send with the request.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// Request timeout (e.g. `10s`, `30s`).
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+	// (Required) The URL to check (must include http:// or https://).
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (SyntheticTestHttpCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheck)(nil)).Elem()
+}
+
+func (i SyntheticTestHttpCheckArgs) ToSyntheticTestHttpCheckOutput() SyntheticTestHttpCheckOutput {
+	return i.ToSyntheticTestHttpCheckOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckArgs) ToSyntheticTestHttpCheckOutputWithContext(ctx context.Context) SyntheticTestHttpCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckOutput)
+}
+
+func (i SyntheticTestHttpCheckArgs) ToSyntheticTestHttpCheckPtrOutput() SyntheticTestHttpCheckPtrOutput {
+	return i.ToSyntheticTestHttpCheckPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckArgs) ToSyntheticTestHttpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckOutput).ToSyntheticTestHttpCheckPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestHttpCheckPtrInput is an input type that accepts SyntheticTestHttpCheckArgs, SyntheticTestHttpCheckPtr and SyntheticTestHttpCheckPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckPtrInput` via:
+//
+//	        SyntheticTestHttpCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestHttpCheckPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckPtrOutput() SyntheticTestHttpCheckPtrOutput
+	ToSyntheticTestHttpCheckPtrOutputWithContext(context.Context) SyntheticTestHttpCheckPtrOutput
+}
+
+type syntheticTestHttpCheckPtrType SyntheticTestHttpCheckArgs
+
+func SyntheticTestHttpCheckPtr(v *SyntheticTestHttpCheckArgs) SyntheticTestHttpCheckPtrInput {
+	return (*syntheticTestHttpCheckPtrType)(v)
+}
+
+func (*syntheticTestHttpCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheck)(nil)).Elem()
+}
+
+func (i *syntheticTestHttpCheckPtrType) ToSyntheticTestHttpCheckPtrOutput() SyntheticTestHttpCheckPtrOutput {
+	return i.ToSyntheticTestHttpCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestHttpCheckPtrType) ToSyntheticTestHttpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckPtrOutput)
+}
+
+type SyntheticTestHttpCheckOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckOutput) ToSyntheticTestHttpCheckOutput() SyntheticTestHttpCheckOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckOutput) ToSyntheticTestHttpCheckOutputWithContext(ctx context.Context) SyntheticTestHttpCheckOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckOutput) ToSyntheticTestHttpCheckPtrOutput() SyntheticTestHttpCheckPtrOutput {
+	return o.ToSyntheticTestHttpCheckPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestHttpCheckOutput) ToSyntheticTestHttpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestHttpCheck) *SyntheticTestHttpCheck {
+		return &v
+	}).(SyntheticTestHttpCheckPtrOutput)
+}
+
+// Whether to allow insecure TLS connections.
+func (o SyntheticTestHttpCheckOutput) AllowInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *bool { return v.AllowInsecure }).(pulumi.BoolPtrOutput)
+}
+
+// HTTP authentication. Supports `basic`, `bearer`, or `none`.
+func (o SyntheticTestHttpCheckOutput) Auth() SyntheticTestHttpCheckAuthPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *SyntheticTestHttpCheckAuth { return v.Auth }).(SyntheticTestHttpCheckAuthPtrOutput)
+}
+
+// HTTP request body.
+func (o SyntheticTestHttpCheckOutput) Body() SyntheticTestHttpCheckBodyPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *SyntheticTestHttpCheckBody { return v.Body }).(SyntheticTestHttpCheckBodyPtrOutput)
+}
+
+// Whether to follow HTTP redirects.
+func (o SyntheticTestHttpCheckOutput) FollowRedirects() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *bool { return v.FollowRedirects }).(pulumi.BoolPtrOutput)
+}
+
+// HTTP headers to send with the request.
+func (o SyntheticTestHttpCheckOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+// (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+func (o SyntheticTestHttpCheckOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// Request timeout (e.g. `10s`, `30s`).
+func (o SyntheticTestHttpCheckOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// (Required) The URL to check (must include http:// or https://).
+func (o SyntheticTestHttpCheckOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheck) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckPtrOutput) ToSyntheticTestHttpCheckPtrOutput() SyntheticTestHttpCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckPtrOutput) ToSyntheticTestHttpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckPtrOutput) Elem() SyntheticTestHttpCheckOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) SyntheticTestHttpCheck {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestHttpCheck
+		return ret
+	}).(SyntheticTestHttpCheckOutput)
+}
+
+// Whether to allow insecure TLS connections.
+func (o SyntheticTestHttpCheckPtrOutput) AllowInsecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowInsecure
+	}).(pulumi.BoolPtrOutput)
+}
+
+// HTTP authentication. Supports `basic`, `bearer`, or `none`.
+func (o SyntheticTestHttpCheckPtrOutput) Auth() SyntheticTestHttpCheckAuthPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *SyntheticTestHttpCheckAuth {
+		if v == nil {
+			return nil
+		}
+		return v.Auth
+	}).(SyntheticTestHttpCheckAuthPtrOutput)
+}
+
+// HTTP request body.
+func (o SyntheticTestHttpCheckPtrOutput) Body() SyntheticTestHttpCheckBodyPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *SyntheticTestHttpCheckBody {
+		if v == nil {
+			return nil
+		}
+		return v.Body
+	}).(SyntheticTestHttpCheckBodyPtrOutput)
+}
+
+// Whether to follow HTTP redirects.
+func (o SyntheticTestHttpCheckPtrOutput) FollowRedirects() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.FollowRedirects
+	}).(pulumi.BoolPtrOutput)
+}
+
+// HTTP headers to send with the request.
+func (o SyntheticTestHttpCheckPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
+// (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+func (o SyntheticTestHttpCheckPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Request timeout (e.g. `10s`, `30s`).
+func (o SyntheticTestHttpCheckPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Required) The URL to check (must include http:// or https://).
+func (o SyntheticTestHttpCheckPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheckAuth struct {
+	// Password for basic auth. Supports `secretRef::store::<id>` references.
+	Password *string `pulumi:"password"`
+	// Token for bearer auth. Supports `secretRef::store::<id>` references.
+	Token *string `pulumi:"token"`
+	// Auth type: `basic`, `bearer`, or `none`.
+	Type *string `pulumi:"type"`
+	// Username for basic auth.
+	Username *string `pulumi:"username"`
+}
+
+// SyntheticTestHttpCheckAuthInput is an input type that accepts SyntheticTestHttpCheckAuthArgs and SyntheticTestHttpCheckAuthOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckAuthInput` via:
+//
+//	SyntheticTestHttpCheckAuthArgs{...}
+type SyntheticTestHttpCheckAuthInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckAuthOutput() SyntheticTestHttpCheckAuthOutput
+	ToSyntheticTestHttpCheckAuthOutputWithContext(context.Context) SyntheticTestHttpCheckAuthOutput
+}
+
+type SyntheticTestHttpCheckAuthArgs struct {
+	// Password for basic auth. Supports `secretRef::store::<id>` references.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Token for bearer auth. Supports `secretRef::store::<id>` references.
+	Token pulumi.StringPtrInput `pulumi:"token"`
+	// Auth type: `basic`, `bearer`, or `none`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Username for basic auth.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (SyntheticTestHttpCheckAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheckAuth)(nil)).Elem()
+}
+
+func (i SyntheticTestHttpCheckAuthArgs) ToSyntheticTestHttpCheckAuthOutput() SyntheticTestHttpCheckAuthOutput {
+	return i.ToSyntheticTestHttpCheckAuthOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckAuthArgs) ToSyntheticTestHttpCheckAuthOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckAuthOutput)
+}
+
+func (i SyntheticTestHttpCheckAuthArgs) ToSyntheticTestHttpCheckAuthPtrOutput() SyntheticTestHttpCheckAuthPtrOutput {
+	return i.ToSyntheticTestHttpCheckAuthPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckAuthArgs) ToSyntheticTestHttpCheckAuthPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckAuthOutput).ToSyntheticTestHttpCheckAuthPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestHttpCheckAuthPtrInput is an input type that accepts SyntheticTestHttpCheckAuthArgs, SyntheticTestHttpCheckAuthPtr and SyntheticTestHttpCheckAuthPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckAuthPtrInput` via:
+//
+//	        SyntheticTestHttpCheckAuthArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestHttpCheckAuthPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckAuthPtrOutput() SyntheticTestHttpCheckAuthPtrOutput
+	ToSyntheticTestHttpCheckAuthPtrOutputWithContext(context.Context) SyntheticTestHttpCheckAuthPtrOutput
+}
+
+type syntheticTestHttpCheckAuthPtrType SyntheticTestHttpCheckAuthArgs
+
+func SyntheticTestHttpCheckAuthPtr(v *SyntheticTestHttpCheckAuthArgs) SyntheticTestHttpCheckAuthPtrInput {
+	return (*syntheticTestHttpCheckAuthPtrType)(v)
+}
+
+func (*syntheticTestHttpCheckAuthPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheckAuth)(nil)).Elem()
+}
+
+func (i *syntheticTestHttpCheckAuthPtrType) ToSyntheticTestHttpCheckAuthPtrOutput() SyntheticTestHttpCheckAuthPtrOutput {
+	return i.ToSyntheticTestHttpCheckAuthPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestHttpCheckAuthPtrType) ToSyntheticTestHttpCheckAuthPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckAuthPtrOutput)
+}
+
+type SyntheticTestHttpCheckAuthOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckAuthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheckAuth)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckAuthOutput) ToSyntheticTestHttpCheckAuthOutput() SyntheticTestHttpCheckAuthOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckAuthOutput) ToSyntheticTestHttpCheckAuthOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckAuthOutput) ToSyntheticTestHttpCheckAuthPtrOutput() SyntheticTestHttpCheckAuthPtrOutput {
+	return o.ToSyntheticTestHttpCheckAuthPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestHttpCheckAuthOutput) ToSyntheticTestHttpCheckAuthPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestHttpCheckAuth) *SyntheticTestHttpCheckAuth {
+		return &v
+	}).(SyntheticTestHttpCheckAuthPtrOutput)
+}
+
+// Password for basic auth. Supports `secretRef::store::<id>` references.
+func (o SyntheticTestHttpCheckAuthOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckAuth) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Token for bearer auth. Supports `secretRef::store::<id>` references.
+func (o SyntheticTestHttpCheckAuthOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckAuth) *string { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// Auth type: `basic`, `bearer`, or `none`.
+func (o SyntheticTestHttpCheckAuthOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckAuth) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Username for basic auth.
+func (o SyntheticTestHttpCheckAuthOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckAuth) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheckAuthPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckAuthPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheckAuth)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckAuthPtrOutput) ToSyntheticTestHttpCheckAuthPtrOutput() SyntheticTestHttpCheckAuthPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckAuthPtrOutput) ToSyntheticTestHttpCheckAuthPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckAuthPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckAuthPtrOutput) Elem() SyntheticTestHttpCheckAuthOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckAuth) SyntheticTestHttpCheckAuth {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestHttpCheckAuth
+		return ret
+	}).(SyntheticTestHttpCheckAuthOutput)
+}
+
+// Password for basic auth. Supports `secretRef::store::<id>` references.
+func (o SyntheticTestHttpCheckAuthPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Token for bearer auth. Supports `secretRef::store::<id>` references.
+func (o SyntheticTestHttpCheckAuthPtrOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Token
+	}).(pulumi.StringPtrOutput)
+}
+
+// Auth type: `basic`, `bearer`, or `none`.
+func (o SyntheticTestHttpCheckAuthPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username for basic auth.
+func (o SyntheticTestHttpCheckAuthPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheckBody struct {
+	// Body content string.
+	Content *string `pulumi:"content"`
+	// Body content type: `json`, `text`, or `raw`.
+	Type *string `pulumi:"type"`
+}
+
+// SyntheticTestHttpCheckBodyInput is an input type that accepts SyntheticTestHttpCheckBodyArgs and SyntheticTestHttpCheckBodyOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckBodyInput` via:
+//
+//	SyntheticTestHttpCheckBodyArgs{...}
+type SyntheticTestHttpCheckBodyInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckBodyOutput() SyntheticTestHttpCheckBodyOutput
+	ToSyntheticTestHttpCheckBodyOutputWithContext(context.Context) SyntheticTestHttpCheckBodyOutput
+}
+
+type SyntheticTestHttpCheckBodyArgs struct {
+	// Body content string.
+	Content pulumi.StringPtrInput `pulumi:"content"`
+	// Body content type: `json`, `text`, or `raw`.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (SyntheticTestHttpCheckBodyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheckBody)(nil)).Elem()
+}
+
+func (i SyntheticTestHttpCheckBodyArgs) ToSyntheticTestHttpCheckBodyOutput() SyntheticTestHttpCheckBodyOutput {
+	return i.ToSyntheticTestHttpCheckBodyOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckBodyArgs) ToSyntheticTestHttpCheckBodyOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckBodyOutput)
+}
+
+func (i SyntheticTestHttpCheckBodyArgs) ToSyntheticTestHttpCheckBodyPtrOutput() SyntheticTestHttpCheckBodyPtrOutput {
+	return i.ToSyntheticTestHttpCheckBodyPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestHttpCheckBodyArgs) ToSyntheticTestHttpCheckBodyPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckBodyOutput).ToSyntheticTestHttpCheckBodyPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestHttpCheckBodyPtrInput is an input type that accepts SyntheticTestHttpCheckBodyArgs, SyntheticTestHttpCheckBodyPtr and SyntheticTestHttpCheckBodyPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestHttpCheckBodyPtrInput` via:
+//
+//	        SyntheticTestHttpCheckBodyArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestHttpCheckBodyPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestHttpCheckBodyPtrOutput() SyntheticTestHttpCheckBodyPtrOutput
+	ToSyntheticTestHttpCheckBodyPtrOutputWithContext(context.Context) SyntheticTestHttpCheckBodyPtrOutput
+}
+
+type syntheticTestHttpCheckBodyPtrType SyntheticTestHttpCheckBodyArgs
+
+func SyntheticTestHttpCheckBodyPtr(v *SyntheticTestHttpCheckBodyArgs) SyntheticTestHttpCheckBodyPtrInput {
+	return (*syntheticTestHttpCheckBodyPtrType)(v)
+}
+
+func (*syntheticTestHttpCheckBodyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheckBody)(nil)).Elem()
+}
+
+func (i *syntheticTestHttpCheckBodyPtrType) ToSyntheticTestHttpCheckBodyPtrOutput() SyntheticTestHttpCheckBodyPtrOutput {
+	return i.ToSyntheticTestHttpCheckBodyPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestHttpCheckBodyPtrType) ToSyntheticTestHttpCheckBodyPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestHttpCheckBodyPtrOutput)
+}
+
+type SyntheticTestHttpCheckBodyOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckBodyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestHttpCheckBody)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckBodyOutput) ToSyntheticTestHttpCheckBodyOutput() SyntheticTestHttpCheckBodyOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckBodyOutput) ToSyntheticTestHttpCheckBodyOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckBodyOutput) ToSyntheticTestHttpCheckBodyPtrOutput() SyntheticTestHttpCheckBodyPtrOutput {
+	return o.ToSyntheticTestHttpCheckBodyPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestHttpCheckBodyOutput) ToSyntheticTestHttpCheckBodyPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestHttpCheckBody) *SyntheticTestHttpCheckBody {
+		return &v
+	}).(SyntheticTestHttpCheckBodyPtrOutput)
+}
+
+// Body content string.
+func (o SyntheticTestHttpCheckBodyOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckBody) *string { return v.Content }).(pulumi.StringPtrOutput)
+}
+
+// Body content type: `json`, `text`, or `raw`.
+func (o SyntheticTestHttpCheckBodyOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestHttpCheckBody) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestHttpCheckBodyPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestHttpCheckBodyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestHttpCheckBody)(nil)).Elem()
+}
+
+func (o SyntheticTestHttpCheckBodyPtrOutput) ToSyntheticTestHttpCheckBodyPtrOutput() SyntheticTestHttpCheckBodyPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckBodyPtrOutput) ToSyntheticTestHttpCheckBodyPtrOutputWithContext(ctx context.Context) SyntheticTestHttpCheckBodyPtrOutput {
+	return o
+}
+
+func (o SyntheticTestHttpCheckBodyPtrOutput) Elem() SyntheticTestHttpCheckBodyOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckBody) SyntheticTestHttpCheckBody {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestHttpCheckBody
+		return ret
+	}).(SyntheticTestHttpCheckBodyOutput)
+}
+
+// Body content string.
+func (o SyntheticTestHttpCheckBodyPtrOutput) Content() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckBody) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Content
+	}).(pulumi.StringPtrOutput)
+}
+
+// Body content type: `json`, `text`, or `raw`.
+func (o SyntheticTestHttpCheckBodyPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestHttpCheckBody) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestMonitor struct {
+	// List of connected app IDs for direct notification delivery. Required when `notificationMethod` is `connectedApps`.
+	ConnectedApps []string `pulumi:"connectedApps"`
+	// Disable repeated notifications for the same issue.
+	DisableRenotification *bool `pulumi:"disableRenotification"`
+	// List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+	EnabledWorkflows []string `pulumi:"enabledWorkflows"`
+	// Evaluation interval settings for the monitor.
+	EvaluationInterval *SyntheticTestMonitorEvaluationInterval `pulumi:"evaluationInterval"`
+	// How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+	ExecutionErrorState *string `pulumi:"executionErrorState"`
+	// Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+	IssueDescription *string `pulumi:"issueDescription"`
+	// Summary template for issues created by this monitor. Supports Jinja2 templating.
+	IssueSummary *string `pulumi:"issueSummary"`
+	// The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+	LookbehindWindow *string `pulumi:"lookbehindWindow"`
+	// Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+	MonitorName *string `pulumi:"monitorName"`
+	// How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+	NoDataState *string `pulumi:"noDataState"`
+	// How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+	NotificationMethod *string `pulumi:"notificationMethod"`
+	// How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+	RenotificationInterval *string `pulumi:"renotificationInterval"`
+	// Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+	Severity *string `pulumi:"severity"`
+	// Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notificationMethod` is `connectedApps`.
+	StatusFilters []string `pulumi:"statusFilters"`
+}
+
+// SyntheticTestMonitorInput is an input type that accepts SyntheticTestMonitorArgs and SyntheticTestMonitorOutput values.
+// You can construct a concrete instance of `SyntheticTestMonitorInput` via:
+//
+//	SyntheticTestMonitorArgs{...}
+type SyntheticTestMonitorInput interface {
+	pulumi.Input
+
+	ToSyntheticTestMonitorOutput() SyntheticTestMonitorOutput
+	ToSyntheticTestMonitorOutputWithContext(context.Context) SyntheticTestMonitorOutput
+}
+
+type SyntheticTestMonitorArgs struct {
+	// List of connected app IDs for direct notification delivery. Required when `notificationMethod` is `connectedApps`.
+	ConnectedApps pulumi.StringArrayInput `pulumi:"connectedApps"`
+	// Disable repeated notifications for the same issue.
+	DisableRenotification pulumi.BoolPtrInput `pulumi:"disableRenotification"`
+	// List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+	EnabledWorkflows pulumi.StringArrayInput `pulumi:"enabledWorkflows"`
+	// Evaluation interval settings for the monitor.
+	EvaluationInterval SyntheticTestMonitorEvaluationIntervalPtrInput `pulumi:"evaluationInterval"`
+	// How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+	ExecutionErrorState pulumi.StringPtrInput `pulumi:"executionErrorState"`
+	// Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+	IssueDescription pulumi.StringPtrInput `pulumi:"issueDescription"`
+	// Summary template for issues created by this monitor. Supports Jinja2 templating.
+	IssueSummary pulumi.StringPtrInput `pulumi:"issueSummary"`
+	// The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+	LookbehindWindow pulumi.StringPtrInput `pulumi:"lookbehindWindow"`
+	// Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+	MonitorName pulumi.StringPtrInput `pulumi:"monitorName"`
+	// How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+	NoDataState pulumi.StringPtrInput `pulumi:"noDataState"`
+	// How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+	NotificationMethod pulumi.StringPtrInput `pulumi:"notificationMethod"`
+	// How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+	RenotificationInterval pulumi.StringPtrInput `pulumi:"renotificationInterval"`
+	// Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+	Severity pulumi.StringPtrInput `pulumi:"severity"`
+	// Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notificationMethod` is `connectedApps`.
+	StatusFilters pulumi.StringArrayInput `pulumi:"statusFilters"`
+}
+
+func (SyntheticTestMonitorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestMonitor)(nil)).Elem()
+}
+
+func (i SyntheticTestMonitorArgs) ToSyntheticTestMonitorOutput() SyntheticTestMonitorOutput {
+	return i.ToSyntheticTestMonitorOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestMonitorArgs) ToSyntheticTestMonitorOutputWithContext(ctx context.Context) SyntheticTestMonitorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorOutput)
+}
+
+func (i SyntheticTestMonitorArgs) ToSyntheticTestMonitorPtrOutput() SyntheticTestMonitorPtrOutput {
+	return i.ToSyntheticTestMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestMonitorArgs) ToSyntheticTestMonitorPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorOutput).ToSyntheticTestMonitorPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestMonitorPtrInput is an input type that accepts SyntheticTestMonitorArgs, SyntheticTestMonitorPtr and SyntheticTestMonitorPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestMonitorPtrInput` via:
+//
+//	        SyntheticTestMonitorArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestMonitorPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestMonitorPtrOutput() SyntheticTestMonitorPtrOutput
+	ToSyntheticTestMonitorPtrOutputWithContext(context.Context) SyntheticTestMonitorPtrOutput
+}
+
+type syntheticTestMonitorPtrType SyntheticTestMonitorArgs
+
+func SyntheticTestMonitorPtr(v *SyntheticTestMonitorArgs) SyntheticTestMonitorPtrInput {
+	return (*syntheticTestMonitorPtrType)(v)
+}
+
+func (*syntheticTestMonitorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestMonitor)(nil)).Elem()
+}
+
+func (i *syntheticTestMonitorPtrType) ToSyntheticTestMonitorPtrOutput() SyntheticTestMonitorPtrOutput {
+	return i.ToSyntheticTestMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestMonitorPtrType) ToSyntheticTestMonitorPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorPtrOutput)
+}
+
+type SyntheticTestMonitorOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestMonitorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestMonitor)(nil)).Elem()
+}
+
+func (o SyntheticTestMonitorOutput) ToSyntheticTestMonitorOutput() SyntheticTestMonitorOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorOutput) ToSyntheticTestMonitorOutputWithContext(ctx context.Context) SyntheticTestMonitorOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorOutput) ToSyntheticTestMonitorPtrOutput() SyntheticTestMonitorPtrOutput {
+	return o.ToSyntheticTestMonitorPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestMonitorOutput) ToSyntheticTestMonitorPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestMonitor) *SyntheticTestMonitor {
+		return &v
+	}).(SyntheticTestMonitorPtrOutput)
+}
+
+// List of connected app IDs for direct notification delivery. Required when `notificationMethod` is `connectedApps`.
+func (o SyntheticTestMonitorOutput) ConnectedApps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) []string { return v.ConnectedApps }).(pulumi.StringArrayOutput)
+}
+
+// Disable repeated notifications for the same issue.
+func (o SyntheticTestMonitorOutput) DisableRenotification() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *bool { return v.DisableRenotification }).(pulumi.BoolPtrOutput)
+}
+
+// List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+func (o SyntheticTestMonitorOutput) EnabledWorkflows() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) []string { return v.EnabledWorkflows }).(pulumi.StringArrayOutput)
+}
+
+// Evaluation interval settings for the monitor.
+func (o SyntheticTestMonitorOutput) EvaluationInterval() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *SyntheticTestMonitorEvaluationInterval { return v.EvaluationInterval }).(SyntheticTestMonitorEvaluationIntervalPtrOutput)
+}
+
+// How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+func (o SyntheticTestMonitorOutput) ExecutionErrorState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.ExecutionErrorState }).(pulumi.StringPtrOutput)
+}
+
+// Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+func (o SyntheticTestMonitorOutput) IssueDescription() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.IssueDescription }).(pulumi.StringPtrOutput)
+}
+
+// Summary template for issues created by this monitor. Supports Jinja2 templating.
+func (o SyntheticTestMonitorOutput) IssueSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.IssueSummary }).(pulumi.StringPtrOutput)
+}
+
+// The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+func (o SyntheticTestMonitorOutput) LookbehindWindow() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.LookbehindWindow }).(pulumi.StringPtrOutput)
+}
+
+// Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+func (o SyntheticTestMonitorOutput) MonitorName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.MonitorName }).(pulumi.StringPtrOutput)
+}
+
+// How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+func (o SyntheticTestMonitorOutput) NoDataState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.NoDataState }).(pulumi.StringPtrOutput)
+}
+
+// How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+func (o SyntheticTestMonitorOutput) NotificationMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.NotificationMethod }).(pulumi.StringPtrOutput)
+}
+
+// How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+func (o SyntheticTestMonitorOutput) RenotificationInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.RenotificationInterval }).(pulumi.StringPtrOutput)
+}
+
+// Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+func (o SyntheticTestMonitorOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) *string { return v.Severity }).(pulumi.StringPtrOutput)
+}
+
+// Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notificationMethod` is `connectedApps`.
+func (o SyntheticTestMonitorOutput) StatusFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SyntheticTestMonitor) []string { return v.StatusFilters }).(pulumi.StringArrayOutput)
+}
+
+type SyntheticTestMonitorPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestMonitorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestMonitor)(nil)).Elem()
+}
+
+func (o SyntheticTestMonitorPtrOutput) ToSyntheticTestMonitorPtrOutput() SyntheticTestMonitorPtrOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorPtrOutput) ToSyntheticTestMonitorPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorPtrOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorPtrOutput) Elem() SyntheticTestMonitorOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) SyntheticTestMonitor {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestMonitor
+		return ret
+	}).(SyntheticTestMonitorOutput)
+}
+
+// List of connected app IDs for direct notification delivery. Required when `notificationMethod` is `connectedApps`.
+func (o SyntheticTestMonitorPtrOutput) ConnectedApps() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectedApps
+	}).(pulumi.StringArrayOutput)
+}
+
+// Disable repeated notifications for the same issue.
+func (o SyntheticTestMonitorPtrOutput) DisableRenotification() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisableRenotification
+	}).(pulumi.BoolPtrOutput)
+}
+
+// List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+func (o SyntheticTestMonitorPtrOutput) EnabledWorkflows() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnabledWorkflows
+	}).(pulumi.StringArrayOutput)
+}
+
+// Evaluation interval settings for the monitor.
+func (o SyntheticTestMonitorPtrOutput) EvaluationInterval() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *SyntheticTestMonitorEvaluationInterval {
+		if v == nil {
+			return nil
+		}
+		return v.EvaluationInterval
+	}).(SyntheticTestMonitorEvaluationIntervalPtrOutput)
+}
+
+// How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+func (o SyntheticTestMonitorPtrOutput) ExecutionErrorState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExecutionErrorState
+	}).(pulumi.StringPtrOutput)
+}
+
+// Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+func (o SyntheticTestMonitorPtrOutput) IssueDescription() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IssueDescription
+	}).(pulumi.StringPtrOutput)
+}
+
+// Summary template for issues created by this monitor. Supports Jinja2 templating.
+func (o SyntheticTestMonitorPtrOutput) IssueSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IssueSummary
+	}).(pulumi.StringPtrOutput)
+}
+
+// The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+func (o SyntheticTestMonitorPtrOutput) LookbehindWindow() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LookbehindWindow
+	}).(pulumi.StringPtrOutput)
+}
+
+// Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+func (o SyntheticTestMonitorPtrOutput) MonitorName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MonitorName
+	}).(pulumi.StringPtrOutput)
+}
+
+// How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+func (o SyntheticTestMonitorPtrOutput) NoDataState() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NoDataState
+	}).(pulumi.StringPtrOutput)
+}
+
+// How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+func (o SyntheticTestMonitorPtrOutput) NotificationMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NotificationMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+func (o SyntheticTestMonitorPtrOutput) RenotificationInterval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RenotificationInterval
+	}).(pulumi.StringPtrOutput)
+}
+
+// Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+func (o SyntheticTestMonitorPtrOutput) Severity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Severity
+	}).(pulumi.StringPtrOutput)
+}
+
+// Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notificationMethod` is `connectedApps`.
+func (o SyntheticTestMonitorPtrOutput) StatusFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitor) []string {
+		if v == nil {
+			return nil
+		}
+		return v.StatusFilters
+	}).(pulumi.StringArrayOutput)
+}
+
+type SyntheticTestMonitorEvaluationInterval struct {
+	// How often the monitor evaluates (e.g. `1m`, `5m`).
+	Interval *string `pulumi:"interval"`
+	// How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+	PendingFor *string `pulumi:"pendingFor"`
+}
+
+// SyntheticTestMonitorEvaluationIntervalInput is an input type that accepts SyntheticTestMonitorEvaluationIntervalArgs and SyntheticTestMonitorEvaluationIntervalOutput values.
+// You can construct a concrete instance of `SyntheticTestMonitorEvaluationIntervalInput` via:
+//
+//	SyntheticTestMonitorEvaluationIntervalArgs{...}
+type SyntheticTestMonitorEvaluationIntervalInput interface {
+	pulumi.Input
+
+	ToSyntheticTestMonitorEvaluationIntervalOutput() SyntheticTestMonitorEvaluationIntervalOutput
+	ToSyntheticTestMonitorEvaluationIntervalOutputWithContext(context.Context) SyntheticTestMonitorEvaluationIntervalOutput
+}
+
+type SyntheticTestMonitorEvaluationIntervalArgs struct {
+	// How often the monitor evaluates (e.g. `1m`, `5m`).
+	Interval pulumi.StringPtrInput `pulumi:"interval"`
+	// How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+	PendingFor pulumi.StringPtrInput `pulumi:"pendingFor"`
+}
+
+func (SyntheticTestMonitorEvaluationIntervalArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestMonitorEvaluationInterval)(nil)).Elem()
+}
+
+func (i SyntheticTestMonitorEvaluationIntervalArgs) ToSyntheticTestMonitorEvaluationIntervalOutput() SyntheticTestMonitorEvaluationIntervalOutput {
+	return i.ToSyntheticTestMonitorEvaluationIntervalOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestMonitorEvaluationIntervalArgs) ToSyntheticTestMonitorEvaluationIntervalOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorEvaluationIntervalOutput)
+}
+
+func (i SyntheticTestMonitorEvaluationIntervalArgs) ToSyntheticTestMonitorEvaluationIntervalPtrOutput() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return i.ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestMonitorEvaluationIntervalArgs) ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorEvaluationIntervalOutput).ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestMonitorEvaluationIntervalPtrInput is an input type that accepts SyntheticTestMonitorEvaluationIntervalArgs, SyntheticTestMonitorEvaluationIntervalPtr and SyntheticTestMonitorEvaluationIntervalPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestMonitorEvaluationIntervalPtrInput` via:
+//
+//	        SyntheticTestMonitorEvaluationIntervalArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestMonitorEvaluationIntervalPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestMonitorEvaluationIntervalPtrOutput() SyntheticTestMonitorEvaluationIntervalPtrOutput
+	ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(context.Context) SyntheticTestMonitorEvaluationIntervalPtrOutput
+}
+
+type syntheticTestMonitorEvaluationIntervalPtrType SyntheticTestMonitorEvaluationIntervalArgs
+
+func SyntheticTestMonitorEvaluationIntervalPtr(v *SyntheticTestMonitorEvaluationIntervalArgs) SyntheticTestMonitorEvaluationIntervalPtrInput {
+	return (*syntheticTestMonitorEvaluationIntervalPtrType)(v)
+}
+
+func (*syntheticTestMonitorEvaluationIntervalPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestMonitorEvaluationInterval)(nil)).Elem()
+}
+
+func (i *syntheticTestMonitorEvaluationIntervalPtrType) ToSyntheticTestMonitorEvaluationIntervalPtrOutput() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return i.ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestMonitorEvaluationIntervalPtrType) ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestMonitorEvaluationIntervalPtrOutput)
+}
+
+type SyntheticTestMonitorEvaluationIntervalOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestMonitorEvaluationIntervalOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestMonitorEvaluationInterval)(nil)).Elem()
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalOutput) ToSyntheticTestMonitorEvaluationIntervalOutput() SyntheticTestMonitorEvaluationIntervalOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalOutput) ToSyntheticTestMonitorEvaluationIntervalOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalOutput) ToSyntheticTestMonitorEvaluationIntervalPtrOutput() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o.ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalOutput) ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestMonitorEvaluationInterval) *SyntheticTestMonitorEvaluationInterval {
+		return &v
+	}).(SyntheticTestMonitorEvaluationIntervalPtrOutput)
+}
+
+// How often the monitor evaluates (e.g. `1m`, `5m`).
+func (o SyntheticTestMonitorEvaluationIntervalOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitorEvaluationInterval) *string { return v.Interval }).(pulumi.StringPtrOutput)
+}
+
+// How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+func (o SyntheticTestMonitorEvaluationIntervalOutput) PendingFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestMonitorEvaluationInterval) *string { return v.PendingFor }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestMonitorEvaluationIntervalPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestMonitorEvaluationIntervalPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestMonitorEvaluationInterval)(nil)).Elem()
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalPtrOutput) ToSyntheticTestMonitorEvaluationIntervalPtrOutput() SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalPtrOutput) ToSyntheticTestMonitorEvaluationIntervalPtrOutputWithContext(ctx context.Context) SyntheticTestMonitorEvaluationIntervalPtrOutput {
+	return o
+}
+
+func (o SyntheticTestMonitorEvaluationIntervalPtrOutput) Elem() SyntheticTestMonitorEvaluationIntervalOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitorEvaluationInterval) SyntheticTestMonitorEvaluationInterval {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestMonitorEvaluationInterval
+		return ret
+	}).(SyntheticTestMonitorEvaluationIntervalOutput)
+}
+
+// How often the monitor evaluates (e.g. `1m`, `5m`).
+func (o SyntheticTestMonitorEvaluationIntervalPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitorEvaluationInterval) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
+// How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+func (o SyntheticTestMonitorEvaluationIntervalPtrOutput) PendingFor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestMonitorEvaluationInterval) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PendingFor
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestRetry struct {
+	// Number of retry attempts.
+	Count *int `pulumi:"count"`
+	// Delay between retries (e.g. `1s`, `500ms`).
+	Interval *string `pulumi:"interval"`
+}
+
+// SyntheticTestRetryInput is an input type that accepts SyntheticTestRetryArgs and SyntheticTestRetryOutput values.
+// You can construct a concrete instance of `SyntheticTestRetryInput` via:
+//
+//	SyntheticTestRetryArgs{...}
+type SyntheticTestRetryInput interface {
+	pulumi.Input
+
+	ToSyntheticTestRetryOutput() SyntheticTestRetryOutput
+	ToSyntheticTestRetryOutputWithContext(context.Context) SyntheticTestRetryOutput
+}
+
+type SyntheticTestRetryArgs struct {
+	// Number of retry attempts.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// Delay between retries (e.g. `1s`, `500ms`).
+	Interval pulumi.StringPtrInput `pulumi:"interval"`
+}
+
+func (SyntheticTestRetryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestRetry)(nil)).Elem()
+}
+
+func (i SyntheticTestRetryArgs) ToSyntheticTestRetryOutput() SyntheticTestRetryOutput {
+	return i.ToSyntheticTestRetryOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestRetryArgs) ToSyntheticTestRetryOutputWithContext(ctx context.Context) SyntheticTestRetryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestRetryOutput)
+}
+
+func (i SyntheticTestRetryArgs) ToSyntheticTestRetryPtrOutput() SyntheticTestRetryPtrOutput {
+	return i.ToSyntheticTestRetryPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestRetryArgs) ToSyntheticTestRetryPtrOutputWithContext(ctx context.Context) SyntheticTestRetryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestRetryOutput).ToSyntheticTestRetryPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestRetryPtrInput is an input type that accepts SyntheticTestRetryArgs, SyntheticTestRetryPtr and SyntheticTestRetryPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestRetryPtrInput` via:
+//
+//	        SyntheticTestRetryArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestRetryPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestRetryPtrOutput() SyntheticTestRetryPtrOutput
+	ToSyntheticTestRetryPtrOutputWithContext(context.Context) SyntheticTestRetryPtrOutput
+}
+
+type syntheticTestRetryPtrType SyntheticTestRetryArgs
+
+func SyntheticTestRetryPtr(v *SyntheticTestRetryArgs) SyntheticTestRetryPtrInput {
+	return (*syntheticTestRetryPtrType)(v)
+}
+
+func (*syntheticTestRetryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestRetry)(nil)).Elem()
+}
+
+func (i *syntheticTestRetryPtrType) ToSyntheticTestRetryPtrOutput() SyntheticTestRetryPtrOutput {
+	return i.ToSyntheticTestRetryPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestRetryPtrType) ToSyntheticTestRetryPtrOutputWithContext(ctx context.Context) SyntheticTestRetryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestRetryPtrOutput)
+}
+
+type SyntheticTestRetryOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestRetryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestRetry)(nil)).Elem()
+}
+
+func (o SyntheticTestRetryOutput) ToSyntheticTestRetryOutput() SyntheticTestRetryOutput {
+	return o
+}
+
+func (o SyntheticTestRetryOutput) ToSyntheticTestRetryOutputWithContext(ctx context.Context) SyntheticTestRetryOutput {
+	return o
+}
+
+func (o SyntheticTestRetryOutput) ToSyntheticTestRetryPtrOutput() SyntheticTestRetryPtrOutput {
+	return o.ToSyntheticTestRetryPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestRetryOutput) ToSyntheticTestRetryPtrOutputWithContext(ctx context.Context) SyntheticTestRetryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestRetry) *SyntheticTestRetry {
+		return &v
+	}).(SyntheticTestRetryPtrOutput)
+}
+
+// Number of retry attempts.
+func (o SyntheticTestRetryOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SyntheticTestRetry) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+// Delay between retries (e.g. `1s`, `500ms`).
+func (o SyntheticTestRetryOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestRetry) *string { return v.Interval }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestRetryPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestRetryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestRetry)(nil)).Elem()
+}
+
+func (o SyntheticTestRetryPtrOutput) ToSyntheticTestRetryPtrOutput() SyntheticTestRetryPtrOutput {
+	return o
+}
+
+func (o SyntheticTestRetryPtrOutput) ToSyntheticTestRetryPtrOutputWithContext(ctx context.Context) SyntheticTestRetryPtrOutput {
+	return o
+}
+
+func (o SyntheticTestRetryPtrOutput) Elem() SyntheticTestRetryOutput {
+	return o.ApplyT(func(v *SyntheticTestRetry) SyntheticTestRetry {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestRetry
+		return ret
+	}).(SyntheticTestRetryOutput)
+}
+
+// Number of retry attempts.
+func (o SyntheticTestRetryPtrOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestRetry) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Count
+	}).(pulumi.IntPtrOutput)
+}
+
+// Delay between retries (e.g. `1s`, `500ms`).
+func (o SyntheticTestRetryPtrOutput) Interval() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestRetry) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Interval
+	}).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestSslCheck struct {
+	// (Required) The hostname to connect to for the SSL check.
+	Host *string `pulumi:"host"`
+	// Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+	MinVersion *string `pulumi:"minVersion"`
+	// (Required) The port to connect to (1-65535).
+	Port *int `pulumi:"port"`
+	// Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+	Sni *string `pulumi:"sni"`
+	// Timeout for the SSL check (e.g. `5s`, `10s`).
+	Timeout *string `pulumi:"timeout"`
+	// Whether to verify the SSL certificate.
+	Verify *bool `pulumi:"verify"`
+}
+
+// SyntheticTestSslCheckInput is an input type that accepts SyntheticTestSslCheckArgs and SyntheticTestSslCheckOutput values.
+// You can construct a concrete instance of `SyntheticTestSslCheckInput` via:
+//
+//	SyntheticTestSslCheckArgs{...}
+type SyntheticTestSslCheckInput interface {
+	pulumi.Input
+
+	ToSyntheticTestSslCheckOutput() SyntheticTestSslCheckOutput
+	ToSyntheticTestSslCheckOutputWithContext(context.Context) SyntheticTestSslCheckOutput
+}
+
+type SyntheticTestSslCheckArgs struct {
+	// (Required) The hostname to connect to for the SSL check.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+	MinVersion pulumi.StringPtrInput `pulumi:"minVersion"`
+	// (Required) The port to connect to (1-65535).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+	Sni pulumi.StringPtrInput `pulumi:"sni"`
+	// Timeout for the SSL check (e.g. `5s`, `10s`).
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+	// Whether to verify the SSL certificate.
+	Verify pulumi.BoolPtrInput `pulumi:"verify"`
+}
+
+func (SyntheticTestSslCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestSslCheck)(nil)).Elem()
+}
+
+func (i SyntheticTestSslCheckArgs) ToSyntheticTestSslCheckOutput() SyntheticTestSslCheckOutput {
+	return i.ToSyntheticTestSslCheckOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestSslCheckArgs) ToSyntheticTestSslCheckOutputWithContext(ctx context.Context) SyntheticTestSslCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestSslCheckOutput)
+}
+
+func (i SyntheticTestSslCheckArgs) ToSyntheticTestSslCheckPtrOutput() SyntheticTestSslCheckPtrOutput {
+	return i.ToSyntheticTestSslCheckPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestSslCheckArgs) ToSyntheticTestSslCheckPtrOutputWithContext(ctx context.Context) SyntheticTestSslCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestSslCheckOutput).ToSyntheticTestSslCheckPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestSslCheckPtrInput is an input type that accepts SyntheticTestSslCheckArgs, SyntheticTestSslCheckPtr and SyntheticTestSslCheckPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestSslCheckPtrInput` via:
+//
+//	        SyntheticTestSslCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestSslCheckPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestSslCheckPtrOutput() SyntheticTestSslCheckPtrOutput
+	ToSyntheticTestSslCheckPtrOutputWithContext(context.Context) SyntheticTestSslCheckPtrOutput
+}
+
+type syntheticTestSslCheckPtrType SyntheticTestSslCheckArgs
+
+func SyntheticTestSslCheckPtr(v *SyntheticTestSslCheckArgs) SyntheticTestSslCheckPtrInput {
+	return (*syntheticTestSslCheckPtrType)(v)
+}
+
+func (*syntheticTestSslCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestSslCheck)(nil)).Elem()
+}
+
+func (i *syntheticTestSslCheckPtrType) ToSyntheticTestSslCheckPtrOutput() SyntheticTestSslCheckPtrOutput {
+	return i.ToSyntheticTestSslCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestSslCheckPtrType) ToSyntheticTestSslCheckPtrOutputWithContext(ctx context.Context) SyntheticTestSslCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestSslCheckPtrOutput)
+}
+
+type SyntheticTestSslCheckOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestSslCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestSslCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestSslCheckOutput) ToSyntheticTestSslCheckOutput() SyntheticTestSslCheckOutput {
+	return o
+}
+
+func (o SyntheticTestSslCheckOutput) ToSyntheticTestSslCheckOutputWithContext(ctx context.Context) SyntheticTestSslCheckOutput {
+	return o
+}
+
+func (o SyntheticTestSslCheckOutput) ToSyntheticTestSslCheckPtrOutput() SyntheticTestSslCheckPtrOutput {
+	return o.ToSyntheticTestSslCheckPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestSslCheckOutput) ToSyntheticTestSslCheckPtrOutputWithContext(ctx context.Context) SyntheticTestSslCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestSslCheck) *SyntheticTestSslCheck {
+		return &v
+	}).(SyntheticTestSslCheckPtrOutput)
+}
+
+// (Required) The hostname to connect to for the SSL check.
+func (o SyntheticTestSslCheckOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+func (o SyntheticTestSslCheckOutput) MinVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *string { return v.MinVersion }).(pulumi.StringPtrOutput)
+}
+
+// (Required) The port to connect to (1-65535).
+func (o SyntheticTestSslCheckOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+func (o SyntheticTestSslCheckOutput) Sni() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *string { return v.Sni }).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the SSL check (e.g. `5s`, `10s`).
+func (o SyntheticTestSslCheckOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+// Whether to verify the SSL certificate.
+func (o SyntheticTestSslCheckOutput) Verify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestSslCheck) *bool { return v.Verify }).(pulumi.BoolPtrOutput)
+}
+
+type SyntheticTestSslCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestSslCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestSslCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestSslCheckPtrOutput) ToSyntheticTestSslCheckPtrOutput() SyntheticTestSslCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestSslCheckPtrOutput) ToSyntheticTestSslCheckPtrOutputWithContext(ctx context.Context) SyntheticTestSslCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestSslCheckPtrOutput) Elem() SyntheticTestSslCheckOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) SyntheticTestSslCheck {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestSslCheck
+		return ret
+	}).(SyntheticTestSslCheckOutput)
+}
+
+// (Required) The hostname to connect to for the SSL check.
+func (o SyntheticTestSslCheckPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+func (o SyntheticTestSslCheckPtrOutput) MinVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Required) The port to connect to (1-65535).
+func (o SyntheticTestSslCheckPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+func (o SyntheticTestSslCheckPtrOutput) Sni() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Sni
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the SSL check (e.g. `5s`, `10s`).
+func (o SyntheticTestSslCheckPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// Whether to verify the SSL certificate.
+func (o SyntheticTestSslCheckPtrOutput) Verify() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestSslCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Verify
+	}).(pulumi.BoolPtrOutput)
+}
+
+type SyntheticTestTcpCheck struct {
+	// Whether to expect a response from the TCP endpoint.
+	ExpectResponse *bool `pulumi:"expectResponse"`
+	// (Required) The hostname to connect to for the TCP check.
+	Host *string `pulumi:"host"`
+	// (Required) The port to connect to (1-65535).
+	Port *int `pulumi:"port"`
+	// Maximum number of bytes to receive in the response.
+	ReceiveMaxBytes *int `pulumi:"receiveMaxBytes"`
+	// Data to send over the TCP connection.
+	Send *string `pulumi:"send"`
+	// Timeout for the TCP check (e.g. `5s`, `10s`).
+	Timeout *string `pulumi:"timeout"`
+}
+
+// SyntheticTestTcpCheckInput is an input type that accepts SyntheticTestTcpCheckArgs and SyntheticTestTcpCheckOutput values.
+// You can construct a concrete instance of `SyntheticTestTcpCheckInput` via:
+//
+//	SyntheticTestTcpCheckArgs{...}
+type SyntheticTestTcpCheckInput interface {
+	pulumi.Input
+
+	ToSyntheticTestTcpCheckOutput() SyntheticTestTcpCheckOutput
+	ToSyntheticTestTcpCheckOutputWithContext(context.Context) SyntheticTestTcpCheckOutput
+}
+
+type SyntheticTestTcpCheckArgs struct {
+	// Whether to expect a response from the TCP endpoint.
+	ExpectResponse pulumi.BoolPtrInput `pulumi:"expectResponse"`
+	// (Required) The hostname to connect to for the TCP check.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+	// (Required) The port to connect to (1-65535).
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Maximum number of bytes to receive in the response.
+	ReceiveMaxBytes pulumi.IntPtrInput `pulumi:"receiveMaxBytes"`
+	// Data to send over the TCP connection.
+	Send pulumi.StringPtrInput `pulumi:"send"`
+	// Timeout for the TCP check (e.g. `5s`, `10s`).
+	Timeout pulumi.StringPtrInput `pulumi:"timeout"`
+}
+
+func (SyntheticTestTcpCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestTcpCheck)(nil)).Elem()
+}
+
+func (i SyntheticTestTcpCheckArgs) ToSyntheticTestTcpCheckOutput() SyntheticTestTcpCheckOutput {
+	return i.ToSyntheticTestTcpCheckOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestTcpCheckArgs) ToSyntheticTestTcpCheckOutputWithContext(ctx context.Context) SyntheticTestTcpCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestTcpCheckOutput)
+}
+
+func (i SyntheticTestTcpCheckArgs) ToSyntheticTestTcpCheckPtrOutput() SyntheticTestTcpCheckPtrOutput {
+	return i.ToSyntheticTestTcpCheckPtrOutputWithContext(context.Background())
+}
+
+func (i SyntheticTestTcpCheckArgs) ToSyntheticTestTcpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestTcpCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestTcpCheckOutput).ToSyntheticTestTcpCheckPtrOutputWithContext(ctx)
+}
+
+// SyntheticTestTcpCheckPtrInput is an input type that accepts SyntheticTestTcpCheckArgs, SyntheticTestTcpCheckPtr and SyntheticTestTcpCheckPtrOutput values.
+// You can construct a concrete instance of `SyntheticTestTcpCheckPtrInput` via:
+//
+//	        SyntheticTestTcpCheckArgs{...}
+//
+//	or:
+//
+//	        nil
+type SyntheticTestTcpCheckPtrInput interface {
+	pulumi.Input
+
+	ToSyntheticTestTcpCheckPtrOutput() SyntheticTestTcpCheckPtrOutput
+	ToSyntheticTestTcpCheckPtrOutputWithContext(context.Context) SyntheticTestTcpCheckPtrOutput
+}
+
+type syntheticTestTcpCheckPtrType SyntheticTestTcpCheckArgs
+
+func SyntheticTestTcpCheckPtr(v *SyntheticTestTcpCheckArgs) SyntheticTestTcpCheckPtrInput {
+	return (*syntheticTestTcpCheckPtrType)(v)
+}
+
+func (*syntheticTestTcpCheckPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestTcpCheck)(nil)).Elem()
+}
+
+func (i *syntheticTestTcpCheckPtrType) ToSyntheticTestTcpCheckPtrOutput() SyntheticTestTcpCheckPtrOutput {
+	return i.ToSyntheticTestTcpCheckPtrOutputWithContext(context.Background())
+}
+
+func (i *syntheticTestTcpCheckPtrType) ToSyntheticTestTcpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestTcpCheckPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SyntheticTestTcpCheckPtrOutput)
+}
+
+type SyntheticTestTcpCheckOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestTcpCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SyntheticTestTcpCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestTcpCheckOutput) ToSyntheticTestTcpCheckOutput() SyntheticTestTcpCheckOutput {
+	return o
+}
+
+func (o SyntheticTestTcpCheckOutput) ToSyntheticTestTcpCheckOutputWithContext(ctx context.Context) SyntheticTestTcpCheckOutput {
+	return o
+}
+
+func (o SyntheticTestTcpCheckOutput) ToSyntheticTestTcpCheckPtrOutput() SyntheticTestTcpCheckPtrOutput {
+	return o.ToSyntheticTestTcpCheckPtrOutputWithContext(context.Background())
+}
+
+func (o SyntheticTestTcpCheckOutput) ToSyntheticTestTcpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestTcpCheckPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SyntheticTestTcpCheck) *SyntheticTestTcpCheck {
+		return &v
+	}).(SyntheticTestTcpCheckPtrOutput)
+}
+
+// Whether to expect a response from the TCP endpoint.
+func (o SyntheticTestTcpCheckOutput) ExpectResponse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *bool { return v.ExpectResponse }).(pulumi.BoolPtrOutput)
+}
+
+// (Required) The hostname to connect to for the TCP check.
+func (o SyntheticTestTcpCheckOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+// (Required) The port to connect to (1-65535).
+func (o SyntheticTestTcpCheckOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Maximum number of bytes to receive in the response.
+func (o SyntheticTestTcpCheckOutput) ReceiveMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *int { return v.ReceiveMaxBytes }).(pulumi.IntPtrOutput)
+}
+
+// Data to send over the TCP connection.
+func (o SyntheticTestTcpCheckOutput) Send() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *string { return v.Send }).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the TCP check (e.g. `5s`, `10s`).
+func (o SyntheticTestTcpCheckOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SyntheticTestTcpCheck) *string { return v.Timeout }).(pulumi.StringPtrOutput)
+}
+
+type SyntheticTestTcpCheckPtrOutput struct{ *pulumi.OutputState }
+
+func (SyntheticTestTcpCheckPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SyntheticTestTcpCheck)(nil)).Elem()
+}
+
+func (o SyntheticTestTcpCheckPtrOutput) ToSyntheticTestTcpCheckPtrOutput() SyntheticTestTcpCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestTcpCheckPtrOutput) ToSyntheticTestTcpCheckPtrOutputWithContext(ctx context.Context) SyntheticTestTcpCheckPtrOutput {
+	return o
+}
+
+func (o SyntheticTestTcpCheckPtrOutput) Elem() SyntheticTestTcpCheckOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) SyntheticTestTcpCheck {
+		if v != nil {
+			return *v
+		}
+		var ret SyntheticTestTcpCheck
+		return ret
+	}).(SyntheticTestTcpCheckOutput)
+}
+
+// Whether to expect a response from the TCP endpoint.
+func (o SyntheticTestTcpCheckPtrOutput) ExpectResponse() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ExpectResponse
+	}).(pulumi.BoolPtrOutput)
+}
+
+// (Required) The hostname to connect to for the TCP check.
+func (o SyntheticTestTcpCheckPtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Required) The port to connect to (1-65535).
+func (o SyntheticTestTcpCheckPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+// Maximum number of bytes to receive in the response.
+func (o SyntheticTestTcpCheckPtrOutput) ReceiveMaxBytes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ReceiveMaxBytes
+	}).(pulumi.IntPtrOutput)
+}
+
+// Data to send over the TCP connection.
+func (o SyntheticTestTcpCheckPtrOutput) Send() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Send
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout for the TCP check (e.g. `5s`, `10s`).
+func (o SyntheticTestTcpCheckPtrOutput) Timeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyntheticTestTcpCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Timeout
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ApikeyPolicyInput)(nil)).Elem(), ApikeyPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ApikeyPolicyArrayInput)(nil)).Elem(), ApikeyPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteNotificationSettingsInput)(nil)).Elem(), NotificationRouteNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteNotificationSettingsPtrInput)(nil)).Elem(), NotificationRouteNotificationSettingsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteRouteInput)(nil)).Elem(), NotificationRouteRouteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteRouteArrayInput)(nil)).Elem(), NotificationRouteRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteRouteConnectedAppInput)(nil)).Elem(), NotificationRouteRouteConnectedAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NotificationRouteRouteConnectedAppArrayInput)(nil)).Elem(), NotificationRouteRouteConnectedAppArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopeInput)(nil)).Elem(), PolicyDataScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopePtrInput)(nil)).Elem(), PolicyDataScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopeAdvancedInput)(nil)).Elem(), PolicyDataScopeAdvancedArgs{})
@@ -2973,8 +5597,36 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopeSimpleConditionArrayInput)(nil)).Elem(), PolicyDataScopeSimpleConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopeSimpleConditionFilterInput)(nil)).Elem(), PolicyDataScopeSimpleConditionFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyDataScopeSimpleConditionFilterArrayInput)(nil)).Elem(), PolicyDataScopeSimpleConditionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilenceMatcherInput)(nil)).Elem(), SilenceMatcherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SilenceMatcherArrayInput)(nil)).Elem(), SilenceMatcherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestAssertionInput)(nil)).Elem(), SyntheticTestAssertionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestAssertionArrayInput)(nil)).Elem(), SyntheticTestAssertionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestDnsCheckInput)(nil)).Elem(), SyntheticTestDnsCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestDnsCheckPtrInput)(nil)).Elem(), SyntheticTestDnsCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckInput)(nil)).Elem(), SyntheticTestHttpCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckPtrInput)(nil)).Elem(), SyntheticTestHttpCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckAuthInput)(nil)).Elem(), SyntheticTestHttpCheckAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckAuthPtrInput)(nil)).Elem(), SyntheticTestHttpCheckAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckBodyInput)(nil)).Elem(), SyntheticTestHttpCheckBodyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestHttpCheckBodyPtrInput)(nil)).Elem(), SyntheticTestHttpCheckBodyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestMonitorInput)(nil)).Elem(), SyntheticTestMonitorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestMonitorPtrInput)(nil)).Elem(), SyntheticTestMonitorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestMonitorEvaluationIntervalInput)(nil)).Elem(), SyntheticTestMonitorEvaluationIntervalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestMonitorEvaluationIntervalPtrInput)(nil)).Elem(), SyntheticTestMonitorEvaluationIntervalArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestRetryInput)(nil)).Elem(), SyntheticTestRetryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestRetryPtrInput)(nil)).Elem(), SyntheticTestRetryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestSslCheckInput)(nil)).Elem(), SyntheticTestSslCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestSslCheckPtrInput)(nil)).Elem(), SyntheticTestSslCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestTcpCheckInput)(nil)).Elem(), SyntheticTestTcpCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SyntheticTestTcpCheckPtrInput)(nil)).Elem(), SyntheticTestTcpCheckArgs{})
 	pulumi.RegisterOutputType(ApikeyPolicyOutput{})
 	pulumi.RegisterOutputType(ApikeyPolicyArrayOutput{})
+	pulumi.RegisterOutputType(NotificationRouteNotificationSettingsOutput{})
+	pulumi.RegisterOutputType(NotificationRouteNotificationSettingsPtrOutput{})
+	pulumi.RegisterOutputType(NotificationRouteRouteOutput{})
+	pulumi.RegisterOutputType(NotificationRouteRouteArrayOutput{})
+	pulumi.RegisterOutputType(NotificationRouteRouteConnectedAppOutput{})
+	pulumi.RegisterOutputType(NotificationRouteRouteConnectedAppArrayOutput{})
 	pulumi.RegisterOutputType(PolicyDataScopeOutput{})
 	pulumi.RegisterOutputType(PolicyDataScopePtrOutput{})
 	pulumi.RegisterOutputType(PolicyDataScopeAdvancedOutput{})
@@ -3015,4 +5667,26 @@ func init() {
 	pulumi.RegisterOutputType(PolicyDataScopeSimpleConditionArrayOutput{})
 	pulumi.RegisterOutputType(PolicyDataScopeSimpleConditionFilterOutput{})
 	pulumi.RegisterOutputType(PolicyDataScopeSimpleConditionFilterArrayOutput{})
+	pulumi.RegisterOutputType(SilenceMatcherOutput{})
+	pulumi.RegisterOutputType(SilenceMatcherArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticTestAssertionOutput{})
+	pulumi.RegisterOutputType(SyntheticTestAssertionArrayOutput{})
+	pulumi.RegisterOutputType(SyntheticTestDnsCheckOutput{})
+	pulumi.RegisterOutputType(SyntheticTestDnsCheckPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckAuthOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckAuthPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckBodyOutput{})
+	pulumi.RegisterOutputType(SyntheticTestHttpCheckBodyPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestMonitorOutput{})
+	pulumi.RegisterOutputType(SyntheticTestMonitorPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestMonitorEvaluationIntervalOutput{})
+	pulumi.RegisterOutputType(SyntheticTestMonitorEvaluationIntervalPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestRetryOutput{})
+	pulumi.RegisterOutputType(SyntheticTestRetryPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestSslCheckOutput{})
+	pulumi.RegisterOutputType(SyntheticTestSslCheckPtrOutput{})
+	pulumi.RegisterOutputType(SyntheticTestTcpCheckOutput{})
+	pulumi.RegisterOutputType(SyntheticTestTcpCheckPtrOutput{})
 }

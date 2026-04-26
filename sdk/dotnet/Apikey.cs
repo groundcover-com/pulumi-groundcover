@@ -62,6 +62,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/apikey:Apikey example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/apikey:Apikey")]
     public partial class Apikey : global::Pulumi.CustomResource

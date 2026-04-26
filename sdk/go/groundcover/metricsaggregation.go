@@ -60,6 +60,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/metricsaggregation:Metricsaggregation example "<id>"
+// ```
 type Metricsaggregation struct {
 	pulumi.CustomResourceState
 
