@@ -50,10 +50,17 @@ import (
 //			}
 //			ctx.Export("apiKeySecretId", apiKeyExample.ID())
 //			ctx.Export("passwordSecretId", passwordExample.ID())
+//			ctx.Export("apiKeyContentHash", apiKeyExample.ContentHash)
 //			return nil
 //		})
 //	}
 //
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/secret:Secret example "<id>"
 // ```
 type Secret struct {
 	pulumi.CustomResourceState
@@ -61,6 +68,8 @@ type Secret struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The secret content/value. This is write-only and will not be returned by the API.
 	Content pulumi.StringOutput `pulumi:"content"`
+	// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+	ContentHash pulumi.StringOutput `pulumi:"contentHash"`
 	// The name of the secret.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of the secret. Valid values are: `apiKey`, `password`, `basicAuth`.
@@ -113,6 +122,8 @@ type secretState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The secret content/value. This is write-only and will not be returned by the API.
 	Content *string `pulumi:"content"`
+	// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+	ContentHash *string `pulumi:"contentHash"`
 	// The name of the secret.
 	Name *string `pulumi:"name"`
 	// The type of the secret. Valid values are: `apiKey`, `password`, `basicAuth`.
@@ -123,6 +134,8 @@ type SecretState struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The secret content/value. This is write-only and will not be returned by the API.
 	Content pulumi.StringPtrInput
+	// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+	ContentHash pulumi.StringPtrInput
 	// The name of the secret.
 	Name pulumi.StringPtrInput
 	// The type of the secret. Valid values are: `apiKey`, `password`, `basicAuth`.
@@ -245,6 +258,11 @@ func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutpu
 // The secret content/value. This is write-only and will not be returned by the API.
 func (o SecretOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
+}
+
+// FNV1a hash of the secret content (hex encoded). This is computed by the API and can be used to detect if the secret content has changed.
+func (o SecretOutput) ContentHash() pulumi.StringOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.ContentHash }).(pulumi.StringOutput)
 }
 
 // The name of the secret.

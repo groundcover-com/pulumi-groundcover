@@ -60,6 +60,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/serviceaccount:Serviceaccount example "<id>"
+// ```
 type Serviceaccount struct {
 	pulumi.CustomResourceState
 

@@ -136,6 +136,12 @@ class Monitor(pulumi.CustomResource):
         pulumi.export("monitorExampleYamlOutput", k8s_pod_crash_looping.monitor_yaml)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/monitor:Monitor example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] monitor_yaml: The monitor definition in YAML format.
@@ -209,6 +215,12 @@ class Monitor(pulumi.CustomResource):
         \"\"\")
         pulumi.export("monitorExampleId", k8s_pod_crash_looping.id)
         pulumi.export("monitorExampleYamlOutput", k8s_pod_crash_looping.monitor_yaml)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/monitor:Monitor example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

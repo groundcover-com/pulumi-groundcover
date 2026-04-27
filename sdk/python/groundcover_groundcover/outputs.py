@@ -17,6 +17,9 @@ from . import outputs
 
 __all__ = [
     'ApikeyPolicy',
+    'NotificationRouteNotificationSettings',
+    'NotificationRouteRoute',
+    'NotificationRouteRouteConnectedApp',
     'PolicyDataScope',
     'PolicyDataScopeAdvanced',
     'PolicyDataScopeAdvancedEvents',
@@ -37,6 +40,17 @@ __all__ = [
     'PolicyDataScopeSimple',
     'PolicyDataScopeSimpleCondition',
     'PolicyDataScopeSimpleConditionFilter',
+    'SilenceMatcher',
+    'SyntheticTestAssertion',
+    'SyntheticTestDnsCheck',
+    'SyntheticTestHttpCheck',
+    'SyntheticTestHttpCheckAuth',
+    'SyntheticTestHttpCheckBody',
+    'SyntheticTestMonitor',
+    'SyntheticTestMonitorEvaluationInterval',
+    'SyntheticTestRetry',
+    'SyntheticTestSslCheck',
+    'SyntheticTestTcpCheck',
 ]
 
 @pulumi.output_type
@@ -68,6 +82,117 @@ class ApikeyPolicy(dict):
         Policy UUID.
         """
         return pulumi.get(self, "uuid")
+
+
+@pulumi.output_type
+class NotificationRouteNotificationSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "renotificationInterval":
+            suggest = "renotification_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationRouteNotificationSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationRouteNotificationSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationRouteNotificationSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 renotification_interval: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str renotification_interval: Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+        """
+        if renotification_interval is not None:
+            pulumi.set(__self__, "renotification_interval", renotification_interval)
+
+    @_builtins.property
+    @pulumi.getter(name="renotificationInterval")
+    def renotification_interval(self) -> Optional[_builtins.str]:
+        """
+        Duration between renotifications (e.g., '1h', '30m'). The API may normalize this value.
+        """
+        return pulumi.get(self, "renotification_interval")
+
+
+@pulumi.output_type
+class NotificationRouteRoute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectedApps":
+            suggest = "connected_apps"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NotificationRouteRoute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NotificationRouteRoute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NotificationRouteRoute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connected_apps: Sequence['outputs.NotificationRouteRouteConnectedApp'],
+                 statuses: Sequence[_builtins.str]):
+        """
+        :param Sequence['NotificationRouteRouteConnectedAppArgs'] connected_apps: List of connected apps to notify for this route.
+        :param Sequence[_builtins.str] statuses: List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+        """
+        pulumi.set(__self__, "connected_apps", connected_apps)
+        pulumi.set(__self__, "statuses", statuses)
+
+    @_builtins.property
+    @pulumi.getter(name="connectedApps")
+    def connected_apps(self) -> Sequence['outputs.NotificationRouteRouteConnectedApp']:
+        """
+        List of connected apps to notify for this route.
+        """
+        return pulumi.get(self, "connected_apps")
+
+    @_builtins.property
+    @pulumi.getter
+    def statuses(self) -> Sequence[_builtins.str]:
+        """
+        List of issue statuses that trigger this route (e.g., 'Alerting', 'Resolved').
+        """
+        return pulumi.get(self, "statuses")
+
+
+@pulumi.output_type
+class NotificationRouteRouteConnectedApp(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str id: ID of the connected app.
+        :param _builtins.str type: Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the connected app.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of connected app (e.g., 'slack-webhook', 'pagerduty').
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -892,5 +1017,935 @@ class PolicyDataScopeSimpleConditionFilter(dict):
         The value to filter on.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SilenceMatcher(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "isContains":
+            suggest = "is_contains"
+        elif key == "isEqual":
+            suggest = "is_equal"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SilenceMatcher. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SilenceMatcher.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SilenceMatcher.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str,
+                 is_contains: Optional[_builtins.bool] = None,
+                 is_equal: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str name: The name of the label to match (e.g., `service`, `environment`, `workload`).
+        :param _builtins.str value: The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        :param _builtins.bool is_contains: If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        :param _builtins.bool is_equal: If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+        if is_contains is not None:
+            pulumi.set(__self__, "is_contains", is_contains)
+        if is_equal is not None:
+            pulumi.set(__self__, "is_equal", is_equal)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the label to match (e.g., `service`, `environment`, `workload`).
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to match against. Can be an exact value or a partial match pattern if `is_contains` is true.
+        """
+        return pulumi.get(self, "value")
+
+    @_builtins.property
+    @pulumi.getter(name="isContains")
+    def is_contains(self) -> Optional[_builtins.bool]:
+        """
+        If true, the value is treated as a contains pattern (partial match). If false, the value must match exactly. Defaults to `false`.
+        """
+        return pulumi.get(self, "is_contains")
+
+    @_builtins.property
+    @pulumi.getter(name="isEqual")
+    def is_equal(self) -> Optional[_builtins.bool]:
+        """
+        If true, the matcher will match when the label value equals the specified value. If false, it matches when the value does NOT equal. Defaults to `true`.
+        """
+        return pulumi.get(self, "is_equal")
+
+
+@pulumi.output_type
+class SyntheticTestAssertion(dict):
+    def __init__(__self__, *,
+                 operator: _builtins.str,
+                 source: _builtins.str,
+                 property: Optional[_builtins.str] = None,
+                 severity: Optional[_builtins.str] = None,
+                 target: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str operator: Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+        :param _builtins.str source: What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`, `tcp`, `dnsAnswer`.
+        :param _builtins.str property: Specifies which property to evaluate within the assertion source. Usage varies by source — see documentation for per-source details.
+        :param _builtins.str severity: Assertion severity: `critical` (default) or `degraded`.
+        :param _builtins.str target: Expected value to compare against (as string, e.g. `"200"` for status code).
+        """
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "source", source)
+        if property is not None:
+            pulumi.set(__self__, "property", property)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Comparison operator: `eq`, `ne`, `gt`, `lt`, `contains`, `exists`, `notExists`, `startsWith`, `endsWith`, `regex`, `oneOf`.
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        What to assert on: `statusCode`, `responseTime`, `responseHeader`, `jsonBody`, `responseBody`, `ssl`, `tcp`, `dnsAnswer`.
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter
+    def property(self) -> Optional[_builtins.str]:
+        """
+        Specifies which property to evaluate within the assertion source. Usage varies by source — see documentation for per-source details.
+        """
+        return pulumi.get(self, "property")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[_builtins.str]:
+        """
+        Assertion severity: `critical` (default) or `degraded`.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter
+    def target(self) -> Optional[_builtins.str]:
+        """
+        Expected value to compare against (as string, e.g. `"200"` for status code).
+        """
+        return pulumi.get(self, "target")
+
+
+@pulumi.output_type
+class SyntheticTestDnsCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "recordType":
+            suggest = "record_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestDnsCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestDnsCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestDnsCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dnssec: Optional[_builtins.bool] = None,
+                 domain: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None,
+                 record_type: Optional[_builtins.str] = None,
+                 resolver: Optional[_builtins.str] = None,
+                 timeout: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool dnssec: Whether to validate DNSSEC.
+        :param _builtins.str domain: (Required) The domain name to resolve.
+        :param _builtins.int port: The DNS server port (1-65535). Defaults to 53.
+        :param _builtins.str record_type: (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+        :param _builtins.str resolver: Custom DNS resolver address (e.g. `8.8.8.8`).
+        :param _builtins.str timeout: Timeout for the DNS check (e.g. `5s`, `10s`).
+        """
+        if dnssec is not None:
+            pulumi.set(__self__, "dnssec", dnssec)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if record_type is not None:
+            pulumi.set(__self__, "record_type", record_type)
+        if resolver is not None:
+            pulumi.set(__self__, "resolver", resolver)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def dnssec(self) -> Optional[_builtins.bool]:
+        """
+        Whether to validate DNSSEC.
+        """
+        return pulumi.get(self, "dnssec")
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> Optional[_builtins.str]:
+        """
+        (Required) The domain name to resolve.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        The DNS server port (1-65535). Defaults to 53.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter(name="recordType")
+    def record_type(self) -> Optional[_builtins.str]:
+        """
+        (Required) DNS record type to query. Supported values: `A`, `AAAA`, `CNAME`, `MX`, `NS`, `TXT`, `SOA`, `SRV`, `PTR`.
+        """
+        return pulumi.get(self, "record_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def resolver(self) -> Optional[_builtins.str]:
+        """
+        Custom DNS resolver address (e.g. `8.8.8.8`).
+        """
+        return pulumi.get(self, "resolver")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.str]:
+        """
+        Timeout for the DNS check (e.g. `5s`, `10s`).
+        """
+        return pulumi.get(self, "timeout")
+
+
+@pulumi.output_type
+class SyntheticTestHttpCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowInsecure":
+            suggest = "allow_insecure"
+        elif key == "followRedirects":
+            suggest = "follow_redirects"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestHttpCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestHttpCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestHttpCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_insecure: Optional[_builtins.bool] = None,
+                 auth: Optional['outputs.SyntheticTestHttpCheckAuth'] = None,
+                 body: Optional['outputs.SyntheticTestHttpCheckBody'] = None,
+                 follow_redirects: Optional[_builtins.bool] = None,
+                 headers: Optional[Mapping[str, _builtins.str]] = None,
+                 method: Optional[_builtins.str] = None,
+                 timeout: Optional[_builtins.str] = None,
+                 url: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool allow_insecure: Whether to allow insecure TLS connections.
+        :param 'SyntheticTestHttpCheckAuthArgs' auth: HTTP authentication. Supports `basic`, `bearer`, or `none`.
+        :param 'SyntheticTestHttpCheckBodyArgs' body: HTTP request body.
+        :param _builtins.bool follow_redirects: Whether to follow HTTP redirects.
+        :param Mapping[str, _builtins.str] headers: HTTP headers to send with the request.
+        :param _builtins.str method: (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+        :param _builtins.str timeout: Request timeout (e.g. `10s`, `30s`).
+        :param _builtins.str url: (Required) The URL to check (must include http:// or https://).
+        """
+        if allow_insecure is not None:
+            pulumi.set(__self__, "allow_insecure", allow_insecure)
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if body is not None:
+            pulumi.set(__self__, "body", body)
+        if follow_redirects is not None:
+            pulumi.set(__self__, "follow_redirects", follow_redirects)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter(name="allowInsecure")
+    def allow_insecure(self) -> Optional[_builtins.bool]:
+        """
+        Whether to allow insecure TLS connections.
+        """
+        return pulumi.get(self, "allow_insecure")
+
+    @_builtins.property
+    @pulumi.getter
+    def auth(self) -> Optional['outputs.SyntheticTestHttpCheckAuth']:
+        """
+        HTTP authentication. Supports `basic`, `bearer`, or `none`.
+        """
+        return pulumi.get(self, "auth")
+
+    @_builtins.property
+    @pulumi.getter
+    def body(self) -> Optional['outputs.SyntheticTestHttpCheckBody']:
+        """
+        HTTP request body.
+        """
+        return pulumi.get(self, "body")
+
+    @_builtins.property
+    @pulumi.getter(name="followRedirects")
+    def follow_redirects(self) -> Optional[_builtins.bool]:
+        """
+        Whether to follow HTTP redirects.
+        """
+        return pulumi.get(self, "follow_redirects")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        HTTP headers to send with the request.
+        """
+        return pulumi.get(self, "headers")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[_builtins.str]:
+        """
+        (Required) HTTP method. Supported: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`, `HEAD`, `OPTIONS`.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.str]:
+        """
+        Request timeout (e.g. `10s`, `30s`).
+        """
+        return pulumi.get(self, "timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[_builtins.str]:
+        """
+        (Required) The URL to check (must include http:// or https://).
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class SyntheticTestHttpCheckAuth(dict):
+    def __init__(__self__, *,
+                 password: Optional[_builtins.str] = None,
+                 token: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str password: Password for basic auth. Supports `secretRef::store::<id>` references.
+        :param _builtins.str token: Token for bearer auth. Supports `secretRef::store::<id>` references.
+        :param _builtins.str type: Auth type: `basic`, `bearer`, or `none`.
+        :param _builtins.str username: Username for basic auth.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        Password for basic auth. Supports `secretRef::store::<id>` references.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def token(self) -> Optional[_builtins.str]:
+        """
+        Token for bearer auth. Supports `secretRef::store::<id>` references.
+        """
+        return pulumi.get(self, "token")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Auth type: `basic`, `bearer`, or `none`.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        """
+        Username for basic auth.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class SyntheticTestHttpCheckBody(dict):
+    def __init__(__self__, *,
+                 content: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str content: Body content string.
+        :param _builtins.str type: Body content type: `json`, `text`, or `raw`.
+        """
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> Optional[_builtins.str]:
+        """
+        Body content string.
+        """
+        return pulumi.get(self, "content")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Body content type: `json`, `text`, or `raw`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class SyntheticTestMonitor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectedApps":
+            suggest = "connected_apps"
+        elif key == "disableRenotification":
+            suggest = "disable_renotification"
+        elif key == "enabledWorkflows":
+            suggest = "enabled_workflows"
+        elif key == "evaluationInterval":
+            suggest = "evaluation_interval"
+        elif key == "executionErrorState":
+            suggest = "execution_error_state"
+        elif key == "issueDescription":
+            suggest = "issue_description"
+        elif key == "issueSummary":
+            suggest = "issue_summary"
+        elif key == "lookbehindWindow":
+            suggest = "lookbehind_window"
+        elif key == "monitorName":
+            suggest = "monitor_name"
+        elif key == "noDataState":
+            suggest = "no_data_state"
+        elif key == "notificationMethod":
+            suggest = "notification_method"
+        elif key == "renotificationInterval":
+            suggest = "renotification_interval"
+        elif key == "statusFilters":
+            suggest = "status_filters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestMonitor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestMonitor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestMonitor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connected_apps: Optional[Sequence[_builtins.str]] = None,
+                 disable_renotification: Optional[_builtins.bool] = None,
+                 enabled_workflows: Optional[Sequence[_builtins.str]] = None,
+                 evaluation_interval: Optional['outputs.SyntheticTestMonitorEvaluationInterval'] = None,
+                 execution_error_state: Optional[_builtins.str] = None,
+                 issue_description: Optional[_builtins.str] = None,
+                 issue_summary: Optional[_builtins.str] = None,
+                 lookbehind_window: Optional[_builtins.str] = None,
+                 monitor_name: Optional[_builtins.str] = None,
+                 no_data_state: Optional[_builtins.str] = None,
+                 notification_method: Optional[_builtins.str] = None,
+                 renotification_interval: Optional[_builtins.str] = None,
+                 severity: Optional[_builtins.str] = None,
+                 status_filters: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] connected_apps: List of connected app IDs for direct notification delivery. Required when `notification_method` is `connectedApps`.
+        :param _builtins.bool disable_renotification: Disable repeated notifications for the same issue.
+        :param Sequence[_builtins.str] enabled_workflows: List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+        :param 'SyntheticTestMonitorEvaluationIntervalArgs' evaluation_interval: Evaluation interval settings for the monitor.
+        :param _builtins.str execution_error_state: How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+        :param _builtins.str issue_description: Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+        :param _builtins.str issue_summary: Summary template for issues created by this monitor. Supports Jinja2 templating.
+        :param _builtins.str lookbehind_window: The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+        :param _builtins.str monitor_name: Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+        :param _builtins.str no_data_state: How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+        :param _builtins.str notification_method: How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+        :param _builtins.str renotification_interval: How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+        :param _builtins.str severity: Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+        :param Sequence[_builtins.str] status_filters: Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notification_method` is `connectedApps`.
+        """
+        if connected_apps is not None:
+            pulumi.set(__self__, "connected_apps", connected_apps)
+        if disable_renotification is not None:
+            pulumi.set(__self__, "disable_renotification", disable_renotification)
+        if enabled_workflows is not None:
+            pulumi.set(__self__, "enabled_workflows", enabled_workflows)
+        if evaluation_interval is not None:
+            pulumi.set(__self__, "evaluation_interval", evaluation_interval)
+        if execution_error_state is not None:
+            pulumi.set(__self__, "execution_error_state", execution_error_state)
+        if issue_description is not None:
+            pulumi.set(__self__, "issue_description", issue_description)
+        if issue_summary is not None:
+            pulumi.set(__self__, "issue_summary", issue_summary)
+        if lookbehind_window is not None:
+            pulumi.set(__self__, "lookbehind_window", lookbehind_window)
+        if monitor_name is not None:
+            pulumi.set(__self__, "monitor_name", monitor_name)
+        if no_data_state is not None:
+            pulumi.set(__self__, "no_data_state", no_data_state)
+        if notification_method is not None:
+            pulumi.set(__self__, "notification_method", notification_method)
+        if renotification_interval is not None:
+            pulumi.set(__self__, "renotification_interval", renotification_interval)
+        if severity is not None:
+            pulumi.set(__self__, "severity", severity)
+        if status_filters is not None:
+            pulumi.set(__self__, "status_filters", status_filters)
+
+    @_builtins.property
+    @pulumi.getter(name="connectedApps")
+    def connected_apps(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        List of connected app IDs for direct notification delivery. Required when `notification_method` is `connectedApps`.
+        """
+        return pulumi.get(self, "connected_apps")
+
+    @_builtins.property
+    @pulumi.getter(name="disableRenotification")
+    def disable_renotification(self) -> Optional[_builtins.bool]:
+        """
+        Disable repeated notifications for the same issue.
+        """
+        return pulumi.get(self, "disable_renotification")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledWorkflows")
+    def enabled_workflows(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        List of workflow IDs to route notifications to. Workflows and notification policies run simultaneously.
+        """
+        return pulumi.get(self, "enabled_workflows")
+
+    @_builtins.property
+    @pulumi.getter(name="evaluationInterval")
+    def evaluation_interval(self) -> Optional['outputs.SyntheticTestMonitorEvaluationInterval']:
+        """
+        Evaluation interval settings for the monitor.
+        """
+        return pulumi.get(self, "evaluation_interval")
+
+    @_builtins.property
+    @pulumi.getter(name="executionErrorState")
+    def execution_error_state(self) -> Optional[_builtins.str]:
+        """
+        How the monitor behaves on execution errors. `OK` treats errors as normal, `Alerting` treats them as issues.
+        """
+        return pulumi.get(self, "execution_error_state")
+
+    @_builtins.property
+    @pulumi.getter(name="issueDescription")
+    def issue_description(self) -> Optional[_builtins.str]:
+        """
+        Description template for issues created by this monitor. Supports Jinja2 templating with variables like `{{ workload }}`.
+        """
+        return pulumi.get(self, "issue_description")
+
+    @_builtins.property
+    @pulumi.getter(name="issueSummary")
+    def issue_summary(self) -> Optional[_builtins.str]:
+        """
+        Summary template for issues created by this monitor. Supports Jinja2 templating.
+        """
+        return pulumi.get(self, "issue_summary")
+
+    @_builtins.property
+    @pulumi.getter(name="lookbehindWindow")
+    def lookbehind_window(self) -> Optional[_builtins.str]:
+        """
+        The time window the monitor looks back for evaluation (e.g. `5m`, `10m`).
+        """
+        return pulumi.get(self, "lookbehind_window")
+
+    @_builtins.property
+    @pulumi.getter(name="monitorName")
+    def monitor_name(self) -> Optional[_builtins.str]:
+        """
+        Custom name for the monitor. If not set, a default name is derived from the synthetic test name.
+        """
+        return pulumi.get(self, "monitor_name")
+
+    @_builtins.property
+    @pulumi.getter(name="noDataState")
+    def no_data_state(self) -> Optional[_builtins.str]:
+        """
+        How the monitor behaves when there is no data. `OK` treats no data as normal, `Alerting` treats it as an issue.
+        """
+        return pulumi.get(self, "no_data_state")
+
+    @_builtins.property
+    @pulumi.getter(name="notificationMethod")
+    def notification_method(self) -> Optional[_builtins.str]:
+        """
+        How the synthetic monitor delivers alert notifications. Supported values: `notificationRoutes` (default), `connectedApps`, `noNotifications`.
+        """
+        return pulumi.get(self, "notification_method")
+
+    @_builtins.property
+    @pulumi.getter(name="renotificationInterval")
+    def renotification_interval(self) -> Optional[_builtins.str]:
+        """
+        How long to wait before sending another notification while the alert is still firing (e.g. `15m`, `1h`, `4h`).
+        """
+        return pulumi.get(self, "renotification_interval")
+
+    @_builtins.property
+    @pulumi.getter
+    def severity(self) -> Optional[_builtins.str]:
+        """
+        Severity level for issues created by this monitor. Supported values: `S1`, `S2`, `S3`, `S4`, `none`.
+        """
+        return pulumi.get(self, "severity")
+
+    @_builtins.property
+    @pulumi.getter(name="statusFilters")
+    def status_filters(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Which issue statuses trigger notifications. Supported values: `Alerting`, `Resolved`. Only applicable when `notification_method` is `connectedApps`.
+        """
+        return pulumi.get(self, "status_filters")
+
+
+@pulumi.output_type
+class SyntheticTestMonitorEvaluationInterval(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pendingFor":
+            suggest = "pending_for"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestMonitorEvaluationInterval. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestMonitorEvaluationInterval.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestMonitorEvaluationInterval.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interval: Optional[_builtins.str] = None,
+                 pending_for: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str interval: How often the monitor evaluates (e.g. `1m`, `5m`).
+        :param _builtins.str pending_for: How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+        """
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if pending_for is not None:
+            pulumi.set(__self__, "pending_for", pending_for)
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.str]:
+        """
+        How often the monitor evaluates (e.g. `1m`, `5m`).
+        """
+        return pulumi.get(self, "interval")
+
+    @_builtins.property
+    @pulumi.getter(name="pendingFor")
+    def pending_for(self) -> Optional[_builtins.str]:
+        """
+        How long all evaluations must stay true before firing (e.g. `0s`, `1m`, `5m`).
+        """
+        return pulumi.get(self, "pending_for")
+
+
+@pulumi.output_type
+class SyntheticTestRetry(dict):
+    def __init__(__self__, *,
+                 count: Optional[_builtins.int] = None,
+                 interval: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int count: Number of retry attempts.
+        :param _builtins.str interval: Delay between retries (e.g. `1s`, `500ms`).
+        """
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[_builtins.int]:
+        """
+        Number of retry attempts.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def interval(self) -> Optional[_builtins.str]:
+        """
+        Delay between retries (e.g. `1s`, `500ms`).
+        """
+        return pulumi.get(self, "interval")
+
+
+@pulumi.output_type
+class SyntheticTestSslCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minVersion":
+            suggest = "min_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestSslCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestSslCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestSslCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host: Optional[_builtins.str] = None,
+                 min_version: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None,
+                 sni: Optional[_builtins.str] = None,
+                 timeout: Optional[_builtins.str] = None,
+                 verify: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str host: (Required) The hostname to connect to for the SSL check.
+        :param _builtins.str min_version: Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+        :param _builtins.int port: (Required) The port to connect to (1-65535).
+        :param _builtins.str sni: Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+        :param _builtins.str timeout: Timeout for the SSL check (e.g. `5s`, `10s`).
+        :param _builtins.bool verify: Whether to verify the SSL certificate.
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if min_version is not None:
+            pulumi.set(__self__, "min_version", min_version)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if sni is not None:
+            pulumi.set(__self__, "sni", sni)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+        if verify is not None:
+            pulumi.set(__self__, "verify", verify)
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        (Required) The hostname to connect to for the SSL check.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter(name="minVersion")
+    def min_version(self) -> Optional[_builtins.str]:
+        """
+        Minimum TLS version to accept (e.g. `1.2`, `1.3`).
+        """
+        return pulumi.get(self, "min_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        (Required) The port to connect to (1-65535).
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def sni(self) -> Optional[_builtins.str]:
+        """
+        Server Name Indication (SNI) value for the TLS handshake. Defaults to the host value.
+        """
+        return pulumi.get(self, "sni")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.str]:
+        """
+        Timeout for the SSL check (e.g. `5s`, `10s`).
+        """
+        return pulumi.get(self, "timeout")
+
+    @_builtins.property
+    @pulumi.getter
+    def verify(self) -> Optional[_builtins.bool]:
+        """
+        Whether to verify the SSL certificate.
+        """
+        return pulumi.get(self, "verify")
+
+
+@pulumi.output_type
+class SyntheticTestTcpCheck(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expectResponse":
+            suggest = "expect_response"
+        elif key == "receiveMaxBytes":
+            suggest = "receive_max_bytes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SyntheticTestTcpCheck. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SyntheticTestTcpCheck.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SyntheticTestTcpCheck.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expect_response: Optional[_builtins.bool] = None,
+                 host: Optional[_builtins.str] = None,
+                 port: Optional[_builtins.int] = None,
+                 receive_max_bytes: Optional[_builtins.int] = None,
+                 send: Optional[_builtins.str] = None,
+                 timeout: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool expect_response: Whether to expect a response from the TCP endpoint.
+        :param _builtins.str host: (Required) The hostname to connect to for the TCP check.
+        :param _builtins.int port: (Required) The port to connect to (1-65535).
+        :param _builtins.int receive_max_bytes: Maximum number of bytes to receive in the response.
+        :param _builtins.str send: Data to send over the TCP connection.
+        :param _builtins.str timeout: Timeout for the TCP check (e.g. `5s`, `10s`).
+        """
+        if expect_response is not None:
+            pulumi.set(__self__, "expect_response", expect_response)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if receive_max_bytes is not None:
+            pulumi.set(__self__, "receive_max_bytes", receive_max_bytes)
+        if send is not None:
+            pulumi.set(__self__, "send", send)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter(name="expectResponse")
+    def expect_response(self) -> Optional[_builtins.bool]:
+        """
+        Whether to expect a response from the TCP endpoint.
+        """
+        return pulumi.get(self, "expect_response")
+
+    @_builtins.property
+    @pulumi.getter
+    def host(self) -> Optional[_builtins.str]:
+        """
+        (Required) The hostname to connect to for the TCP check.
+        """
+        return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        (Required) The port to connect to (1-65535).
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter(name="receiveMaxBytes")
+    def receive_max_bytes(self) -> Optional[_builtins.int]:
+        """
+        Maximum number of bytes to receive in the response.
+        """
+        return pulumi.get(self, "receive_max_bytes")
+
+    @_builtins.property
+    @pulumi.getter
+    def send(self) -> Optional[_builtins.str]:
+        """
+        Data to send over the TCP connection.
+        """
+        return pulumi.get(self, "send")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> Optional[_builtins.str]:
+        """
+        Timeout for the TCP check (e.g. `5s`, `10s`).
+        """
+        return pulumi.get(self, "timeout")
 
 

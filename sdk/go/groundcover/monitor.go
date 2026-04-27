@@ -101,6 +101,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/monitor:Monitor example "<id>"
+// ```
 type Monitor struct {
 	pulumi.CustomResourceState
 

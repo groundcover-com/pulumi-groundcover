@@ -79,6 +79,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/policy:Policy example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/policy:Policy")]
     public partial class Policy : global::Pulumi.CustomResource

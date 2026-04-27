@@ -32,6 +32,12 @@ import * as utilities from "./utilities";
  * export const serviceaccountExampleId = exampleServiceaccount.id;
  * export const serviceaccountExampleEmail = exampleServiceaccount.email;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/serviceaccount:Serviceaccount example "<id>"
+ * ```
  */
 export class Serviceaccount extends pulumi.CustomResource {
     /**

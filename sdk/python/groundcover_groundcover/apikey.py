@@ -315,6 +315,12 @@ class Apikey(pulumi.CustomResource):
         pulumi.export("apikeyExampleCreationDate", example_apikey.creation_date)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/apikey:Apikey example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description for the API key.
@@ -357,6 +363,12 @@ class Apikey(pulumi.CustomResource):
         pulumi.export("apikeyExampleId", example_apikey.id)
         pulumi.export("apikeyExampleValue", example_apikey.api_key)
         pulumi.export("apikeyExampleCreationDate", example_apikey.creation_date)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/apikey:Apikey example "<id>"
         ```
 
         :param str resource_name: The name of the resource.
