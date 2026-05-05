@@ -1,9 +1,9 @@
 module github.com/groundcover-com/terraform-provider-groundcover/shim
 
-go 1.25
+go 1.25.8
 
 require (
-	github.com/groundcover-com/terraform-provider-groundcover v1.5.2
+	github.com/groundcover-com/terraform-provider-groundcover v1.12.2
 	github.com/hashicorp/terraform-plugin-framework v1.16.1
 )
 
@@ -25,11 +25,11 @@ require (
 	github.com/go-openapi/validate v0.24.0 // indirect
 	github.com/goccy/go-yaml v1.17.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/groundcover-com/groundcover-sdk-go v1.128.0 // indirect
+	github.com/groundcover-com/groundcover-sdk-go v1.244.0 // indirect
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
 	github.com/hashicorp/terraform-plugin-framework-validators v0.19.0 // indirect
 	github.com/hashicorp/terraform-plugin-go v0.29.0 // indirect
-	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
+	github.com/hashicorp/terraform-plugin-log v0.10.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -44,8 +44,9 @@ require (
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.37.0 // indirect
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.37.0 // indirect
 	go.opentelemetry.io/otel/trace v1.37.0 // indirect
-	golang.org/x/sync v0.16.0 // indirect
-	golang.org/x/sys v0.35.0 // indirect
+	golang.org/x/sync v0.20.0 // indirect
+	golang.org/x/sys v0.42.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
