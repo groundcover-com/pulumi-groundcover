@@ -127,6 +127,12 @@ import * as utilities from "./utilities";
  * export const simpleDashboardId = simpleDashboard.id;
  * export const simpleDashboardOwner = simpleDashboard.owner;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/dashboard:Dashboard example "<id>"
+ * ```
  */
 export class Dashboard extends pulumi.CustomResource {
     /**
@@ -165,7 +171,7 @@ export class Dashboard extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Whether to override the dashboard on update.
+     * @deprecated This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
      */
     declare public readonly override: pulumi.Output<boolean | undefined>;
     /**
@@ -242,7 +248,7 @@ export interface DashboardState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Whether to override the dashboard on update.
+     * @deprecated This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
      */
     override?: pulumi.Input<boolean>;
     /**
@@ -280,7 +286,7 @@ export interface DashboardArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Whether to override the dashboard on update.
+     * @deprecated This attribute is ignored and will be removed in a future version. Override is always enabled for terraform-managed updates.
      */
     override?: pulumi.Input<boolean>;
     /**

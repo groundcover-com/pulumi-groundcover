@@ -110,6 +110,14 @@ class Logspipeline(pulumi.CustomResource):
         pulumi.export("logsPipelineUpdatedAt", logspipeline.updated_at)
         ```
 
+        ## Import
+
+        Logs pipeline is a singleton resource. The import ID value is ignored.
+
+        ```sh
+        $ pulumi import groundcover:index/logspipeline:Logspipeline example any
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] value: The YAML representation of the logs pipeline configuration.
@@ -141,6 +149,14 @@ class Logspipeline(pulumi.CustomResource):
               - set(attributes["test.key"], "test-value")
         \"\"\")
         pulumi.export("logsPipelineUpdatedAt", logspipeline.updated_at)
+        ```
+
+        ## Import
+
+        Logs pipeline is a singleton resource. The import ID value is ignored.
+
+        ```sh
+        $ pulumi import groundcover:index/logspipeline:Logspipeline example any
         ```
 
         :param str resource_name: The name of the resource.

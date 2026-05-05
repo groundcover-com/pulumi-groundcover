@@ -38,6 +38,12 @@ import * as utilities from "./utilities";
  * export const apikeyExampleValue = exampleApikey.apiKey;
  * export const apikeyExampleCreationDate = exampleApikey.creationDate;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/apikey:Apikey example "<id>"
+ * ```
  */
 export class Apikey extends pulumi.CustomResource {
     /**
