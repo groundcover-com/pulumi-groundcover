@@ -67,6 +67,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/apikey:Apikey example "<id>"
+// ```
 type Apikey struct {
 	pulumi.CustomResourceState
 

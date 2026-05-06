@@ -7,16 +7,22 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .apikey import *
+from .connected_app import *
 from .dashboard import *
 from .dataintegration import *
 from .ingestionkey import *
 from .logspipeline import *
 from .metricsaggregation import *
+from .metricspipeline import *
 from .monitor import *
+from .notification_route import *
 from .policy import *
 from .provider import *
 from .secret import *
 from .serviceaccount import *
+from .silence import *
+from .synthetic_test import *
+from .tracespipeline import *
 from ._inputs import *
 from . import outputs
 
@@ -36,6 +42,14 @@ _utilities.register(
   "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/apikey:Apikey": "Apikey"
+  }
+ },
+ {
+  "pkg": "groundcover",
+  "mod": "index/connectedApp",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/connectedApp:ConnectedApp": "ConnectedApp"
   }
  },
  {
@@ -80,10 +94,26 @@ _utilities.register(
  },
  {
   "pkg": "groundcover",
+  "mod": "index/metricspipeline",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/metricspipeline:Metricspipeline": "Metricspipeline"
+  }
+ },
+ {
+  "pkg": "groundcover",
   "mod": "index/monitor",
   "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/monitor:Monitor": "Monitor"
+  }
+ },
+ {
+  "pkg": "groundcover",
+  "mod": "index/notificationRoute",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/notificationRoute:NotificationRoute": "NotificationRoute"
   }
  },
  {
@@ -108,6 +138,30 @@ _utilities.register(
   "fqn": "groundcover_groundcover",
   "classes": {
    "groundcover:index/serviceaccount:Serviceaccount": "Serviceaccount"
+  }
+ },
+ {
+  "pkg": "groundcover",
+  "mod": "index/silence",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/silence:Silence": "Silence"
+  }
+ },
+ {
+  "pkg": "groundcover",
+  "mod": "index/syntheticTest",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/syntheticTest:SyntheticTest": "SyntheticTest"
+  }
+ },
+ {
+  "pkg": "groundcover",
+  "mod": "index/tracespipeline",
+  "fqn": "groundcover_groundcover",
+  "classes": {
+   "groundcover:index/tracespipeline:Tracespipeline": "Tracespipeline"
   }
  }
 ]

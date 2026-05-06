@@ -196,6 +196,12 @@ class Serviceaccount(pulumi.CustomResource):
         pulumi.export("serviceaccountExampleEmail", example_serviceaccount.email)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/serviceaccount:Serviceaccount example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: An optional description for the service account.
@@ -234,6 +240,12 @@ class Serviceaccount(pulumi.CustomResource):
             policy_uuids=[example_policy.uuid])
         pulumi.export("serviceaccountExampleId", example_serviceaccount.id)
         pulumi.export("serviceaccountExampleEmail", example_serviceaccount.email)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/serviceaccount:Serviceaccount example "<id>"
         ```
 
         :param str resource_name: The name of the resource.
