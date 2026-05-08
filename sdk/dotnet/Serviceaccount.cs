@@ -54,6 +54,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/serviceaccount:Serviceaccount example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/serviceaccount:Serviceaccount")]
     public partial class Serviceaccount : global::Pulumi.CustomResource

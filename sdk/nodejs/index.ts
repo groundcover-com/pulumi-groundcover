@@ -10,6 +10,11 @@ export type Apikey = import("./apikey").Apikey;
 export const Apikey: typeof import("./apikey").Apikey = null as any;
 utilities.lazyLoad(exports, ["Apikey"], () => require("./apikey"));
 
+export { ConnectedAppArgs, ConnectedAppState } from "./connectedApp";
+export type ConnectedApp = import("./connectedApp").ConnectedApp;
+export const ConnectedApp: typeof import("./connectedApp").ConnectedApp = null as any;
+utilities.lazyLoad(exports, ["ConnectedApp"], () => require("./connectedApp"));
+
 export { DashboardArgs, DashboardState } from "./dashboard";
 export type Dashboard = import("./dashboard").Dashboard;
 export const Dashboard: typeof import("./dashboard").Dashboard = null as any;
@@ -35,10 +40,20 @@ export type Metricsaggregation = import("./metricsaggregation").Metricsaggregati
 export const Metricsaggregation: typeof import("./metricsaggregation").Metricsaggregation = null as any;
 utilities.lazyLoad(exports, ["Metricsaggregation"], () => require("./metricsaggregation"));
 
+export { MetricspipelineArgs, MetricspipelineState } from "./metricspipeline";
+export type Metricspipeline = import("./metricspipeline").Metricspipeline;
+export const Metricspipeline: typeof import("./metricspipeline").Metricspipeline = null as any;
+utilities.lazyLoad(exports, ["Metricspipeline"], () => require("./metricspipeline"));
+
 export { MonitorArgs, MonitorState } from "./monitor";
 export type Monitor = import("./monitor").Monitor;
 export const Monitor: typeof import("./monitor").Monitor = null as any;
 utilities.lazyLoad(exports, ["Monitor"], () => require("./monitor"));
+
+export { NotificationRouteArgs, NotificationRouteState } from "./notificationRoute";
+export type NotificationRoute = import("./notificationRoute").NotificationRoute;
+export const NotificationRoute: typeof import("./notificationRoute").NotificationRoute = null as any;
+utilities.lazyLoad(exports, ["NotificationRoute"], () => require("./notificationRoute"));
 
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
@@ -58,6 +73,21 @@ export type Serviceaccount = import("./serviceaccount").Serviceaccount;
 export const Serviceaccount: typeof import("./serviceaccount").Serviceaccount = null as any;
 utilities.lazyLoad(exports, ["Serviceaccount"], () => require("./serviceaccount"));
 
+export { SilenceArgs, SilenceState } from "./silence";
+export type Silence = import("./silence").Silence;
+export const Silence: typeof import("./silence").Silence = null as any;
+utilities.lazyLoad(exports, ["Silence"], () => require("./silence"));
+
+export { SyntheticTestArgs, SyntheticTestState } from "./syntheticTest";
+export type SyntheticTest = import("./syntheticTest").SyntheticTest;
+export const SyntheticTest: typeof import("./syntheticTest").SyntheticTest = null as any;
+utilities.lazyLoad(exports, ["SyntheticTest"], () => require("./syntheticTest"));
+
+export { TracespipelineArgs, TracespipelineState } from "./tracespipeline";
+export type Tracespipeline = import("./tracespipeline").Tracespipeline;
+export const Tracespipeline: typeof import("./tracespipeline").Tracespipeline = null as any;
+utilities.lazyLoad(exports, ["Tracespipeline"], () => require("./tracespipeline"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -74,6 +104,8 @@ const _module = {
         switch (type) {
             case "groundcover:index/apikey:Apikey":
                 return new Apikey(name, <any>undefined, { urn })
+            case "groundcover:index/connectedApp:ConnectedApp":
+                return new ConnectedApp(name, <any>undefined, { urn })
             case "groundcover:index/dashboard:Dashboard":
                 return new Dashboard(name, <any>undefined, { urn })
             case "groundcover:index/dataintegration:Dataintegration":
@@ -84,29 +116,45 @@ const _module = {
                 return new Logspipeline(name, <any>undefined, { urn })
             case "groundcover:index/metricsaggregation:Metricsaggregation":
                 return new Metricsaggregation(name, <any>undefined, { urn })
+            case "groundcover:index/metricspipeline:Metricspipeline":
+                return new Metricspipeline(name, <any>undefined, { urn })
             case "groundcover:index/monitor:Monitor":
                 return new Monitor(name, <any>undefined, { urn })
+            case "groundcover:index/notificationRoute:NotificationRoute":
+                return new NotificationRoute(name, <any>undefined, { urn })
             case "groundcover:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "groundcover:index/secret:Secret":
                 return new Secret(name, <any>undefined, { urn })
             case "groundcover:index/serviceaccount:Serviceaccount":
                 return new Serviceaccount(name, <any>undefined, { urn })
+            case "groundcover:index/silence:Silence":
+                return new Silence(name, <any>undefined, { urn })
+            case "groundcover:index/syntheticTest:SyntheticTest":
+                return new SyntheticTest(name, <any>undefined, { urn })
+            case "groundcover:index/tracespipeline:Tracespipeline":
+                return new Tracespipeline(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("groundcover", "index/apikey", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/connectedApp", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/dashboard", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/dataintegration", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/ingestionkey", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/logspipeline", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/metricsaggregation", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/metricspipeline", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/monitor", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/notificationRoute", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/policy", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/secret", _module)
 pulumi.runtime.registerResourceModule("groundcover", "index/serviceaccount", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/silence", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/syntheticTest", _module)
+pulumi.runtime.registerResourceModule("groundcover", "index/tracespipeline", _module)
 pulumi.runtime.registerResourcePackage("groundcover", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

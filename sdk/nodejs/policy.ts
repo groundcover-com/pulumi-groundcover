@@ -51,6 +51,12 @@ import * as utilities from "./utilities";
  * export const policyUuid = myPolicy.uuid;
  * export const policyRevisionNumber = myPolicy.revisionNumber;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/policy:Policy example "<id>"
+ * ```
  */
 export class Policy extends pulumi.CustomResource {
     /**

@@ -84,6 +84,8 @@ class Monitor(pulumi.CustomResource):
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
         # Example Monitor: K8s Pod Crash Looping using monitor_yaml
+        # Monitor YAML structure docs:
+        # https://docs.groundcover.com/use-groundcover/monitors/monitor-yaml-structure
         k8s_pod_crash_looping = groundcover.Monitor("k8sPodCrashLooping", monitor_yaml=\"\"\"title: K8s Pod Crash Looping
         display:
           header: K8s Pod Crash Looping
@@ -136,6 +138,12 @@ class Monitor(pulumi.CustomResource):
         pulumi.export("monitorExampleYamlOutput", k8s_pod_crash_looping.monitor_yaml)
         ```
 
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/monitor:Monitor example "<id>"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] monitor_yaml: The monitor definition in YAML format.
@@ -159,6 +167,8 @@ class Monitor(pulumi.CustomResource):
         groundcover_api_key = config.require("groundcoverApiKey")
         groundcover_backend_id = config.require("groundcoverBackendId")
         # Example Monitor: K8s Pod Crash Looping using monitor_yaml
+        # Monitor YAML structure docs:
+        # https://docs.groundcover.com/use-groundcover/monitors/monitor-yaml-structure
         k8s_pod_crash_looping = groundcover.Monitor("k8sPodCrashLooping", monitor_yaml=\"\"\"title: K8s Pod Crash Looping
         display:
           header: K8s Pod Crash Looping
@@ -209,6 +219,12 @@ class Monitor(pulumi.CustomResource):
         \"\"\")
         pulumi.export("monitorExampleId", k8s_pod_crash_looping.id)
         pulumi.export("monitorExampleYamlOutput", k8s_pod_crash_looping.monitor_yaml)
+        ```
+
+        ## Import
+
+        ```sh
+        $ pulumi import groundcover:index/monitor:Monitor example "<id>"
         ```
 
         :param str resource_name: The name of the resource.

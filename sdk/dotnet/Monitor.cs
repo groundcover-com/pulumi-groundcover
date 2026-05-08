@@ -27,6 +27,8 @@ namespace GroundcoverCom.Groundcover
     ///     var groundcoverApiKey = config.Require("groundcoverApiKey");
     ///     var groundcoverBackendId = config.Require("groundcoverBackendId");
     ///     // Example Monitor: K8s Pod Crash Looping using monitor_yaml
+    ///     // Monitor YAML structure docs:
+    ///     // https://docs.groundcover.com/use-groundcover/monitors/monitor-yaml-structure
     ///     var k8sPodCrashLooping = new Groundcover.Monitor("k8sPodCrashLooping", new()
     ///     {
     ///         MonitorYaml = @"title: K8s Pod Crash Looping
@@ -85,6 +87,12 @@ namespace GroundcoverCom.Groundcover
     ///         ["monitorExampleYamlOutput"] = k8sPodCrashLooping.MonitorYaml,
     ///     };
     /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/monitor:Monitor example "&lt;id&gt;"
     /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/monitor:Monitor")]

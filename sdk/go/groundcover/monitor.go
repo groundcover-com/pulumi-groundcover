@@ -33,6 +33,8 @@ import (
 //			groundcoverApiKey := cfg.Require("groundcoverApiKey")
 //			groundcoverBackendId := cfg.Require("groundcoverBackendId")
 //			// Example Monitor: K8s Pod Crash Looping using monitor_yaml
+//			// Monitor YAML structure docs:
+//			// https://docs.groundcover.com/use-groundcover/monitors/monitor-yaml-structure
 //			k8sPodCrashLooping, err := groundcover.NewMonitor(ctx, "k8sPodCrashLooping", &groundcover.MonitorArgs{
 //				MonitorYaml: pulumi.String(`title: K8s Pod Crash Looping
 //
@@ -100,6 +102,12 @@ import (
 //		})
 //	}
 //
+// ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/monitor:Monitor example "<id>"
 // ```
 type Monitor struct {
 	pulumi.CustomResourceState

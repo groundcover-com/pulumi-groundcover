@@ -75,6 +75,12 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ```sh
+// $ pulumi import groundcover:index/policy:Policy example "<id>"
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 

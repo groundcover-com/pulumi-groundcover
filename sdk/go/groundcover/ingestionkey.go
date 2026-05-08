@@ -32,14 +32,14 @@ import (
 //			cfg := config.New(ctx, "")
 //			groundcoverApiKey := cfg.Require("groundcoverApiKey")
 //			groundcoverBackendId := cfg.Require("groundcoverBackendId")
-//			// Example Ingestion Key
+//			// Example Ingestion Key with type "sensor"
 //			example, err := groundcover.NewIngestionkey(ctx, "example", &groundcover.IngestionkeyArgs{
-//				Type:         pulumi.String("ingestion"),
+//				Type:         pulumi.String("sensor"),
 //				RemoteConfig: pulumi.Bool(true),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //					pulumi.String("example"),
-//					pulumi.String("ingestion"),
+//					pulumi.String("sensor"),
 //				},
 //			})
 //			if err != nil {
@@ -47,7 +47,7 @@ import (
 //			}
 //			// Example Ingestion Key with minimal configuration
 //			minimal, err := groundcover.NewIngestionkey(ctx, "minimal", &groundcover.IngestionkeyArgs{
-//				Type: pulumi.String("ingestion"),
+//				Type: pulumi.String("sensor"),
 //			})
 //			if err != nil {
 //				return err
@@ -60,6 +60,14 @@ import (
 //		})
 //	}
 //
+// ```
+//
+// ## Import
+//
+// # Ingestion keys are imported by name, not by ID
+//
+// ```sh
+// $ pulumi import groundcover:index/ingestionkey:Ingestionkey example "<name>"
 // ```
 type Ingestionkey struct {
 	pulumi.CustomResourceState
@@ -78,7 +86,7 @@ type Ingestionkey struct {
 	RemoteConfig pulumi.BoolOutput `pulumi:"remoteConfig"`
 	// Tags associated with the ingestion key.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The type of the ingestion key (e.g., 'ingestion').
+	// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -129,7 +137,7 @@ type ingestionkeyState struct {
 	RemoteConfig *bool `pulumi:"remoteConfig"`
 	// Tags associated with the ingestion key.
 	Tags []string `pulumi:"tags"`
-	// The type of the ingestion key (e.g., 'ingestion').
+	// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 	Type *string `pulumi:"type"`
 }
 
@@ -148,7 +156,7 @@ type IngestionkeyState struct {
 	RemoteConfig pulumi.BoolPtrInput
 	// Tags associated with the ingestion key.
 	Tags pulumi.StringArrayInput
-	// The type of the ingestion key (e.g., 'ingestion').
+	// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 	Type pulumi.StringPtrInput
 }
 
@@ -163,7 +171,7 @@ type ingestionkeyArgs struct {
 	RemoteConfig *bool `pulumi:"remoteConfig"`
 	// Tags associated with the ingestion key.
 	Tags []string `pulumi:"tags"`
-	// The type of the ingestion key (e.g., 'ingestion').
+	// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 	Type string `pulumi:"type"`
 }
 
@@ -175,7 +183,7 @@ type IngestionkeyArgs struct {
 	RemoteConfig pulumi.BoolPtrInput
 	// Tags associated with the ingestion key.
 	Tags pulumi.StringArrayInput
-	// The type of the ingestion key (e.g., 'ingestion').
+	// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 	Type pulumi.StringInput
 }
 
@@ -298,7 +306,7 @@ func (o IngestionkeyOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Ingestionkey) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of the ingestion key (e.g., 'ingestion').
+// The type of the ingestion key. Valid values are: 'sensor', 'rum', 'thirdParty'.
 func (o IngestionkeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ingestionkey) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

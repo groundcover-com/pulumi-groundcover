@@ -225,6 +225,7 @@ class Dataintegration(pulumi.CustomResource):
                     "us-east-2",
                 ],
                 "roleArn": "arn:aws:iam::123456789012:role/test-role",
+                "awsNamespaces": ["AWS/ApplicationELB"],
                 "awsMetrics": [{
                     "namespace": "AWS/EC2",
                     "metrics": [{
@@ -237,6 +238,7 @@ class Dataintegration(pulumi.CustomResource):
                         "env": "prod",
                     },
                 },
+                "withContextTagsOnInfoMetrics": True,
                 "scrapeInterval": 300000000000,
                 "exporters": ["prometheus"],
             }),
@@ -297,9 +299,403 @@ class Dataintegration(pulumi.CustomResource):
                 "exporters": ["prometheus"],
             }),
             is_paused=False)
+        # Example: Prometheus Static Targets
+        prometheus_static_example = groundcover.Dataintegration("prometheusStaticExample",
+            type="prometheusscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "prometheus-static-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["prometheus-target.example.com:9090"],
+                "exporters": ["prometheus"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prometheus-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: Prometheus HTTPs Target Discovery
+        prometheus_discovery_example = groundcover.Dataintegration("prometheusDiscoveryExample",
+            type="prometheusscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "Target discovery scraping example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "http",
+                "httpDiscovery": {
+                    "url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example",
+                    "authentication": {
+                        "basicAuth": {
+                            "username": "prom_user_6909b9ab19480f045c1f2eca",
+                            "password": "secretRef::store::5219731e4bc798eb",
+                        },
+                    },
+                },
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: MongoDB Atlas
+        mongodb_atlas_example = groundcover.Dataintegration("mongodbAtlasExample",
+            type="mongoatlasscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "MongoDB Atlas example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "http",
+                "httpDiscovery": {
+                    "url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example/discovery",
+                    "authentication": {
+                        "basicAuth": {
+                            "username": "prom_user_6909b9ab19480f045c1f2eca",
+                            "password": "secretRef::store::5219731e4bc798eb",
+                        },
+                    },
+                },
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: RabbitMQ
+        rabbitmq_example = groundcover.Dataintegration("rabbitmqExample",
+            type="rabbitscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "RabbitMQ example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "https",
+                "staticTargets": [
+                    "myserver1:9090",
+                    "myserver2:9090",
+                ],
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: Redis Cloud
+        rediscloud_example = groundcover.Dataintegration("rediscloudExample",
+            type="rediscloudscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "Redis Cloud example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "https",
+                "staticTargets": ["https://your-redis-cloud-address:8070"],
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "headerAuth": {
+                        "key": "bearer_token",
+                        "value": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: ClickHouse - Query Log & Custom Metrics
+        clickhouse_demo = groundcover.Dataintegration("clickhouseDemo",
+            type="clickhousedbm",
+            is_paused=False,
+            config=json.dumps({
+                "authentication": {
+                    "basicAuth": {
+                        "username": "default",
+                        "password": "secretRef::k8s::groundcover::groundcover-clickhouse::admin-password",
+                    },
+                },
+                "clusterMode": True,
+                "clusterName": "clustername",
+                "database": "your clickhouse db name",
+                "dialTimeout": "10s",
+                "enabled": True,
+                "host": "your clickhouse host details",
+                "name": "clickhouse demo integration",
+                "port": 9000,
+                "skipVerify": False,
+                "version": 1,
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "customMetricQueries": {
+                    "collectionInterval": "5m",
+                    "queries": [{
+                        "name": "test query",
+                        "metricPrefix": "gc_clickhouse",
+                        "extraLabels": {},
+                        "metricsColumns": [{
+                            "name": "accounts_count",
+                            "metricName": "total",
+                            "type": "counter",
+                        }],
+                        "query": \"\"\"SELECT
+            tier,
+            count() as accounts_count
+        FROM my_accounts
+        GROUP BY tier
+        \"\"\",
+                    }],
+                },
+                "tables": {
+                    "queryLog": {
+                        "enabled": True,
+                        "filterInserts": True,
+                    },
+                    "queryViewsLog": {
+                        "enabled": True,
+                    },
+                },
+            }))
+        # Example: ClickHouse System Metrics DataIntegration
+        clickhouse_system_metrics_example = groundcover.Dataintegration("clickhouseSystemMetricsExample",
+            type="clickhousescrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "clickhouse-system-metrics-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["clickhouse-target.example.com:9090"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "clickhouse-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: PostgreSQL - Slow Queries & Custom Metrics
+        postgresql_demo = groundcover.Dataintegration("postgresqlDemo",
+            type="postgresqldbm",
+            is_paused=False,
+            config=json.dumps({
+                "authentication": {
+                    "basicAuth": {
+                        "username": "postgres",
+                        "password": "secretRef::k8s::groundcover::groundcover-postgresql::admin-password",
+                    },
+                },
+                "database": "your postgresql db name",
+                "dialTimeout": "10s",
+                "enabled": True,
+                "host": "your postgres host details",
+                "name": "postgres demo integration",
+                "port": 5432,
+                "secure": True,
+                "skipVerify": False,
+                "version": 1,
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "customMetricQueries": {
+                    "collectionInterval": "5m",
+                    "queries": [{
+                        "name": "test query",
+                        "metricPrefix": "gc_postgres",
+                        "metricsColumns": [{
+                            "name": "accounts_count",
+                            "metricName": "total",
+                            "type": "counter",
+                        }],
+                        "query": \"\"\"SELECT
+            tier,
+            count(*) as accounts_count
+        FROM my_accounts
+        GROUP BY tier
+        \"\"\",
+                    }],
+                },
+                "tables": {
+                    "pgStatStatements": {
+                        "enabled": True,
+                        "filterInserts": False,
+                        "maxQueries": 200,
+                    },
+                },
+            }))
+        # Example: PostgreSQL System Metrics DataIntegration
+        postgresql_system_metrics_example = groundcover.Dataintegration("postgresqlSystemMetricsExample",
+            type="postgresscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "postgresql-system-metrics-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["postgresql-target.example.com:9090"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "postgresql-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
         pulumi.export("cloudwatchDataintegrationId", cloudwatch_example.id)
         pulumi.export("gcpmetricsDataintegrationId", gcp_example.id)
         pulumi.export("azuremetricsDataintegrationId", azure_example.id)
+        pulumi.export("prometheusStaticDataintegrationId", prometheus_static_example.id)
+        pulumi.export("prometheusDiscoveryDataintegrationId", prometheus_discovery_example.id)
+        pulumi.export("mongodbAtlasDataintegrationId", mongodb_atlas_example.id)
+        pulumi.export("rabbitmqDataintegrationId", rabbitmq_example.id)
+        pulumi.export("rediscloudDataintegrationId", rediscloud_example.id)
+        pulumi.export("clickhouseDemoDataintegrationId", clickhouse_demo.id)
+        pulumi.export("clickhouseSystemMetricsDataintegrationId", clickhouse_system_metrics_example.id)
+        pulumi.export("postgresqlDemoDataintegrationId", postgresql_demo.id)
+        pulumi.export("postgresqlSystemMetricsDataintegrationId", postgresql_system_metrics_example.id)
+        ```
+
+        ## Import
+
+        Import format: type:id (e.g., cloudwatch:abc123)
+
+        ```sh
+        $ pulumi import groundcover:index/dataintegration:Dataintegration example "<type>:<id>"
         ```
 
         :param str resource_name: The name of the resource.
@@ -339,6 +735,7 @@ class Dataintegration(pulumi.CustomResource):
                     "us-east-2",
                 ],
                 "roleArn": "arn:aws:iam::123456789012:role/test-role",
+                "awsNamespaces": ["AWS/ApplicationELB"],
                 "awsMetrics": [{
                     "namespace": "AWS/EC2",
                     "metrics": [{
@@ -351,6 +748,7 @@ class Dataintegration(pulumi.CustomResource):
                         "env": "prod",
                     },
                 },
+                "withContextTagsOnInfoMetrics": True,
                 "scrapeInterval": 300000000000,
                 "exporters": ["prometheus"],
             }),
@@ -411,9 +809,403 @@ class Dataintegration(pulumi.CustomResource):
                 "exporters": ["prometheus"],
             }),
             is_paused=False)
+        # Example: Prometheus Static Targets
+        prometheus_static_example = groundcover.Dataintegration("prometheusStaticExample",
+            type="prometheusscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "prometheus-static-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["prometheus-target.example.com:9090"],
+                "exporters": ["prometheus"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prometheus-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: Prometheus HTTPs Target Discovery
+        prometheus_discovery_example = groundcover.Dataintegration("prometheusDiscoveryExample",
+            type="prometheusscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "Target discovery scraping example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "http",
+                "httpDiscovery": {
+                    "url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example",
+                    "authentication": {
+                        "basicAuth": {
+                            "username": "prom_user_6909b9ab19480f045c1f2eca",
+                            "password": "secretRef::store::5219731e4bc798eb",
+                        },
+                    },
+                },
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: MongoDB Atlas
+        mongodb_atlas_example = groundcover.Dataintegration("mongodbAtlasExample",
+            type="mongoatlasscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "MongoDB Atlas example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "http",
+                "httpDiscovery": {
+                    "url": "https://cloud.mongodb.com/prometheus/v1.0/groups/example/discovery",
+                    "authentication": {
+                        "basicAuth": {
+                            "username": "prom_user_6909b9ab19480f045c1f2eca",
+                            "password": "secretRef::store::5219731e4bc798eb",
+                        },
+                    },
+                },
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: RabbitMQ
+        rabbitmq_example = groundcover.Dataintegration("rabbitmqExample",
+            type="rabbitscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "RabbitMQ example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "https",
+                "staticTargets": [
+                    "myserver1:9090",
+                    "myserver2:9090",
+                ],
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "prom_user_6909b9ab19480f045c1f2eca",
+                        "password": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: Redis Cloud
+        rediscloud_example = groundcover.Dataintegration("rediscloudExample",
+            type="rediscloudscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "Redis Cloud example",
+                "exporters": ["prometheus"],
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "metricsPath": "/metrics",
+                "scheme": "https",
+                "staticTargets": ["https://your-redis-cloud-address:8070"],
+                "targetsRelabels": {
+                    "keepRegex": [".*shard-00-02.*"],
+                    "dropRegex": [".*shard-00-01.*"],
+                },
+                "authentication": {
+                    "headerAuth": {
+                        "key": "bearer_token",
+                        "value": "secretRef::store::15e1b4b9c0ce0a45",
+                    },
+                },
+                "metricsRelabels": {
+                    "keepRegex": [],
+                    "dropRegex": ["[*]catalogStats[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: ClickHouse - Query Log & Custom Metrics
+        clickhouse_demo = groundcover.Dataintegration("clickhouseDemo",
+            type="clickhousedbm",
+            is_paused=False,
+            config=json.dumps({
+                "authentication": {
+                    "basicAuth": {
+                        "username": "default",
+                        "password": "secretRef::k8s::groundcover::groundcover-clickhouse::admin-password",
+                    },
+                },
+                "clusterMode": True,
+                "clusterName": "clustername",
+                "database": "your clickhouse db name",
+                "dialTimeout": "10s",
+                "enabled": True,
+                "host": "your clickhouse host details",
+                "name": "clickhouse demo integration",
+                "port": 9000,
+                "skipVerify": False,
+                "version": 1,
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "customMetricQueries": {
+                    "collectionInterval": "5m",
+                    "queries": [{
+                        "name": "test query",
+                        "metricPrefix": "gc_clickhouse",
+                        "extraLabels": {},
+                        "metricsColumns": [{
+                            "name": "accounts_count",
+                            "metricName": "total",
+                            "type": "counter",
+                        }],
+                        "query": \"\"\"SELECT
+            tier,
+            count() as accounts_count
+        FROM my_accounts
+        GROUP BY tier
+        \"\"\",
+                    }],
+                },
+                "tables": {
+                    "queryLog": {
+                        "enabled": True,
+                        "filterInserts": True,
+                    },
+                    "queryViewsLog": {
+                        "enabled": True,
+                    },
+                },
+            }))
+        # Example: ClickHouse System Metrics DataIntegration
+        clickhouse_system_metrics_example = groundcover.Dataintegration("clickhouseSystemMetricsExample",
+            type="clickhousescrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "clickhouse-system-metrics-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["clickhouse-target.example.com:9090"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "clickhouse-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
+        # Example: PostgreSQL - Slow Queries & Custom Metrics
+        postgresql_demo = groundcover.Dataintegration("postgresqlDemo",
+            type="postgresqldbm",
+            is_paused=False,
+            config=json.dumps({
+                "authentication": {
+                    "basicAuth": {
+                        "username": "postgres",
+                        "password": "secretRef::k8s::groundcover::groundcover-postgresql::admin-password",
+                    },
+                },
+                "database": "your postgresql db name",
+                "dialTimeout": "10s",
+                "enabled": True,
+                "host": "your postgres host details",
+                "name": "postgres demo integration",
+                "port": 5432,
+                "secure": True,
+                "skipVerify": False,
+                "version": 1,
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "customMetricQueries": {
+                    "collectionInterval": "5m",
+                    "queries": [{
+                        "name": "test query",
+                        "metricPrefix": "gc_postgres",
+                        "metricsColumns": [{
+                            "name": "accounts_count",
+                            "metricName": "total",
+                            "type": "counter",
+                        }],
+                        "query": \"\"\"SELECT
+            tier,
+            count(*) as accounts_count
+        FROM my_accounts
+        GROUP BY tier
+        \"\"\",
+                    }],
+                },
+                "tables": {
+                    "pgStatStatements": {
+                        "enabled": True,
+                        "filterInserts": False,
+                        "maxQueries": 200,
+                    },
+                },
+            }))
+        # Example: PostgreSQL System Metrics DataIntegration
+        postgresql_system_metrics_example = groundcover.Dataintegration("postgresqlSystemMetricsExample",
+            type="postgresscrape",
+            config=json.dumps({
+                "version": 1,
+                "enabled": True,
+                "name": "postgresql-system-metrics-config",
+                "scheme": "https",
+                "metricsPath": "/metrics",
+                "scrapeInterval": 30000000000,
+                "scrapeTimeout": 10000000000,
+                "staticTargets": ["postgresql-target.example.com:9090"],
+                "metricsRelabels": {
+                    "keepRegex": ["[*]cpu[*]"],
+                    "dropRegex": ["DB1[*]"],
+                    "raw": \"\"\"# additional relabeling rules that can be applied such as adding a prefix
+          - action: labelmap
+            replacement: "groundcover_$1"
+        \"\"\",
+                },
+                "labelSettings": {
+                    "extraLabels": {
+                        "env": "prod",
+                    },
+                },
+                "authentication": {
+                    "basicAuth": {
+                        "username": "postgresql-user",
+                        "password": "secretRef::store::d1fc037f11f8ce58",
+                    },
+                },
+            }),
+            is_paused=False)
         pulumi.export("cloudwatchDataintegrationId", cloudwatch_example.id)
         pulumi.export("gcpmetricsDataintegrationId", gcp_example.id)
         pulumi.export("azuremetricsDataintegrationId", azure_example.id)
+        pulumi.export("prometheusStaticDataintegrationId", prometheus_static_example.id)
+        pulumi.export("prometheusDiscoveryDataintegrationId", prometheus_discovery_example.id)
+        pulumi.export("mongodbAtlasDataintegrationId", mongodb_atlas_example.id)
+        pulumi.export("rabbitmqDataintegrationId", rabbitmq_example.id)
+        pulumi.export("rediscloudDataintegrationId", rediscloud_example.id)
+        pulumi.export("clickhouseDemoDataintegrationId", clickhouse_demo.id)
+        pulumi.export("clickhouseSystemMetricsDataintegrationId", clickhouse_system_metrics_example.id)
+        pulumi.export("postgresqlDemoDataintegrationId", postgresql_demo.id)
+        pulumi.export("postgresqlSystemMetricsDataintegrationId", postgresql_system_metrics_example.id)
+        ```
+
+        ## Import
+
+        Import format: type:id (e.g., cloudwatch:abc123)
+
+        ```sh
+        $ pulumi import groundcover:index/dataintegration:Dataintegration example "<type>:<id>"
         ```
 
         :param str resource_name: The name of the resource.

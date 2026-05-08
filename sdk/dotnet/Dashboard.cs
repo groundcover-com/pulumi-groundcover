@@ -186,6 +186,12 @@ namespace GroundcoverCom.Groundcover
     ///     };
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ```sh
+    /// $ pulumi import groundcover:index/dashboard:Dashboard example "&lt;id&gt;"
+    /// ```
     /// </summary>
     [GroundcoverResourceType("groundcover:index/dashboard:Dashboard")]
     public partial class Dashboard : global::Pulumi.CustomResource
@@ -202,9 +208,6 @@ namespace GroundcoverCom.Groundcover
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// Whether to override the dashboard on update.
-        /// </summary>
         [Output("override")]
         public Output<bool?> Override { get; private set; } = null!;
 
@@ -297,9 +300,6 @@ namespace GroundcoverCom.Groundcover
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Whether to override the dashboard on update.
-        /// </summary>
         [Input("override")]
         public Input<bool>? Override { get; set; }
 
@@ -335,9 +335,6 @@ namespace GroundcoverCom.Groundcover
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Whether to override the dashboard on update.
-        /// </summary>
         [Input("override")]
         public Input<bool>? Override { get; set; }
 

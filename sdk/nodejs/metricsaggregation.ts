@@ -33,6 +33,12 @@ import * as utilities from "./utilities";
  * `});
  * export const metricsAggregationUpdatedAt = metricsaggregation.updatedAt;
  * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/metricsaggregation:Metricsaggregation example "<id>"
+ * ```
  */
 export class Metricsaggregation extends pulumi.CustomResource {
     /**

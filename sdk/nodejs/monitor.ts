@@ -17,6 +17,8 @@ import * as utilities from "./utilities";
  * const groundcoverApiKey = config.require("groundcoverApiKey");
  * const groundcoverBackendId = config.require("groundcoverBackendId");
  * // Example Monitor: K8s Pod Crash Looping using monitor_yaml
+ * // Monitor YAML structure docs:
+ * // https://docs.groundcover.com/use-groundcover/monitors/monitor-yaml-structure
  * const k8sPodCrashLooping = new groundcover.Monitor("k8sPodCrashLooping", {monitorYaml: `title: K8s Pod Crash Looping
  * display:
  *   header: K8s Pod Crash Looping
@@ -67,6 +69,12 @@ import * as utilities from "./utilities";
  * `});
  * export const monitorExampleId = k8sPodCrashLooping.id;
  * export const monitorExampleYamlOutput = k8sPodCrashLooping.monitorYaml;
+ * ```
+ *
+ * ## Import
+ *
+ * ```sh
+ * $ pulumi import groundcover:index/monitor:Monitor example "<id>"
  * ```
  */
 export class Monitor extends pulumi.CustomResource {
