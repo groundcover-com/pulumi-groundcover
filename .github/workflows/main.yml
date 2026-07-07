@@ -2,6 +2,7 @@
 
 env:
   GROUNDCOVER_API_KEY: ${{ secrets.GROUNDCOVER_API_KEY }}
+  GROUNDCOVER_API_URL: ${{ secrets.GROUNDCOVER_API_URL }}
   GROUNDCOVER_BACKEND_ID: ${{ secrets.GROUNDCOVER_BACKEND_ID }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..

@@ -8,6 +8,7 @@ on:
 
 env:
   GROUNDCOVER_API_KEY: ${{ secrets.GROUNDCOVER_API_KEY }}
+  GROUNDCOVER_API_URL: ${{ secrets.GROUNDCOVER_API_URL }}
   GROUNDCOVER_BACKEND_ID: ${{ secrets.GROUNDCOVER_BACKEND_ID }}
   PULUMI_API: https://api.pulumi-staging.io
   PULUMI_GO_DEP_ROOT: ${{ github.workspace }}/..
@@ -37,7 +38,7 @@ jobs:
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
-          version: 2025.11.6
+          version: 2026.1.1
           github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
           plugin_install: https://github.com/pulumi/vfox-pulumi
           # only saving the cache in the prerequisites job
